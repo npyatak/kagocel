@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+	<meta charset="utf-8">
+	<!-- <base href="/"> -->
+
+	<title>Title</title>
+	<meta name="description" content=""> 
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<meta property="og:image" content="path/to/image.jpg">
+	<link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="img/favicon/apple-touch-icon-180x180.png">
+	<!-- <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png"> -->
+
+
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#000">
+	<!-- Windows Phone -->
+	<!-- <meta name="msapplication-navbutton-color" content="#000"> -->
+	<!-- iOS Safari -->
+	<!-- <meta name="apple-mobile-web-app-status-bar-style" content="#000"> -->
+
+	<link rel="stylesheet" href="css/libs.min.css">
+	<link rel="stylesheet" href="css/main.css">
+
+	<style>.wrapper{opacity:0;}html{background-color:#fff;}</style>
+</head>
+
+<body>
+
+
+	<div class="wrapper">
+
+		<!-- класс glow добавляем хедеру свечение в углах (необходимо использовать только когда позади хедера фон со свечением) -->
+		
+		<header class="header_main glow">
+			<div class="contain">
+				<div class="burger_button">
+					<div class="one"></div>
+					<div class="two"></div>
+					<div class="three"></div>
+				</div>
+				<a class="logo_1" href="#">
+					<img src="img/logo_1.svg" alt="logo">
+				</a>
+				<nav class="main_menu">
+					<ul>
+						<li><a href="#">Главная</a></li>
+						<li><a class="active" href="#">Личный кабинет</a></li>
+						<li><a href="#">Галерея</a></li>
+						<li><a href="#">О продукте</a></li>
+						<li><a href="#">Обратная связь</a></li>
+						<li><a href="#">Faq</a></li>
+						<li><a href="#">Правила</a></li>
+					</ul>
+				</nav>
+				<a class="logo_2" href="#">
+					<img src="img/logo_2.png" alt="logo">
+				</a>
+			</div>
+		</header>
+		
+
+		<div class="burger_menu">
+			<div class="contain">
+				<img class="close_burger" src="img/close_middle.svg" alt="close">
+				<ul class="burger_ul">
+					<li><a href="#">Главная</a></li>
+					<li><a class="active" href="#">Личный кабинет</a></li>
+					<li><a href="#">Галерея</a></li>
+					<li><a href="#">О продукте</a></li>
+					<li><a href="#">Обратная связь</a></li>
+					<li><a href="#">Faq</a></li>
+					<li><a href="#">Правила</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- 
+		bg_1 - определяет фон блока и цвет шрифта внутри
+		pt_small - малый отступ сверху
+		pb_big - большой отступ снизу
+		after_header - говорит о том, что этот блок идет после header, что-бы скрипт задал ему отступ сверху
+		 -->
+		<section class="authorization after_header">
+			<div class="contain">
+				
+
+
+				<div class="authorization_step_2">
+					<h2 class="section_title red_letter" data-letter="4">Авт<i>о</i>ризация<img src="img/arrow_orange.svg" alt="img"></h2>
+					
+					<div class="authorization_form_wrap">
+						<form>
+							<div class="input_1_wrap">
+								<input class="input_1" type="text" placeholder="имя*">
+							</div>
+							<div class="input_1_wrap">
+								<input class="input_1" type="text" placeholder="фамилия*">
+							</div>
+							<!-- если поле не корректно заполнено добавляем к input класс failed и ниже в span выводим сообщение -->
+							<div class="input_1_wrap">
+								<input class="input_1 failed" type="text" placeholder="e-mail*">
+								<span>такой e-mail уже существует</span>
+							</div>
+							<div class="input_1_wrap">
+								<input class="input_1" type="text" placeholder="телефон">
+							</div>
+							<div class="input_1_wrap">
+								<input class="input_1" type="text" placeholder="дата рождения*">
+							</div>
+						</form>
+						<p class="form_alert"><span>*</span>- обязательные для заполнения поля</p>
+
+						<button class="button_1">Готово</button>
+						<a href="#" class="authoriation_refer">Авторизация</a>
+					</div>
+
+				</div>
+				<!-- autorization_step_1 -->
+
+
+
+			</div>
+		</section>
+		<!-- authorization -->
+
+
+		
+
+
+
+
+		<!-- <div class="push"></div> -->
+
+
+		<footer class="main_footer">
+
+			<div class="footer_top">
+				<div class="contain">
+
+					<div class="logo_block">
+						<a class="footer_logo" href="#"><img src="img/logo_1.svg" alt="logo"></a>
+						<a class="footer_logo" href="#"><img src="img/logo_2.png" alt="logo"></a>
+					</div>
+
+					<nav class="footer_menu">
+						<ul>
+							<li><a href="#">Главная</a></li>
+							<li><a class="active" href="#">Личный кабинет</a></li>
+							<li><a href="#">FAQ</a></li>
+							<li><a href="#">Галерея</a></li>
+							<li><a href="#">О продукте</a></li>
+							<li><a href="#">Обратная связь</a></li>
+							<li><a href="#">Правила конкурса</a></li>
+						</ul>
+					</nav>
+					<p class="sixteen_item">16<span>+</span></p>
+					<p class="copyright">© Copyright 2019 ОАО «ТНТ-телесеть». Все права защищены</p>
+
+				</div>
+			</div>
+			<!-- footer_top -->
+
+			<div class="footer_bottom">
+				<p>Имеются противопоказания. необходимо ознакомиться с инструкцией или проконсультироваться со специалистом</p>
+			</div>
+
+
+		</footer>
+	</div>
+
+
+
+
+
+
+
+	
+	
+	<script src="js/libs.min.js"></script>
+	<script src="js/common.js"></script>
+
+
+	<script>
+		window.onload = function (){
+			$(".wrapper").css("opacity","1");
+		}
+
+
+	</script>
+
+</body>
+</html>
