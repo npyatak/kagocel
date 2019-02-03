@@ -27,11 +27,8 @@ $(document).ready(function(){
 
 
 $(".burger_button").click(function() {
-  // $(this).toggleClass("on");
-  $(".burger_menu").slideDown(500);
-  // $(".burger_menu").slideToggle(function(){
+  	$(".burger_menu").slideDown(500);
   	$("body").addClass("no_scroll");
-  // });
 });
 
 $(".close_burger").on("click", function(){
@@ -41,19 +38,12 @@ $(".close_burger").on("click", function(){
 
 
 // бегунок громкости
-var $range = $(".volume_range");
-$range.ionRangeSlider({
-    type: "single",
-    step: 1,
-    min: 0,
-    max: 100,
-    from: 50, //начальное значение
-    // to: 25, //конечное значение
-    // hide_min_max: true,		//Прячет лейблы "min" и "max"
-    // hide_from_to: true, //Прячет лейблы "from" и "to"
-    // grid: false //нумерация сетки
+$(".volume_range").slider({
+    value: 50,
+    orientation: "horizontal",
+    range: "min",
+    animate: true
 });
-
 
 
 
@@ -152,21 +142,106 @@ if($("div").is(".tracks_slider")){
 
 
 
-// $(".red_letter").each(function(){
-// 	var ths = $(this);
-// 	var num = ths.data("number");
-// 	var text = ths.html();
-// 	var text = text.split(""); //делим текст по пробелу
-// 	console.log(text);
-// 	var text_count = parseInt(text.length); //количество букв в предложении
+// Крутилки на микшире
+$.each($(".knob"), function(i,e){
+	// console.log($(this).attr("class"));
 
-// 	var new_text = "";
-// 	for(i=0; i < text_count; i++){
-// 		if(i==num-1){
-// 			new_text = new_text + "<span class='sn_bg'>"+text[i]+"</span> "; //если порядковый номер слова равен num тогда заворачиваем его в <span>
-// 		}else{
-// 			new_text = new_text + text[i]; //собираем строку
-// 		}	
-// 	}
-// 	ths.html(new_text);
-// });
+	Draggable.create(e, {
+		type: "rotation", 
+		throwProps: true,
+		// trigger: $(this),
+		// dragClickables: true,
+		// minimumMovement: 10,
+		bounds:{minRotation:-140, maxRotation:140},
+		// allowNativeTouchScrolling: false,
+		onDrag: function(){
+			
+					var parent = $(this.target).parent();
+					// console.log(parent);
+
+					//  вращаем элемент вместе с крутилкой 
+					parent.children(".color_circle").css("transform","rotate("+ this.rotation +"deg)");
+
+					if(this.rotation <= 0){
+						parent.children(".color_circle").addClass("left");
+						parent.children(".grey_circle").addClass("right");
+						// parent.css("background-color","#fff")
+					}else{
+						parent.children(".color_circle").removeClass("left");
+						parent.children(".grey_circle").removeClass("right");
+					}
+
+
+				},
+
+	});
+
+
+});
+
+
+
+
+// кнопка запись 
+$(".recording_button").on("click", function(){
+	$(this).toggleClass("active");
+});
+
+$(".plus_minus .center").on("click", function(){
+	$(this).parent().toggleClass("active");
+});
+
+$(".play_stop").on("click", function(){
+	$(this).toggleClass("active");
+	$(this).parent().prev().children(".plate_wrap .handle").toggleClass("active");
+});
+
+
+
+
+// отключаем возможность перетаскивания изображений (некоторые браузеры дают такую возможность)
+$('img').attr({
+   "ondrag":"return false",
+   "ondragdrop":"return false",
+   "ondragstart":"return false"
+})
+
+
+
+
+// тут добавляем возможность интерактивно крутить пластинки 
+$.each($(".plate_wrap .plate"), function(i,e){
+	// console.log($(this).attr("class"));
+
+	Draggable.create(e, {
+		type: "rotation", 
+		throwProps: true,
+	});
+});
+
+
+
+
+
+
+
+$(".rsh_1").slider({
+    value: 50,
+    orientation: "horizontal",
+    range: "min",
+    animate: true
+});
+
+$(".rsv").slider({
+    value: 50,
+    orientation: "vertical",
+    range: "min",
+    animate: true
+});
+
+$(".rsh_2").slider({
+    value: 50,
+    orientation: "horizontal",
+    range: "min",
+    animate: true
+});
