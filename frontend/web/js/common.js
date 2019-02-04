@@ -27,8 +27,11 @@ $(document).ready(function(){
 
 
 $(".burger_button").click(function() {
-  	$(".burger_menu").slideDown(500);
+  // $(this).toggleClass("on");
+  $(".burger_menu").slideDown(500);
+  // $(".burger_menu").slideToggle(function(){
   	$("body").addClass("no_scroll");
+  // });
 });
 
 $(".close_burger").on("click", function(){
@@ -38,6 +41,17 @@ $(".close_burger").on("click", function(){
 
 
 // бегунок громкости
+// var $range = $(".volume_range");
+// $range.ionRangeSlider({
+//     type: "single",
+//     step: 1,
+//     min: 0,
+//     max: 100,
+//     from: 50, //начальное значение
+//     hide_min_max: true,
+// });
+
+
 $(".volume_range").slider({
     value: 50,
     orientation: "horizontal",
@@ -142,6 +156,26 @@ if($("div").is(".tracks_slider")){
 
 
 
+
+
+
+// $.each($(".track-item"), function(i,e)
+// {
+//   //store this li element's play-button in a variable
+//   var triggerEl = $(e).find(".play-button");
+
+//   Draggable.create(e,
+//   {
+//     //apply that as this particular li element's Draggable instance trigger
+//     trigger: triggerEl,
+//     type:"y",
+//     edgeResistance:0.75,
+//     bounds:".playlist",
+//   });
+// });
+
+
+
 // Крутилки на микшире
 $.each($(".knob"), function(i,e){
 	// console.log($(this).attr("class"));
@@ -196,6 +230,17 @@ $(".play_stop").on("click", function(){
 	$(this).parent().prev().children(".plate_wrap .handle").toggleClass("active");
 });
 
+$(".play_li").on("click", function(){
+	$(this).toggleClass("active");
+});
+
+$(".button_play").on("click", function(){
+	$(this).toggleClass("active");
+});
+
+$(".record_img .play").on("click", function(){
+	$(this).toggleClass("active");
+});
 
 
 
@@ -222,6 +267,40 @@ $.each($(".plate_wrap .plate"), function(i,e){
 
 
 
+// $(".red_letter").each(function(){
+// 	var ths = $(this);
+// 	var num = ths.data("number");
+// 	var text = ths.html();
+// 	var text = text.split(""); //делим текст по пробелу
+// 	console.log(text);
+// 	var text_count = parseInt(text.length); //количество букв в предложении
+
+// 	var new_text = "";
+// 	for(i=0; i < text_count; i++){
+// 		if(i==num-1){
+// 			new_text = new_text + "<span class='sn_bg'>"+text[i]+"</span> "; //если порядковый номер слова равен num тогда заворачиваем его в <span>
+// 		}else{
+// 			new_text = new_text + text[i]; //собираем строку
+// 		}	
+// 	}
+// 	ths.html(new_text);
+// });
+
+
+// $(".rs_1").ionRangeSlider({
+//     type: "single",
+//     step: 1,
+//     min: 0,
+//     max: 100,
+//     // hide_from_to: true,
+//     hide_min_max: true,
+//     from: 50, //начальное значение
+//     // to: 25, //конечное значение
+//     // hide_min_max: true,		//Прячет лейблы "min" и "max"
+//     // hide_from_to: true, //Прячет лейблы "from" и "to"
+//     // grid: false //нумерация сетки
+// });
+
 
 
 
@@ -244,4 +323,18 @@ $(".rsh_2").slider({
     orientation: "horizontal",
     range: "min",
     animate: true
+});
+
+
+
+// стилизуем полосы прокрутки
+$(window).on("load",function(){
+	$(".playlist").mCustomScrollbar({
+		axis:"y",
+		mouseWheel: true, //отключаем скроллинг при листании колесом мыши
+		scrollInertia: 500,
+		// autoHideScrollba: true,
+		// snapAmount: 20,
+		mouseWheel:{ scrollAmount: 100, }
+	});
 });
