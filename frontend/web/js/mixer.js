@@ -29,7 +29,7 @@ function Track(url, isLeft) {
 	track.currentPlaybackRate = 1.0;
     track.lastBufferTime = 0.0;
 	track.isPlaying = false;
-	track.loadNewTrack( url );
+	track.loadNewTrack(url);
 	track.xfadeGain = audioCtx.createGain();
 	track.xfadeGain.gain.value = 0.5;
 	track.xfadeGain.connect(masterGain);

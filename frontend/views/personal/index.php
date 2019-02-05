@@ -40,9 +40,15 @@ after_header - говорит о том, что этот блок идет по�
 	<div class="contain">
 		
 		<div class="user_info">
-			<div class="img" style="background-image: url(img/test_img/user_photo.png);"></div>
-			<p class="name">Марченк<i>о</i>в Андрей</p>
-			<a class="exit" href="#">Выйти <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+			<div class="img" style="background-image: url(<?=$user->image;?>);"></div>
+			<p class="name"><?=$user->fullName;?></p>
+			<?=Html::beginForm(['/site/logout'], 'post')
+	            . Html::submitButton(
+	                'Выйти  <i class="fa fa-sign-out" aria-hidden="true"></i>',
+	                ['class' => 'exit']
+	            )
+	            . Html::endForm();
+            ?>
 		</div>
 
 

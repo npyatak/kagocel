@@ -21,10 +21,10 @@ return [
         ],
         'assetManager' => [
             'bundles' => [
-                // 'yii\web\JqueryAsset' => [
-                //     //'js' => ['/libs/jquery/jquery.min.js'],
-                //     'js' => ['/js/jquery-3.2.1.min.js'],
-                // ],
+                'yii\web\JqueryAsset' => [
+                    //'js' => ['/libs/jquery/jquery.min.js'],
+                    'js' => ['/js/jquery.min.js'],
+                ],
                 // 'yii\bootstrap\BootstrapAsset' => [
                 //     'js' => ['/js/bootstrap.min.js'],
                 //     'css' => ['/css/bootstrap.min.css']

@@ -5,15 +5,10 @@ use yii\bootstrap\ActiveForm;
 
 use common\models\User;
 
-$this->registerJsFile('js/dateSelect.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
+$this->registerJsFile('js/dateSelect.js', ['depends' => [\frontend\assets\AppAsset::className()]]);
 
 $this->title = 'Заполните недостающие поля';
 ?>
-
-
-
-
-
 
 <section class="authorization after_header">
     <div class="contain">
