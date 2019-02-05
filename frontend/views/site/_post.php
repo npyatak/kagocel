@@ -5,12 +5,9 @@ use yii\helpers\Html;
 use common\models\PostAction;
 ?>
 
-<div class="post track_item light" data-id="<?=$post->id;?>">
+<div class="post track_item light" id="post_<?=$post->id;?>" data-id="<?=$post->id;?>">
 	<audio src="<?=$post->audio;?>"></audio>
-	<div class="spectrogram">
-		<!-- картинка просто для демонстрации!!! -->
-		<img src="/img/test_img/graph.png" alt="">
-	</div>
+	<div class="spectrogram"></div>
 	<div class="timer_range">
 		<p><span class="current">00:00</span> / <span class="duration">01:00</span></p>
 	</div>

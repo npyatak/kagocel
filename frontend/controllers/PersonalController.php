@@ -65,6 +65,39 @@ class PersonalController extends CController
         ]);
     }
 
+    public function actionAddPost() 
+    {
+        $user = User::findOne(Yii::$app->user->id);
+        $stage = Stage::getCurrent(Stage::TYPE_MAIN);
+
+        $userStagePosts = Post::find()
+            ->where(['stage_id' => $stage->id, 'user_id' => $user->id, 'status' => Post::STATUS_ACTIVE])
+            ->orderBy('id DESC')
+            ->all();
+        
+        $userOldPosts = Post::find()
+            ->where(['user_id' => $user->id, 'status' => Post::STATUS_ACTIVE])
+            ->andWhere(['not', ['stage_id' => $stage->id]])
+            ->orderBy('id DESC')
+            ->all();
+        
+        $otherPosts = Post::find()
+            ->where(['stage_id' => $stage->id, 'post.status' => Post::STATUS_ACTIVE, 'user.status' => Post::STATUS_ACTIVE])
+            ->andWhere(['not', ['user_id' => $user->id]])
+            ->joinWith('user')
+            ->limit(3)
+            ->orderBy('id DESC')
+            ->all();
+
+        return $this->render('add-post', [
+            'user' => $user,
+            'stage' => $stage,
+            'userStagePosts' => $userStagePosts,
+            'userOldPosts' => $userOldPosts,
+            'otherPosts' => $otherPosts,
+        ]);
+    }
+
     public function actionUserData() 
     {
         $user = User::findOne(Yii::$app->user->id);

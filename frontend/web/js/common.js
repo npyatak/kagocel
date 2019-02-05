@@ -225,11 +225,6 @@ $(".plus_minus .center").on("click", function(){
 	$(this).parent().toggleClass("active");
 });
 
-$(".play_stop").on("click", function(){
-	$(this).toggleClass("active");
-	$(this).parent().prev().children(".plate_wrap .handle").toggleClass("active");
-});
-
 $(".play_li").on("click", function(){
 	$(this).toggleClass("active");
 });

@@ -21,9 +21,24 @@ window.onload = function (){
     $(".wrapper").css("opacity","1");
 }
 
+var wavesurferArray = [];
+
 $(document).on('click', '.track_item .play', function(e) {
     var post = $(this).closest('.track_item');
+    var id = post.attr('data-id');
     var audio = post.find('audio')[0];
+
+    if(typeof wavesurferArray[id] == 'undefined') {
+        wavesurfer = WaveSurfer.create({
+            container: document.querySelector('#post_' + id + ' .spectrogram'),
+            waveColor: '#f7323f',
+            progressColor: '#bfbfbf',
+            height: 38,
+        });
+        
+        wavesurfer.load(audio.src);
+        wavesurferArray[id] = wavesurfer;
+    }
 
     if(audio.paused) {
         audio.play();
@@ -34,6 +49,9 @@ $(document).on('click', '.track_item .play', function(e) {
         $(this).removeClass('icon-stop');
         $(this).addClass('icon-play');
     }
+
+    wavesurferArray[id].playPause();
+
     audio.ontimeupdate = function() {
         post.find('.timer_range .current').html(formatTime(audio.currentTime));
     }
@@ -48,3 +66,4 @@ function formatTime(time) {
 
     return minutes+":"+seconds;
 }
+

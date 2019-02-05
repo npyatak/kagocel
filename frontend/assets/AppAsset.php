@@ -20,6 +20,7 @@ class AppAsset extends AssetBundle
         'js/libs.min.js',
         'js/common.js',
         'js/main.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.4.0/wavesurfer.min.js',
     ];
     public $depends = [
         //'yii\web\YiiAsset',
