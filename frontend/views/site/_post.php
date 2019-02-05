@@ -19,6 +19,7 @@ use common\models\PostAction;
 	<div class="record_img">
 		<div class="play">
 			<i class="fa fa-play" aria-hidden="true"></i>
+			<i class="fa fa-pause" aria-hidden="true"></i>
 		</div>
 		<img src="/img/record.png" alt="img">
 	</div>
@@ -40,7 +41,7 @@ use common\models\PostAction;
 		</div>
 
 		<a class="track_vote action  <?=(!Yii::$app->user->isGuest && !$post->userCan(PostAction::TYPE_LIKE)) ? '' : 'active';?>" data-type="<?=PostAction::TYPE_LIKE;?>">
-			<p class="vote" href="#">Голосовать <img src="/img/arrow_white.svg" alt="img"></p>
+			<p class="vote" href="#">Голосовать</p>
 		</a>
 	</div>
 </div>

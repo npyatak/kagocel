@@ -43,7 +43,6 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
     <div class="wrapper">
 
-        <!-- класс glow добавляем хедеру свечение в углах (необходимо использовать только когда позади хедера фон со свечением) -->
     
         <?php $menuItems = [
             ['label' => 'Главная', 'c' => 'site', 'a' => 'index'],
@@ -54,7 +53,9 @@ AppAsset::register($this);
             ['label' => 'Faq', 'c' => 'site', 'a' => 'faq'],
             ['label' => 'Правила', 'c' => 'site', 'a' => 'rules'],
         ];?>
-        <header class="header_main glow">
+
+
+        <header class="header_main">
             <div class="contain">
                 <div class="burger_button">
                     <div class="one"></div>
@@ -62,7 +63,7 @@ AppAsset::register($this);
                     <div class="three"></div>
                 </div>
                 <a class="logo_1" href="#">
-                    <img src="img/logo_1.svg" alt="logo">
+                    <img src="/img/logo_1.svg" alt="logo">
                 </a>
                 <nav class="main_menu">
                     <ul>
@@ -73,14 +74,16 @@ AppAsset::register($this);
                     </ul>
                 </nav>
                 <a class="logo_2" href="#">
-                    <img src="img/logo_2.png" alt="logo">
+                    <img src="/img/logo_2.svg" alt="logo">
                 </a>
             </div>
         </header>
 
+
+
         <div class="burger_menu">
             <div class="contain">
-                <img class="close_burger" src="img/close_middle.svg" alt="close">
+                <img class="close_burger" src="/img/close_middle.svg" alt="close">
                 <ul class="burger_ul">
                     <?php foreach ($menuItems as $item):?>
                         <?php $active = Yii::$app->controller->id == $item['c'] && Yii::$app->controller->action->id == $item['a'];?>
@@ -93,25 +96,39 @@ AppAsset::register($this);
         <?= $content ?>
 
         <footer class="main_footer">
-            <!-- добавив к footer_top класс bg футер получит свой собственный фон, если его нет он полупрозрачный -->
-            <div class="footer_top bg">
-                <div class="contain">
 
-                    <div class="logo_block">
-                        <a class="footer_logo" href="#"><img src="img/logo_1.svg" alt="logo"></a>
-                        <a class="footer_logo" href="#"><img src="img/logo_2.png" alt="logo"></a>
+            <div class="footer_top">
+                <div class="contain">
+                    <div>
+                        <div class="logo_block">
+                            <a class="footer_logo" href="#"><img src="/img/logo_1_2.svg" alt="logo"></a>
+                            <a class="footer_logo" href="#"><img src="/img/logo_2_2.svg" alt="logo"></a>
+                        </div>
+
+                        <nav class="footer_menu">
+                            <ul>
+                                <?php foreach ($menuItems as $item):?>
+                                    <?php $active = Yii::$app->controller->id == $item['c'] && Yii::$app->controller->action->id == $item['a'];?>
+                                    <li><a href="<?=Url::toRoute($item['c'].'/'.$item['a']);?>" <?=$active ? 'class="active"' : '';?>><?=$item['label'];?></a></li>
+                                <?php endforeach;?>
+                            </ul>
+                        </nav>
+
+                        <div class="footer_text_block">
+                           <div class="text">
+                               <p>
+                                   Общий период конкурса, включая выдачу призов: с 04 марта по ** мая 2019 года. Период приёма конкурсных работ с 04 марта по 29 марта 2019 года. Подробности об организаторе конкурса, правилах его проведения, количестве подарков по его результатам, сроках, месте и порядке их получения смотри <a href="#" target="_blanck">тут</a>.
+                               </p>
+                               <p>
+                                   внешний вид призов может отличаться от изображенияв рекламных материалах
+                               </p>
+                           </div>
+                       
+                           <p class="copyright">© Copyright 2019 ОАО «ТНТ-телесеть». Все права защищены</p>
+                       </div>
                     </div>
 
-                    <nav class="footer_menu">
-                        <ul>
-                            <?php foreach ($menuItems as $item):?>
-                                <?php $active = Yii::$app->controller->id == $item['c'] && Yii::$app->controller->action->id == $item['a'];?>
-                                <li><a href="<?=Url::toRoute($item['c'].'/'.$item['a']);?>" <?=$active ? 'class="active"' : '';?>><?=$item['label'];?></a></li>
-                            <?php endforeach;?>
-                        </ul>
-                    </nav>
                     <p class="sixteen_item">16<span>+</span></p>
-                    <p class="copyright">© Copyright 2019 ОАО «ТНТ-телесеть». Все права защищены</p>
 
                 </div>
             </div>
