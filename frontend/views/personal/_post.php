@@ -22,6 +22,7 @@ use common\models\PostAction;
 	<div class="record_img">
 		<div class="play">
 			<i class="fa fa-play" aria-hidden="true"></i>
+			<i class="fa fa-pause" aria-hidden="true"></i>
 		</div>
 		<img src="/img/record.png" alt="img">
 	</div>

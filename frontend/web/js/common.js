@@ -338,3 +338,21 @@ $(window).on("load",function(){
 		mouseWheel:{ scrollAmount: 100, }
 	});
 });
+
+
+
+// Стилизуем селекты
+$(".select_type_1").styler({
+	// selectPlaceholder: "Выберите услугу",
+	selectVisibleOptions:10, // Кол-во отображаемых пунктов в селекте без прокрутки.
+	onSelectOpened: function() {
+		$(this).css('width', '100%');
+	}
+});
+
+
+// маска в инпут для телефона
+$(".phone_mask").inputmask({
+	"mask": "8(999) 999-9999",
+	"clearIncomplete": true,	//проверяет заполнено ли поле
+});
