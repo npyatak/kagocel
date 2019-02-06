@@ -225,6 +225,11 @@ $(".plus_minus .center").on("click", function(){
 	$(this).parent().toggleClass("active");
 });
 
+$(".play_stop").on("click", function(){
+	$(this).toggleClass("active");
+	$(this).parent().prev().children(".plate_wrap .handle").toggleClass("active");
+});
+
 $(".play_li").on("click", function(){
 	$(this).toggleClass("active");
 });
@@ -335,8 +340,48 @@ $(window).on("load",function(){
 });
 
 
+
+// Стилизуем селекты
+$(".select_type_1").styler({
+	// selectPlaceholder: "Выберите услугу",
+	selectVisibleOptions:10, // Кол-во отображаемых пунктов в селекте без прокрутки.
+	onSelectOpened: function() {
+		$(this).css('width', '100%');
+	}
+});
+
+
 // маска в инпут для телефона
 $(".phone_mask").inputmask({
 	"mask": "8(999) 999-9999",
 	"clearIncomplete": true,	//проверяет заполнено ли поле
 });
+
+
+
+
+
+$(function(){
+
+	setTimeout(function(){
+
+// alert("sdfsdf");
+
+	var player = document.getElementById('video_player');
+	player.contentWindow.postMessage(JSON.stringify({
+	    type: 'player:setSkinColor',
+	    // type: 'player:remove',
+	    data: {
+	    	color: 'f7323f'
+	        // params: {
+	        //     color: '000000' // цвет в RGB, HEX (без решетки)
+	        // }
+	        
+	    }
+	}), '*');
+
+
+
+},300);
+
+})
