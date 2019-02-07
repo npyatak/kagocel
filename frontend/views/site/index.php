@@ -1,5 +1,4 @@
-
-		<!-- 
+<!-- 
 		gradient_bg - задает градиент блоку
 		pt_small - малый отступ сверху
 		pb_big - большой отступ снизу
@@ -17,7 +16,7 @@
 					<div class="wrap_big_img"><img class="big_img" src="img/packt.png" alt="img"></div>
 					<div class="main_right">
 						<p class="main_name">
-							Прокачай свою заботу с каг<i>о</i>цел
+							Прокачай свою заботу с кагоцел<i>о</i>м
 						</p>
 						<p class="anons">
 							Создай свой уникальный музыкальный трек и получи шанс выиграть крутые призы! 
@@ -44,21 +43,21 @@
 					<div class="item">
 						<img src="/img/condition_1.svg" alt="img">
 						<p>
-							Создай свой музыкальный микс с помощью диджейского пульта
+							Создай свой музыкальный микс с помощью диджейского пульта.
 						</p>
 					</div>
 
 					<div class="item">
 						<img src="/img/condition_2.svg" alt="img">
 						<p>
-							Поделись своим творением в социальных сетях
+							Поделись своим творением в социальных сетях.
 						</p>
 					</div>
 
 					<div class="item">
 						<img src="/img/condition_3.svg" alt="img">
 						<p>
-							Каждую неделю мы вибрираем<br> 5 победителей, которые получают крутые призы от Кагоцел!
+							Каждую неделю мы выбираем<br> 5 победителей, которые получают крутые призы от Кагоцел!
 						</p>
 					</div>
 				</div>
@@ -89,7 +88,7 @@
 
 		
 				<div class="video_player_wrap">
-					<iframe id="video_player" width="720" height="405" src="//rutube.ru/play/embed/7163336?quality=1&platform=someplatform" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowfullscreen></iframe>
+					<iframe id="video_player" width="720" height="405" src="//rutube.ru/play/embed/11982280?quality=1&platform=someplatform" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowfullscreen></iframe>
 				</div>
 
 
@@ -335,15 +334,16 @@
 
 				<div class="section_top">
 					<h3 class="section_name">Тв<i>о</i>и призы</h3>
+					<p class="section_desc">май 2019</p>
 				</div>
 
-				<div class="wrap_prize">
+				<!-- <div class="wrap_prize">
 					<div class="sticker">
 						<img src="/img/sticker.svg" alt="img">
 						<p class="prize_text">Главный приз</p>
 					</div>
 					<img class="prize" src="/img/prize.png" alt="img">
-				</div>
+				</div> -->
 
 			</div>
 		</section>
@@ -381,6 +381,21 @@
 			<!-- offers -->
 		</div>
 		<!-- offers_block -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -360,28 +360,40 @@ $(".phone_mask").inputmask({
 
 
 
-
+// видео rutube
 $(function(){
+	if($("iframe").is("#video_player")){
+		setTimeout(function(){
 
-	setTimeout(function(){
+			var player = document.getElementById('video_player');
+			player.contentWindow.postMessage(JSON.stringify({
+			    type: 'player:setSkinColor',
+			    // type: 'player:remove',
+			    data: {
+			    	color: 'f7323f'
+			        // params: {
+			        //     color: '000000' // цвет в RGB, HEX (без решетки)
+			        // }
+			        
+			    }
+			}), '*');
 
-// alert("sdfsdf");
-
-	var player = document.getElementById('video_player');
-	player.contentWindow.postMessage(JSON.stringify({
-	    type: 'player:setSkinColor',
-	    // type: 'player:remove',
-	    data: {
-	    	color: 'f7323f'
-	        // params: {
-	        //     color: '000000' // цвет в RGB, HEX (без решетки)
-	        // }
-	        
-	    }
-	}), '*');
-
-
-
-},300);
+		},300);
+	}//if
 
 })
+
+
+// открываем - закрываем блоки на странице gallery
+$(".all_show_button").on("click", function(){
+	var el = $(this);
+	el.toggleClass("active");
+	el.next().slideToggle(700);
+});
+
+
+$(".section_name.show span").on("click", function(){
+	var el = $(this);
+	el.parent().toggleClass("active");
+	el.parent().next().slideToggle(700);
+});
