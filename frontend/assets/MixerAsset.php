@@ -19,7 +19,8 @@ class MixerAsset extends AssetBundle
 		//'mixer/js/tracks.js',
 		//'mixer/js/visualizer.js',
         //'mixer/js/audiodisplay.js',
-		'js/mixer.js',
+        'js/track.js',
+		'js/controls.js',
     ];
     public $depends = [
         'frontend\assets\AppAsset',

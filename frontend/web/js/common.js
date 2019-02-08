@@ -234,10 +234,6 @@ $(".play_li").on("click", function(){
 	$(this).toggleClass("active");
 });
 
-$(".button_play").on("click", function(){
-	$(this).toggleClass("active");
-});
-
 $(".record_img .play").on("click", function(){
 	$(this).toggleClass("active");
 });
