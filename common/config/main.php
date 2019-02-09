@@ -21,7 +21,7 @@ return [
                 'port' => '587', // Port 25 is a very common port too
                 'encryption' => 'tls', // It is often used, check your provider or mail server specs
             ],
-            //'useFileTransport' => true,
+            'useFileTransport' => true,
         ],
         'urlManagerFrontEnd' => [
             'class' => 'yii\web\urlManager',

@@ -1,9 +1,4 @@
 <?php
-
-/* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model \frontend\models\ContactForm */
-
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
@@ -11,35 +6,39 @@ use yii\captcha\Captcha;
 $this->title = 'Contact';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-contact">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
-    </p>
+<section class="feedback_section gradient_bg after_header">
+    <div class="contain">
+        <div class="feedback_wrap pt_small pb_big">
+            <h2 class="section_title"><i>О</i>братная связь</h2>
+            <p class="form_anons">Возникли вопросы? Напишите нам,</p>
+            
+            <div class="authorization_form_wrap">
+                <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
 
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
+                    <?= $form->field($model, 'name')->textInput(['autofocus' => true, 'class' => 'input_1', 'placeholder' => 'имя*'])->label(false) ?>
 
-                <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
+                    <?= $form->field($model, 'email')->textInput(['class' => 'input_1', 'placeholder' => 'e-mail*'])->label(false) ?>
 
-                <?= $form->field($model, 'email') ?>
+                    <?= $form->field($model, 'phone')->textInput(['class' => 'input_1', 'placeholder' => 'телефон'])->label(false) ?>
 
-                <?= $form->field($model, 'subject') ?>
+                    <?= $form->field($model, 'body')->textarea(['rows' => 6, 'class' => 'textarea_1', 'placeholder' => 'сообщение*'])->label(false) ?>
 
-                <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
+                    <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+                        'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6 input_1">{input}</div></div>',
+                    ])->label(false) ?>
+                
+                    <p class="form_alert"><span>*</span>- обязательные для заполнения поля</p>
 
-                <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                    'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
-                ]) ?>
+                    <div class="form-group">
+                        <?= Html::submitButton('<span><i>О</i>тправить</span>', ['class' => 'button_bg black_gray', 'name' => 'contact-button']) ?>
+                    </div>
 
-                <div class="form-group">
-                    <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
-                </div>
+                <?php ActiveForm::end(); ?>            
+            </div>
 
-            <?php ActiveForm::end(); ?>
         </div>
+        <!-- feedback_wrap -->
     </div>
-
-</div>
+</section>
+<!-- feedback_section -->

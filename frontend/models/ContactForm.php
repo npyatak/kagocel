@@ -19,9 +19,10 @@ class ContactForm extends Model
     public function rules()
     {
         return [
-            [['name', 'email', 'body', 'phone'], 'required'],
+            [['name', 'email', 'body'], 'required'],
             // email has to be a valid email address
             ['email', 'email'],
+            ['phone', 'string'],
             // verifyCode needs to be entered correctly
             ['verifyCode', 'captcha'],
         ];
@@ -33,6 +34,7 @@ class ContactForm extends Model
     {
         return [
             'name' => 'Ваше имя',
+            //'surname' => 'Фамилия',
             'email' => 'E-mail',
             'phone' => 'Номер телефона',
             'body' => 'Сообщение',

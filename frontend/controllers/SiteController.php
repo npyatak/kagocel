@@ -20,6 +20,7 @@ use common\models\PostAction;
 use common\models\Stage;
 use common\models\Post;
 use common\models\Faq;
+use common\models\Contact;
 
 /**
  * Site controller
@@ -150,25 +151,25 @@ class SiteController extends CController
         return $this->render('login');
     }
 
-    public function actionPosts()
+    public function actionGallery()
     {
         $stage = Stage::getCurrent(Stage::TYPE_MAIN);
 
-        $query = Post::find()
-            ->where(['stage_id' => $stage->id, 'status' => Post::STATUS_ACTIVE]);
+        $stagePosts = Post::find()->where(['stage_id' => $stage->id, 'status' => Post::STATUS_ACTIVE])->all();
 
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);
+        // $finishedStages = Stage::find()->where(['status' => Stage::STATUS_FINISHED])->all();
+        
+        // foreach ($finishedStages as $s) {
+        //     $winnersPosts[$s->id] = Post::find()->where(['stage_id' => $s->id, 'status' => Post::STATUS_ACTIVE])->all();
+        // }
+        $finishedStages = [];
+        $winnersPosts = [];
 
-        return $this->render('posts', [
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    public function actionGallery()
-    {
         return $this->render('gallery', [
+            'stage' => $stage,
+            'stagePosts' => $stagePosts,
+            'finishedStages' => $finishedStages,
+            'winnersPosts' => $winnersPosts,
         ]);
     }
 

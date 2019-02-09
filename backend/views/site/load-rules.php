@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'language'         => 'ru',
         'controller'       => 'elfinder', // вставляем название контроллера, по умолчанию равен elfinder
         'filter'           => 'application/pdf',    // фильтр файлов, можно задать массив фильтров https://github.com/Studio-42/elFinder/wiki/Client-configuration-options#wiki-onlyMimes
-        'path' => 'rules',
+        'path' => 'files',
         'frameOptions' => [
             'style' => 'height: 700px; width: 100%'
         ]

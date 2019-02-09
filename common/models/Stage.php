@@ -109,21 +109,21 @@ class Stage extends \yii\db\ActiveRecord
         $dateTimeStart = new \DateTime;
         $dateTimeStart->setTimestamp($this->date_start);
 
-        return $dateTimeStart->format('j').' '.$this->getMonth($dateTimeStart->format('n'), true);
+        return $dateTimeStart->format('j').' '.$this->getMonth($dateTimeStart->format('n'), false);
     }
 
     public function getEndDate() {
         $dateTimeEnd = new \DateTime;
         $dateTimeEnd->setTimestamp($this->date_end);
 
-        return $dateTimeEnd->format('j').' '.$this->getMonth($dateTimeEnd->format('n'), true);
+        return $dateTimeEnd->format('j').' '.$this->getMonth($dateTimeEnd->format('n'), false);
     }
 
     public function getMonth($monthId, $secondForm=false) {
         return $secondForm ? $this->monthsArray[$monthId][1] : $this->monthsArray[$monthId][0];
     }
 
-    public function getMonthsArray() {
+    /*public function getMonthsArray() {
         return [
             1 => ['январь', 'января'],
             2 => ['февраль', 'февраля'],
@@ -137,6 +137,23 @@ class Stage extends \yii\db\ActiveRecord
             10 => ['октябрь', 'октября'],
             11 => ['ноябрь', 'ноября'],
             12 => ['декабрь', 'декабря'],
+        ];
+    }*/
+
+    public function getMonthsArray() {
+        return [
+            1 => ['янв', 'января'],
+            2 => ['фев', 'февраля'],
+            3 => ['мар', 'марта'],
+            4 => ['апр', 'апреля'],
+            5 => ['май', 'мая'],
+            6 => ['июн', 'июня'],
+            7 => ['июл', 'июля'],
+            8 => ['авг', 'августа'],
+            9 => ['сен', 'сентября'],
+            10 => ['окт', 'октября'],
+            11 => ['ноя', 'ноября'],
+            12 => ['дек', 'декабря'],
         ];
     }
 }

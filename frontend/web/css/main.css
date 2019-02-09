@@ -1356,6 +1356,11 @@ img {
   padding: 10rem 0;
 }
 
+.form_anons {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
 .authorization_form_wrap {
   max-width: 330px;
   margin: 0 auto;
@@ -1375,7 +1380,7 @@ img {
   color: #f7323f;
 }
 
-.form-group.has-error .input_1, .form-group.has-error .select_type_1 {
+.form-group.has-error .input_1, .form-group.has-error .select_type_1, .form-group.has-error .textarea_1 {
   border-color: #f7323f;
   background-color: #FFE5E5;
   color: #f7323f;
@@ -1416,6 +1421,29 @@ img {
   margin-top: 40px;
 }
 
+.textarea_1 {
+  border: 1px solid #C8CFD5;
+  background-color: #fff;
+  font-family: "CenturyGothic", sans-serif;
+  font-size: 16px;
+  padding: 12px 20px;
+  width: 100%;
+  -webkit-border-radius: 5px;
+          border-radius: 5px;
+  -webkit-transition: border .25s, -webkit-box-shadow .25s;
+  transition: border .25s, -webkit-box-shadow .25s;
+  -o-transition: border .25s, box-shadow .25s;
+  transition: border .25s, box-shadow .25s;
+  transition: border .25s, box-shadow .25s, -webkit-box-shadow .25s;
+  color: #000;
+  height: 150px;
+  resize: none;
+}
+
+.textarea_1:focus {
+  border-color: #969BA0;
+}
+
 .date_birth {
   text-align: left;
   display: -webkit-box;
@@ -1454,10 +1482,6 @@ img {
 
 .date_birth .form-group {
   margin-right: 10px;
-}
-
-.date_birth p {
-  margin-left: 10px;
 }
 
 .select_type_1 {
@@ -1568,6 +1592,11 @@ img {
   z-index: 1;
   padding: 18px 20px;
   display: block;
+}
+
+.button_bg i {
+  color: #f7323f;
+  font-style: normal;
 }
 
 .button_bg:active {
@@ -3323,6 +3352,48 @@ img {
   background-color: #DCDCDC;
 }
 
+.feedback_wrap {
+  text-align: center;
+}
+
+.faq .section_anons {
+  font-size: 18px;
+  text-transform: none;
+}
+
+.questions_wrap {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.question {
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 20px 4rem;
+  margin-top: 30px;
+}
+
+.question .name {
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.question .text {
+  font-size: 14px;
+}
+
+.question .text p {
+  margin-top: 10px;
+}
+
+.question .text strong {
+  margin-top: 10px;
+  display: block;
+}
+
+.question .text .grey {
+  color: #8a8a8a;
+}
+
 .push {
   height: 1000px;
 }
@@ -3970,6 +4041,12 @@ img {
   .record_img .play {
     width: 100px;
     height: 100px;
+  }
+  .date_birth p {
+    font-size: 13px;
+  }
+  .question .name {
+    font-size: 18px;
   }
 }
 
