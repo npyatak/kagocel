@@ -21,9 +21,16 @@ $.fn.getDateSelect = function(year, month){
         this.val(dateCert);
     }
 }
-$.fn.initDateSelect = function(from, to){
-    for(var i = from; i <= to; i++){
-        this.prepend('<option value="' + i + '">' + i + '</option>');
+$.fn.initDateSelect = function(from, to, reversed){
+    
+    if(reversed) {
+        for(var i = to; i >= from; i--) {
+            this.append('<option value="' + i + '">' + i + '</option>');
+        }
+    } else {
+        for(var i = from; i <= to; i++) {
+            this.append('<option value="' + i + '">' + i + '</option>');
+        }
     }
     
     this.styler({
@@ -41,7 +48,7 @@ $(function () {
     $('#birthDay').prepend('<option value="0">ДД</option>');
     $('#birthMonth').prepend('<option value="0">ММ</option>');
     $('#birthYear').prepend('<option value="0">ГГГГ</option>');
-    $('#birthYear').initDateSelect(1920, (d.getFullYear() - 18));
+    $('#birthYear').initDateSelect(1920, (d.getFullYear() - 18), true);
     $('#birthYear').val(initBirthYear);
     $('#birthMonth').initDateSelect(1, 12);
     $('#birthMonth').val(initBirthMonth);
