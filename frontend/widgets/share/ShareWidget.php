@@ -11,10 +11,11 @@ class ShareWidget extends \yii\base\Widget
 {
 
 	public $share = [
-		'title' => 'Горячая битва',
-        'text' => ' На чьей стороне играешь ты? Выбирай консоль и сражайся!',
-		'image' => '/img/share_fb.jpg',
-		'image_vk' => '/img/share_vk.jpg',
+		'title' => 'Я прокачал свою заботу с КАГОЦЕЛОМ! Попробуй и ты!',
+        'text' => 'Собери свой трек и выиграй призы',
+		'image' => '/img/01_kagocel_studia_souz_sharing_fb.jpg',
+		'image_vk' => '/img/01_kagocel_studia_souz_sharing_vk.jpg',
+		'image_ok' => '/img/01_kagocel_studia_souz_sharing_ok.jpg',
 	];
 	public $wrap;
 	public $wrapClass;
@@ -35,6 +36,7 @@ class ShareWidget extends \yii\base\Widget
         $this->share['url'] = Url::toRoute(['site/index'], $scheme);
         $this->share['imageUrl'] = isset($this->share['image']) ? Url::to([$this->share['image']], $scheme) : null;
         $this->share['imageUrlVk'] = isset($this->share['image_vk']) ? Url::to([$this->share['image_vk']], $scheme) : null;
+        $this->share['imageUrlOk'] = isset($this->share['image_ok']) ? Url::to([$this->share['image_ok']], $scheme) : null;
 
         $view = $this->getView();
 		$view->registerMetaTag(['property' => 'og:description', 'content' => $this->share['text']], 'og:description');
@@ -77,7 +79,7 @@ class ShareWidget extends \yii\base\Widget
 		        'data-url' => $this->share['url'],
 		        'data-title' => $this->share['title'],
 		        'data-text' => $this->share['text'],
-		        'data-image' => $this->share['imageUrl'],
+		        'data-image' => $this->share['imageUrlOk'],
 		    ]);
 		}
     }

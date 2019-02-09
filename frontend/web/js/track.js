@@ -59,11 +59,9 @@ function Track(url, isLeft) {
 
 
 	var bufferdrawer = $('.'+this.class).find('spectr');
-	bufferdrawer.onclick = function ( ev ) {
-		this.parentNode.track.jumpToPoint(ev.offsetX / 370.0 * this.parentNode.track.buffer.duration);
+	bufferdrawer.onclick = function (e) {
+		this.parentNode.track.jumpToPoint(e.offsetX / 370.0 * this.parentNode.track.buffer.duration);
 	}
-
-	e.appendChild( bufferdrawer );
 }
 
 function getTrackName(url) {
@@ -113,8 +111,6 @@ Track.prototype.togglePlayback = function() {
 			this.gainNode = null;
         }
         this.isPlaying = false;
-		
-		clearInterval(this.timer);
 
 		$('.play_stop.'+track.class).removeClass('active');
 		$('.handle.'+track.class).removeClass('active');
@@ -130,10 +126,6 @@ Track.prototype.togglePlayback = function() {
     this.lastPBR = this.currentPlaybackRate;
 
     this.changePlaybackRate(this.lastPBR);
-    
-    this.timer = setInterval(function() {
-    	$('.'+track.class + ' .played').html(formatTime(audioCtx.currentTime));
-	}, 1000);
 
 	return true;
 }
@@ -276,13 +268,10 @@ Track.prototype.skip = function( ticks ) {
 }
 
 function shutDownNodeWhenDonePlaying() {
-  if (this.track) {
-    this.track.sourceNode = null;
-      this.track.gainNode = null;
-    this.track.isPlaying = false;
-  }
-  if (this.onPlaybackEnd)
-    this.onPlaybackEnd();
+  	this.sourceNode = null;
+    this.gainNode = null;
+    this.isPlaying = false;
+    clearInterval(this.timer);
 }
 
 Track.prototype.togglePlaybackSpinUpDown = function() {
@@ -314,9 +303,9 @@ Track.prototype.togglePlaybackSpinUpDown = function() {
     sourceNode.playbackRate.setValueAtTime( 0.001, now );
     sourceNode.playbackRate.linearRampToValueAtTime( this.currentPlaybackRate, now+1 );
 
-  this.gainNode = audioCtx.createGain();
-  this.gainNode.connect( this.filter );
-  this.gainNode.gain.value = this.gain;
+	this.gainNode = audioCtx.createGain();
+	this.gainNode.connect( this.filter );
+	this.gainNode.gain.value = this.gain;
     sourceNode.connect( this.gainNode );
 
     this.sourceNode = sourceNode;
@@ -438,11 +427,11 @@ Track.prototype.updatePlatter = function( drawOnScreen ) {
   return keepAnimating; // "keep animating" - may need to check if !isplaying
 }
 
-Track.prototype.changePlaybackRate = function( rate ) { // rate may be negative
-  //this.pbrText.innerHTML = parseFloat(rate).toFixed(2);
+Track.prototype.changePlaybackRate = function( rate ) { 
+	var track = this;
     if (!this.isPlaying) {
-      this.currentPlaybackRate = rate;
-      return;
+      	this.currentPlaybackRate = rate;
+      	return;
     }
     var now = audioCtx.currentTime;
 
@@ -452,72 +441,76 @@ Track.prototype.changePlaybackRate = function( rate ) { // rate may be negative
     this.lastTimeStamp = now;
 
     if(this.lastBufferTime > this.buffer.duration) { // we've run off the end
-      this.sourceNode = null;
-      this.gainNode = null;
-      this.lastPBR = this.buffer.duration;
-      if (rate >=0)
-        return;
-      else
-        this.lastBufferTime = this.buffer.duration;
+	    this.sourceNode = null;
+	    this.gainNode = null;
+	    this.lastPBR = this.buffer.duration;
+		if (rate >=0)
+        	return;
+      	else
+        	this.lastBufferTime = this.buffer.duration;
     }
     if (this.lastBufferTime < 0) {  // we've run backwards over the beginning
-      this.sourceNode = null;
-    this.gainNode = null;
-    this.lastPBR = 0;
-    if (rate <= 0)
-      return;
-    else
-      this.lastBufferTime = 0;
-    }
+		this.sourceNode = null;
+		this.gainNode = null;
+		this.lastPBR = 0;
+		if (rate <= 0)
+			return;
+		else
+			this.lastBufferTime = 0;
+	}
     if ( rate == 0.0 ) {
       // stop playing and null the sourceNode
-      if (this.sourceNode) {
-        this.gainNode.gain.setTargetAtTime( 0, now, 0.01 );
-        this.sourceNode.stop(now + 0.1);
-        this.sourceNode = null;
-        this.gainNode = null;
-      }
-      return;
+    	if (this.sourceNode) {
+	        this.gainNode.gain.setTargetAtTime( 0, now, 0.01 );
+	        this.sourceNode.stop(now + 0.1);
+	        this.sourceNode = null;
+	        this.gainNode = null;
+      	}
+      	return;
     }
     // if the rate isn't zero, we know we'll need a source node.
     // if the old value and the new value are on the same side
     // of zero, we can just set the rate, but otherwise we'll
     // need to stop the node and re-create it.  We may already 
     // be stopped, with no sourceNode.
-    if ( this.sourceNode ) {
-      if (((this.currentPlaybackRate > 0) && (rate < 0)) ||
-        ((this.currentPlaybackRate < 0) && (rate > 0))  ) {
-        if (this.sourceNode) {
-        this.gainNode.gain.setTargetAtTime( 0, now, FADE );
-        this.sourceNode.stop(now + FADE*4);
-        this.sourceNode = null;
-        this.gainNode = null;
-        }
-      }
-  }
+    if (this.sourceNode) {
+      	if (((this.currentPlaybackRate > 0) && (rate < 0)) || ((this.currentPlaybackRate < 0) && (rate > 0))  ) {
+        	if (this.sourceNode) {
+		        this.gainNode.gain.setTargetAtTime( 0, now, FADE );
+		        this.sourceNode.stop(now + FADE*4);
+		        this.sourceNode = null;
+		        this.gainNode = null;
+        	}
+      	}
+  	}
 
     // so... we may have just killed the sourceNode to flip, or 
     // we may have been stopped before.  Create the sourceNode,
     // pointing to the correct direction buffer.
-  if (!this.sourceNode) {
-      var sourceNode = audioCtx.createBufferSource();
-      sourceNode.loop = false;
-    this.gainNode = audioCtx.createGain();
-    this.gainNode.gain.value = this.gain;
-    this.gainNode.connect( this.filter );
-      sourceNode.connect( this.gainNode );
-      sourceNode.buffer = (rate>0) ? this.buffer : this.revBuffer;
-      var startTime = (rate>0) ? this.lastBufferTime : sourceNode.buffer.duration-this.lastBufferTime;
-      
-      sourceNode.playbackRate.setValueAtTime( Math.abs(rate), now );
-      var duration = (sourceNode.buffer.duration - startTime);
-        this.gainNode.gain.value = 0.0;
-        this.gainNode.gain.setTargetAtTime( this.gain, now, FADE );
-    sourceNode.onended = shutDownNodeWhenDonePlaying.bind(sourceNode);
-        sourceNode.start( now, startTime, duration );
-      this.sourceNode = sourceNode;
-  } else  // if I replace "now" with "0" below, Firefox works.
-      this.sourceNode.playbackRate.setValueAtTime( Math.abs(rate), now );
+  	if (!this.sourceNode) {
+		var sourceNode = audioCtx.createBufferSource();
+		sourceNode.loop = false;
+		this.gainNode = audioCtx.createGain();
+		this.gainNode.gain.value = this.gain;
+		this.gainNode.connect(this.filter);
+		sourceNode.connect(this.gainNode);
+		sourceNode.buffer = (rate>0) ? this.buffer : this.revBuffer;
+		var startTime = (rate>0) ? this.lastBufferTime : sourceNode.buffer.duration-this.lastBufferTime;
+
+		sourceNode.playbackRate.setValueAtTime( Math.abs(rate), now );
+		var duration = (sourceNode.buffer.duration - startTime);
+		this.gainNode.gain.value = 0.0;
+		this.gainNode.gain.setTargetAtTime( this.gain, now, FADE );
+		sourceNode.onended = shutDownNodeWhenDonePlaying.bind(sourceNode);
+		sourceNode.start( now, startTime, duration );
+		this.sourceNode = sourceNode;
+
+	    this.timer = setInterval(function() {
+	    	$('.'+track.class + ' .played').html(formatTime(sourceNode.context.currentTime));
+		}, 500);
+  	} else {
+      	this.sourceNode.playbackRate.setValueAtTime( Math.abs(rate), now );
+  	}
     this.currentPlaybackRate = rate;
 }
 

@@ -16,6 +16,8 @@ $(document).on('click', '.button_play', function(e) {
 
 $(document).on('click', '.play_stop', function(e) {
     var track = $(this).hasClass('trackLeft') ? leftTrack : rightTrack;
-    track.togglePlayback();
+    if(track.buffer !== 'undefined') {
+    	track.togglePlayback();
+    }
 });
 

@@ -19,6 +19,7 @@ use common\models\User;
 use common\models\PostAction;
 use common\models\Stage;
 use common\models\Post;
+use common\models\Faq;
 
 /**
  * Site controller
@@ -230,7 +231,11 @@ class SiteController extends CController
 
     public function actionFaq()
     {
-        return $this->render('faq');
+        $faq = Faq::find()->orderBy('order ASC')->all();
+
+        return $this->render('faq', [
+            'faq' => $faq,
+        ]);
     }
 
     public function actionAbout()

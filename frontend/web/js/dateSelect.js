@@ -23,7 +23,7 @@ $.fn.getDateSelect = function(year, month){
 }
 $.fn.initDateSelect = function(from, to){
     for(var i = from; i <= to; i++){
-        this.append('<option value="' + i + '">' + i + '</option>');
+        this.prepend('<option value="' + i + '">' + i + '</option>');
     }
     
     this.styler({

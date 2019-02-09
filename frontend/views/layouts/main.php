@@ -27,7 +27,7 @@ AppAsset::register($this);
     <!-- iOS Safari -->
     <!-- <meta name="apple-mobile-web-app-status-bar-style" content="#000"> -->
 
-    <meta name="description" content="">
+    <meta name="description" content="Собери свой трек и выиграй призы">
     <meta name="yandex-verification" content="" />
 
     <?= Html::csrfMetaTags() ?>

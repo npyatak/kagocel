@@ -43,6 +43,7 @@ AppAsset::register($this);
             ]
         ],
         ['label' => 'Обратная связь', 'url' => ['/contact']],
+        ['label' => 'FAQ', 'url' => ['/faq']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Войти', 'url' => ['/site/login']];

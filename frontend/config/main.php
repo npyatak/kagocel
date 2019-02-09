@@ -10,7 +10,7 @@ return [
     'id' => 'app-frontend',
     'language' => 'ru-RU',
     'sourceLanguage' => 'en-US',
-    'name' => 'kagocel',
+    'name' => 'Прокачай свою заботу с Кагоцелом',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',

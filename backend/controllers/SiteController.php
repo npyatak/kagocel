@@ -49,7 +49,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return Yii::$app->runAction('work/index');
+        return Yii::$app->runAction('post/index');
     }
 
 
