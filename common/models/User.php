@@ -14,13 +14,11 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
     public $new_email;
     public $imageFile;
-    public $registerFields = ['rulesCheckbox', 'personalDataCheckbox', 'name', 'phone', 'email', 'birthDay', 'birthMonth', 'birthYear', 'birthdate'];
-    public $semiRequiredFields = ['rulesCheckbox', 'personalDataCheckbox', 'name', 'phone', 'email', 'birthDay', 'birthMonth', 'birthYear'];
+    public $registerFields = ['name', 'phone', 'email', 'birthDay', 'birthMonth', 'birthYear', 'birthdate'];
+    public $semiRequiredFields = ['name', 'phone', 'email', 'birthDay', 'birthMonth', 'birthYear'];
     public $birthDay;
     public $birthMonth;
     public $birthYear;
-    public $rulesCheckbox = true;
-    public $personalDataCheckbox = true;
     /**
      * {@inheritdoc}
      */
@@ -36,7 +34,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             [['phone', 'name', 'surname', 'image', 'ip', 'browser'], 'string', 'max' => 255],
-            [['birthDay', 'birthMonth', 'birthYear', 'rulesCheckbox', 'personalDataCheckbox', 'birthdate', 'referrer_id', 'email_subscribe'], 'integer'],
+            [['birthDay', 'birthMonth', 'birthYear', 'birthdate', 'referrer_id', 'email_subscribe'], 'integer'],
             [['soc'], 'string', 'max' => 2],
             //[['email'], 'unique'],
             [['email', 'new_email'], 'email', 'checkDNS' => true],

@@ -157,13 +157,12 @@ class SiteController extends CController
 
         $stagePosts = Post::find()->where(['stage_id' => $stage->id, 'status' => Post::STATUS_ACTIVE])->all();
 
-        // $finishedStages = Stage::find()->where(['status' => Stage::STATUS_FINISHED])->all();
+        $finishedStages = Stage::find()->where(['<', 'date_end', time()])->indexBy('id')->all();
         
-        // foreach ($finishedStages as $s) {
-        //     $winnersPosts[$s->id] = Post::find()->where(['stage_id' => $s->id, 'status' => Post::STATUS_ACTIVE])->all();
-        // }
-        $finishedStages = [];
         $winnersPosts = [];
+        foreach ($finishedStages as $s) {
+            $winnersPosts[$s->id] = Post::find()->where(['stage_id' => $s->id, 'status' => Post::STATUS_ACTIVE])->all();
+        }
 
         return $this->render('gallery', [
             'stage' => $stage,
@@ -221,7 +220,7 @@ class SiteController extends CController
 
     public function actionRules() 
     {
-        $filename = 'kagocel_ru_rules.pdf';
+        $filename = 'rules_kagocel.pdf';
         $completePath = __DIR__.'/../web/files/'.$filename;
         if(!is_file($completePath)) {
             throw new NotFoundHttpException('The requested page does not exist.');

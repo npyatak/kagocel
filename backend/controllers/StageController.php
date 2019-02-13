@@ -7,9 +7,11 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
 use yii\widgets\ActiveForm;
+use yii\base\Model;
 
 use common\models\Stage;
 use common\models\User;
+use common\models\Winner;
 use common\models\search\StageSearch;
 
 
@@ -70,6 +72,68 @@ class StageController extends CController
                 'model' => $model,
             ]);
         }
+    }
+
+    public function actionWinners($id, $i = null) 
+    {
+        $stage = $this->findModel($id);
+
+        $winners = Winner::find()->where(['stage_id' => $id])->all();
+        if(empty($winners)) {
+            $winners = [new Winner, new Winner, new Winner, new Winner, new Winner];
+        }
+
+        $winnerIds = [];
+        $oldIds = Winner::find()->select('id')->where(['stage_id' => $id])->column();
+
+        if(Yii::$app->request->isAjax) {
+            return $this->renderAjax('_winner', [
+                'winner' => new Winner,
+                'i' => $i,
+                'stage' => $stage,
+            ]);
+        } elseif(Model::loadMultiple($winners, Yii::$app->getRequest()->post()) && Model::validateMultiple($winners)) {
+            $transaction = Yii::$app->db->beginTransaction();            
+            try  {
+                $success = true;
+
+                $winners = [];
+                foreach (Yii::$app->getRequest()->post()['Winner'] as $pw) {
+                    if(isset($pw['id']) && $pw['id']) {
+                        $winner = Winner::findOne($pw['id']);
+                        $winnerIds[] = $pw['id'];
+                    } else {
+                        $winner = new Winner;
+                    }
+                    $winner->load($pw);
+                    $winner->attributes = $pw;
+                    $winner->stage_id = $id;
+
+                    $success = $winner->save();
+                    $winners[] = $winner;
+                }
+
+                foreach (array_diff($oldIds, $winnerIds) as $idToDel) {
+                    Winner::findOne($idToDel)->delete();
+                }
+
+                if($success) {
+                    $transaction->commit();
+                    Yii::$app->session->setFlash("success", 'Данные успешно обновлены');
+
+                    return $this->redirect(['winners', 'id' => $id]);
+                } else {
+                    $transaction->rollBack();
+                }
+            } catch (Exception $e) {
+                $transaction->rollBack();
+            }
+        }
+
+        return $this->render('winners', [
+            'stage' => $stage,
+            'winners' => $winners,
+        ]);
     }
 
     /**
