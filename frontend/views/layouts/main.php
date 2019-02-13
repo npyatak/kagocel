@@ -48,7 +48,7 @@ AppAsset::register($this);
             ['label' => 'Главная', 'c' => 'site', 'a' => 'index'],
             ['label' => 'Личный кабинет', 'c' => 'personal', 'a' => 'index'],
             ['label' => 'Галерея', 'c' => 'site', 'a' => 'gallery'],
-            ['label' => 'О продукте', 'href' => 'https://www.kagocel.ru/'],
+            ['label' => 'О продукте', 'c' => 'site', 'a' => 'about'],
             ['label' => 'Обратная связь', 'c' => 'site', 'a' => 'contact'],
             ['label' => 'Faq', 'c' => 'site', 'a' => 'faq'],
             ['label' => 'Правила', 'c' => 'site', 'a' => 'rules'],
@@ -68,8 +68,8 @@ AppAsset::register($this);
                 <nav class="main_menu">
                     <ul>
                         <?php foreach ($menuItems as $item):?>
-                            <?php $active = isset($item['c']) && Yii::$app->controller->id == $item['c'] && Yii::$app->controller->action->id == $item['a'];?>
-                            <li><a href="<?=isset($item['href']) ? $item['href'] : Url::toRoute($item['c'].'/'.$item['a']);?>" <?=$active ? 'class="active"' : '';?>><?=$item['label'];?></a></li>
+                            <?php $active = Yii::$app->controller->id == $item['c'] && Yii::$app->controller->action->id == $item['a'];?>
+                            <li><a href="<?=Url::toRoute($item['c'].'/'.$item['a']);?>" <?=$active ? 'class="active"' : '';?>><?=$item['label'];?></a></li>
                         <?php endforeach;?>
                     </ul>
                 </nav>
@@ -86,8 +86,8 @@ AppAsset::register($this);
                 <img class="close_burger" src="/img/close_middle.svg" alt="close">
                 <ul class="burger_ul">
                     <?php foreach ($menuItems as $item):?>
-                        <?php $active = isset($item['c']) && Yii::$app->controller->id == $item['c'] && Yii::$app->controller->action->id == $item['a'];?>
-                        <li><a href="<?=isset($item['href']) ? $item['href'] : Url::toRoute($item['c'].'/'.$item['a']);?>" <?=$active ? 'class="active"' : '';?>><?=$item['label'];?></a></li>
+                        <?php $active = Yii::$app->controller->id == $item['c'] && Yii::$app->controller->action->id == $item['a'];?>
+                        <li><a href="<?=Url::toRoute($item['c'].'/'.$item['a']);?>" <?=$active ? 'class="active"' : '';?>><?=$item['label'];?></a></li>
                     <?php endforeach;?>
                 </ul>
             </div>
@@ -108,8 +108,8 @@ AppAsset::register($this);
                         <nav class="footer_menu">
                             <ul>
                                 <?php foreach ($menuItems as $item):?>
-                                    <?php $active = isset($item['c']) && Yii::$app->controller->id == $item['c'] && Yii::$app->controller->action->id == $item['a'];?>
-                                    <li><a href="<?=isset($item['href']) ? $item['href'] : Url::toRoute($item['c'].'/'.$item['a']);?>" <?=$active ? 'class="active"' : '';?>><?=$item['label'];?></a></li>
+                                    <?php $active = Yii::$app->controller->id == $item['c'] && Yii::$app->controller->action->id == $item['a'];?>
+                                    <li><a href="<?=Url::toRoute($item['c'].'/'.$item['a']);?>" <?=$active ? 'class="active"' : '';?>><?=$item['label'];?></a></li>
                                 <?php endforeach;?>
                             </ul>
                         </nav>
