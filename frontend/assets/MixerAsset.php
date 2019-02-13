@@ -7,9 +7,7 @@ class MixerAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
-    public $css = [
-        'mixer/style/main.css',
-    ];
+    
     public $js = [
 		'http://cwilso.github.io/AudioContext-MonkeyPatch/AudioContextMonkeyPatch.js',
 		'mixer/js/WebMIDIAPI.js',
