@@ -53,6 +53,7 @@ $this->title = 'Заполните недостающие поля';
                
 
                 <?php //if(in_array('birthDay', $user->missingFields) || in_array('birthMonth', $user->missingFields) || in_array('birthYear', $user->missingFields)):?>
+           
                     <div class="date_birth">
                         <?= $form->field($user, 'birthDay')->dropDownList([], ['id' => 'birthDay', 'class' => 'select_type_1 day'])->label(false) ?>
 
@@ -62,6 +63,7 @@ $this->title = 'Заполните недостающие поля';
 
                         <p>рождения<span> *</span></p>
                     </div>
+               
                     
                     <?= $form->field($user, 'birthdate')->hiddenInput()->label(false);?>
                 <?php //endif;?>

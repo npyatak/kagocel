@@ -81,7 +81,7 @@ use yii\helpers\Url;
 	<div class="contain">
 		<div class="section_top">
 			<h3 class="section_name">Создай св<i>о</i>й микс</h3>
-			<a href="#" class="regulations_button">Правила пользования dj микшером</a>
+			<a href="#" class="regulations_button">Как сделать свой трек</a>
 		</div>
 
 		<?=$this->render('@frontend/views/personal/_mixer');?>

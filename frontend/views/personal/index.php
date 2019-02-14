@@ -52,7 +52,7 @@ after_header - говорит о том, что этот блок идет по�
 
 		<div class="section_top">
 			<h3 class="section_name">Создай св<i>о</i>й микс</h3>
-			<a href="<?=Url::toRoute(['site/faq']);?>" class="regulations_button">Правила пользования dj микшером</a>
+			<a href="<?=Url::toRoute(['site/faq']);?>" class="regulations_button">Как сделать свой трек</a>
 		</div>
 
 		<?=$this->render('_mixer');?>

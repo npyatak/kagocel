@@ -1375,6 +1375,12 @@ img {
   position: relative;
   text-align: left;
 }
+.form-group.field-user-birthdate{
+  margin-top: 0;
+}
+.form-group.field-user-birthdate .help-block{
+  top: 5px;
+}
 
 .form-group.has-error .help-block {
   color: #f7323f;
@@ -1388,7 +1394,9 @@ img {
 
 .form-group .help-block {
   position: absolute;
-  bottom: -18px;
+  /*bottom: -18px;*/
+  top: 100%;
+  top: calc(100% + 5px);
   font-size: 12px;
   width: 100%;
   left: 0;
@@ -1456,6 +1464,7 @@ img {
           align-items: center;
   position: relative;
   z-index: 5;
+  margin-top: 4rem;
 }
 
 .date_birth p {
@@ -1482,11 +1491,13 @@ img {
 
 .date_birth .form-group {
   margin-right: 10px;
+  margin-top: 0;
 }
 
 .select_type_1 {
   display: inline-block;
   position: relative;
+  z-index: 4;
   max-width: 150px;
   width: 100%;
   border: 1px solid #C8CFD5;
@@ -3044,6 +3055,8 @@ img {
   z-index: 1;
 }
 
+
+
 .sticker > img {
   width: 100%;
   height: auto;
@@ -3132,11 +3145,18 @@ img {
 }
 
 .offers_item {
+  display: block;
+  /*display: inline-block;*/
+  margin-left: -3px;
   width: 33.333%;
   padding-bottom: 33%;
+  padding-bottom: 33vw; 
   background-color: #E6E6E6;
   position: relative;
   overflow: hidden;
+}
+.offers_item:first-child{
+  margin-left: 0;
 }
 
 .offers_item:nth-child(2n+2) {
@@ -3619,6 +3639,11 @@ img {
         -ms-transform: scale(0.7);
             transform: scale(0.7);
   }
+
+
+
+
+
   .conditions_wrap {
     font-size: 16px;
   }
@@ -3629,6 +3654,7 @@ img {
   .offers_item {
     width: 50%;
     padding-bottom: 50%;
+    padding-bottom: 50vw; 
   }
   .offers_item.type_3 {
     width: 100%;
@@ -3854,10 +3880,10 @@ img {
     max-width: 270px;
     max-height: 150px;
   }
-  .offers_item {
-    width: 50%;
-    padding-bottom: 50%;
-  }
+  /*.offers_item {*/
+    /*width: 50%;*/
+    /*padding-bottom: 50%;*/
+  /*}*/
   .offers_item.type_3 {
     width: 100%;
     background-color: #fff;

@@ -30,9 +30,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 
                     <p class="form_alert"><span>*</span>- обязательные для заполнения поля</p>
 
-                    <div class="form-group">
-                        <?= Html::submitButton('<span><i>О</i>тправить</span>', ['class' => 'button_bg black_gray', 'name' => 'contact-button']) ?>
-                    </div>
+                 
+                    <?= Html::submitButton('<span><i>О</i>тправить</span>', ['class' => 'button_bg black_gray', 'name' => 'contact-button']) ?>
+                 
 
                 <?php ActiveForm::end(); ?>            
             </div>

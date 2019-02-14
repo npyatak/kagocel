@@ -363,6 +363,14 @@ $(function(){
 			    }
 			}), '*');
 
+// var msg = {data:{id:"0e55cada5e97feb53a1d81616d7e74fc"}, type:"player:mute"};
+// window.frames["video_player"]//.postMessage( JSON.stringify(msg), '*' );
+
+
+			player.contentWindow.postMessage(JSON.stringify({
+				type: 'player:mute',
+			}), '*');
+
 		},300);
 	}//if
 
