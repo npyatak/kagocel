@@ -109,7 +109,7 @@ AppAsset::register($this);
                             <ul>
                                 <?php foreach ($menuItems as $item):?>
                                     <?php $active = Yii::$app->controller->id == $item['c'] && Yii::$app->controller->action->id == $item['a'];?>
-                                    <li><a href="<?=Url::toRoute($item['c'].'/'.$item['a']);?>" <?=$active ? 'class="active"' : '';?>><?=$item['label'];?></a></li>
+                                    <li><a href="<?=Url::toRoute($item['c'].'/'.$item['a']);?>"><?=$item['label'];?></a></li>
                                 <?php endforeach;?>
                             </ul>
                         </nav>
@@ -128,14 +128,14 @@ AppAsset::register($this);
                        </div>
                     </div>
 
-                    <p class="sixteen_item">16<span>+</span></p>
+                    <p class="sixteen_item"><img src="/img/sixteen.svg" alt="16+"></p>
 
                 </div>
             </div>
             <!-- footer_top -->
 
             <div class="footer_bottom">
-                <p>Имеются противопоказания. необходимо ознакомиться с инструкцией или проконсультироваться со специалистом</p>
+                <p>Имеются противопоказания. необходимо ознакомиться <br>с инструкцией или проконсультироваться со специалистом</p>
             </div>
         </footer>
     </div>

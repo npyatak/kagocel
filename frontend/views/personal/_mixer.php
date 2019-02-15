@@ -84,21 +84,24 @@
 						<div class="wrap_knob">
 							<span class="grey_circle"></span>
 							<span class="color_circle"></span>
-							<div id="" class="knob black_gray"></div>
+							<div id="" class="knob"></div>
+							<span class	="shadow black_gray"></span>
 							<p class="name">mid</p>
 						</div>
 
 						<div class="wrap_knob">
 							<span class="grey_circle"></span>
 							<span class="color_circle"></span>
-							<div id="" class="knob black_gray"></div>
+							<div id="" class="knob"></div>
+							<span class	="shadow black_gray"></span>
 							<p class="name">bass</p>
 						</div>
 
 						<div class="wrap_knob">
 							<span class="grey_circle"></span>
 							<span class="color_circle"></span>
-							<div id="" class="knob black_gray"></div>
+							<div id="" class="knob"></div>
+							<span class	="shadow black_gray"></span>
 							<p class="name">filter</p>
 						</div>
 					</div>
@@ -132,21 +135,25 @@
 						<div class="wrap_knob">
 							<span class="grey_circle"></span>
 							<span class="color_circle orange"></span>
-							<div id="" class="knob black_gray"></div>
+							<div id="" class="knob"></div>
+							<span class	="shadow black_gray"></span>
 							<p class="name">mid</p>
 						</div>
+
 
 						<div class="wrap_knob">
 							<span class="grey_circle"></span>
 							<span class="color_circle orange"></span>
-							<div id="" class="knob black_gray"></div>
+							<div id="" class="knob"></div>
+							<span class	="shadow black_gray"></span>
 							<p class="name">bass</p>
 						</div>
 
 						<div class="wrap_knob">
 							<span class="grey_circle"></span>
 							<span class="color_circle orange"></span>
-							<div id="" class="knob black_gray"></div>
+							<div id="" class="knob"></div>
+							<span class	="shadow black_gray"></span>
 							<p class="name">filter</p>
 						</div>
 					</div>
@@ -177,7 +184,7 @@
 						<i class="fa fa-pause" aria-hidden="true"></i>
 					</div>
 
-					<div class="plus_minus">
+					<div class="plus_minus orange">
 						<div class="plus black_gray">-</div>
 						<div class="center black_gray"><i class="fa fa-retweet" aria-hidden="true"></i> 4</div>
 						<div class="minus black_gray">+</div>

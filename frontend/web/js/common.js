@@ -251,14 +251,14 @@ $('img').attr({
 
 
 // тут добавляем возможность интерактивно крутить пластинки 
-$.each($(".plate_wrap .plate"), function(i,e){
-	// console.log($(this).attr("class"));
+// $.each($(".plate_wrap .plate"), function(i,e){
+// 	// console.log($(this).attr("class"));
 
-	Draggable.create(e, {
-		type: "rotation", 
-		throwProps: true,
-	});
-});
+// 	Draggable.create(e, {
+// 		type: "rotation", 
+// 		throwProps: true,
+// 	});
+// });
 
 
 
