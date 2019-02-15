@@ -1370,7 +1370,7 @@ img {
   color: #f7323f;
 }
 
-.form-group.has-error .input_1, .form-group.has-error .select_type_1, .form-group.has-error .textarea_1 {
+.form-group.has-error .input_1, .form-group.has-error .select_type_1, .form-group.has-error .textarea_1, .form-group.has-error > input {
   border-color: #f7323f;
   background-color: #FFE5E5;
   color: #f7323f;
@@ -1385,6 +1385,40 @@ img {
   width: 100%;
   left: 0;
 }
+
+
+.field-contactform-verifycode{
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  justify-content: space-between;
+}
+.field-contactform-verifycode img{
+  margin-right: 10px;
+  border-radius: 5px;
+  border: 1px solid #C8CFD5;
+}
+
+.form-group input{
+  border: 1px solid #C8CFD5;
+  background-color: #fff;
+  font-family: "CenturyGothic", sans-serif;
+  font-size: 16px;
+  padding: 12px 20px;
+  width: 100%;
+  -webkit-border-radius: 5px;
+          border-radius: 5px;
+  -webkit-transition: border .25s, -webkit-box-shadow .25s;
+  transition: border .25s, -webkit-box-shadow .25s;
+  -o-transition: border .25s, box-shadow .25s;
+  transition: border .25s, box-shadow .25s;
+  transition: border .25s, box-shadow .25s, -webkit-box-shadow .25s;
+  color: #000;
+
+}
+
 
 .input_1 {
   border: 1px solid #C8CFD5;

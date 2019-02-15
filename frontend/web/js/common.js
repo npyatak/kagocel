@@ -341,7 +341,10 @@ $(".phone_mask").inputmask({
 	"mask": "8(999) 999-9999",
 	"clearIncomplete": true,	//проверяет заполнено ли поле
 });
-
+$(".input_1.date").inputmask({
+	"mask": "99.99.9999",
+	"clearIncomplete": true,	//проверяет заполнено ли поле
+});
 
 
 
