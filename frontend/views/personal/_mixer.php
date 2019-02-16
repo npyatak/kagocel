@@ -64,7 +64,7 @@
 
 					<div class="play_stop black_gray trackLeft">
 						<i class="fa fa-play" aria-hidden="true"></i>
-						<i class="fa fa-pause" aria-hidden="true"></i>
+						<img class="fa-pause" src="/img/pause.svg" alt="pause">
 					</div>
 
 				</div>
@@ -181,7 +181,7 @@
 				<div class="record_buttons">
 					<div class="play_stop black_gray orange rightLeft">
 						<i class="fa fa-play" aria-hidden="true"></i>
-						<i class="fa fa-pause" aria-hidden="true"></i>
+						<img class="fa-pause" src="/img/pause.svg" alt="pause">
 					</div>
 
 					<div class="plus_minus orange">
