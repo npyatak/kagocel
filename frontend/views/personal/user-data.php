@@ -44,22 +44,21 @@ $this->title = 'Заполните недостающие поля';
                     <?= $form->field($user, 'email')->textInput(['class' => 'input_1', 'placeholder' => $user->attributeLabels()['email'].'*'])->label(false) ?>
                 <?php //endif;?>
          
-
-
-             
                 <?php //if(in_array('phone', $user->missingFields)):?>
                     <?= $form->field($user, 'phone')->textInput(['class' => 'input_1', 'placeholder' => $user->attributeLabels()['phone'].'*'])->label(false) ?>
                 <?php //endif;?>
-               
+
+
 
                 <?php //if(in_array('birthDay', $user->missingFields) || in_array('birthMonth', $user->missingFields) || in_array('birthYear', $user->missingFields)):?>
            
                     <div class="date_birth">
-                        <?= $form->field($user, 'birthDay')->dropDownList([], ['id' => 'birthDay', 'class' => 'select_type_1 day'])->label(false) ?>
+                        <?= $form->field($user, 'birthDay')->textInput(['class' => 'input_1 date', 'placeholder' => $user->attributeLabels()['date'].'*'])->label(false) ?>
+                        <?/*= $form->field($user, 'birthDay')->dropDownList([], ['id' => 'birthDay', 'class' => 'select_type_1 day'])->label(false) ?>
 
                         <?= $form->field($user, 'birthMonth')->dropDownList([], ['id' => 'birthMonth', 'class' => 'select_type_1 month'])->label(false) ?>
 
-                        <?= $form->field($user, 'birthYear')->dropDownList([], ['id' => 'birthYear', 'class' => 'select_type_1 year'])->label(false) ?>
+                        <?= $form->field($user, 'birthYear')->dropDownList([], ['id' => 'birthYear', 'class' => 'select_type_1 year'])->label(false) */?>
 
                         <p>рождения<span> *</span></p>
                     </div>

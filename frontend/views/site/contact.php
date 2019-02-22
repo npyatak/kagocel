@@ -24,9 +24,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <?= $form->field($model, 'body')->textarea(['rows' => 6, 'class' => 'textarea_1', 'placeholder' => 'сообщение*'])->label(false) ?>
 
+                    <!-- <div class="verify_wrap form-group"> -->
                     <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                        'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6 input_1">{input}</div></div>',
+                        'template' => '{image}{input}',
                     ])->label(false) ?>
+                    <!-- </div> -->
                 
                     <p class="form_alert"><span>*</span>- обязательные для заполнения поля</p>
 

@@ -178,17 +178,9 @@ if($("div").is(".tracks_slider")){
 
 
 // кнопка запись 
-$(".recording_button").on("click", function(){
-	$(this).toggleClass("active");
-});
 
 $(".plus_minus .center").on("click", function(){
 	$(this).parent().toggleClass("active");
-});
-
-$(".play_stop").on("click", function(){
-	$(this).toggleClass("active");
-	$(this).parent().prev().children(".plate_wrap .handle").toggleClass("active");
 });
 
 $(".play_li").on("click", function(){
@@ -212,14 +204,14 @@ $('img').attr({
 
 
 // тут добавляем возможность интерактивно крутить пластинки 
-$.each($(".plate_wrap .plate"), function(i,e){
-	// console.log($(this).attr("class"));
+// $.each($(".plate_wrap .plate"), function(i,e){
+// 	// console.log($(this).attr("class"));
 
-	Draggable.create(e, {
-		type: "rotation", 
-		throwProps: true,
-	});
-});
+// 	Draggable.create(e, {
+// 		type: "rotation", 
+// 		throwProps: true,
+// 	});
+// });
 
 
 
@@ -302,7 +294,10 @@ $(".phone_mask").inputmask({
 	"mask": "8(999) 999-9999",
 	"clearIncomplete": true,	//проверяет заполнено ли поле
 });
-
+$(".input_1.date").inputmask({
+	"mask": "99.99.9999",
+	"clearIncomplete": true,	//проверяет заполнено ли поле
+});
 
 
 

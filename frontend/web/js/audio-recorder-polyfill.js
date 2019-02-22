@@ -136,8 +136,6 @@
     (a.notSupported = !navigator.mediaDevices || !f),
     (a.encoder = h),
     (e = a);
-  document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("mode").innerText = "Polyfill is enabled";
-  }),
+  document.addEventListener("DOMContentLoaded", function() {}),
     (window.MediaRecorder = e);
 })();

@@ -24,6 +24,7 @@ class AppAsset extends AssetBundle
         'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js',
         'https://cdn.webrtc-experiment.com/MultiStreamsMixer.js',
         'js/main.js',
+        'js/music-mixer.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',
