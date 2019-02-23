@@ -11,12 +11,28 @@ function header_top() {
 	// alert(footer_h);
 }
 
+
+// функция задает минимальную высоту блоку если он один на станице
+function one_block(){
+	var header_h = $(".header_main").outerHeight();
+	var footer_h = $(".main_footer").outerHeight();
+	var all_height = $(window).height();
+
+	var min_height = all_height - footer_h;
+	// console.log(qqq);
+	// console.log(header_h);
+	// console.log(footer_h);
+	// console.log(all_height);
+	$(".min_h").css("min-height", min_height);
+}
+
 // Выполняем при загрузке и при ресайзе
 $(document).ready(function(){
 	function onResize(){
 		setTimeout(function(){
 			footer_bottom(); // функция кот. выполняется
 			header_top();
+			one_block();
 		}, 200);
 	}onResize();
 	$(window).resize(onResize);

@@ -2,32 +2,33 @@
 use yii\helpers\Url;
 ?>
 
-<section class="section_main gradient_bg after_header">
-	<div class="decorate_letter">
-		<img src="img/letter_o.png" alt="img">
-	</div>
 
-	<div class="contain pt_small">
+<section class="section_main dark_bg pb_big after_header">
+
+	<div class="contain">
 		
 
-		<div class="main_wrap_blocks and_button">
-			<div class="wrap_big_img"><img class="big_img" src="img/packt.png" alt="img"></div>
+		<div class="main_wrap_blocks and_button ">
+			<div class="wrap_big_img"><img class="big_img" src="/img/packt.png" alt="img"></div>
 			<div class="main_right">
 				<p class="main_name">
-					Прокачай свою заботу с кагоцел<i>о</i>м
+					Прокачай свою заботу с каг<i>о</i>целом
+					<img src="/img/big_arrow.svg" alt="img">
 				</p>
 				<p class="anons">
 					Создай свой уникальный музыкальный трек и получи шанс выиграть крутые призы! 
 				</p>
-				<a href="<?=Url::toRoute(['personal/index']);?>" class="button_bg black_gray"><span>Участвовать</span></a>
+				<a href="<?=Url::toRoute(['personal/index']);?>" class="button_1 point"><span>Участвовать</span></a>
 			</div>
 		</div>
 
 	</div>
+	<p class="sixteen_item"><img src="/img/sixteen.svg" alt="16+"></p>
 </section>
 <!-- section_main -->
 
-<section class="conditions_section pb_big">
+
+<section class="conditions_section pt_big pb_big">
 	<div class="contain">
 
 		<div class="section_top">
@@ -60,7 +61,8 @@ use yii\helpers\Url;
 	</div>
 </section>
 
-<section class="video_section gradient_bg pt_big pb_big">
+
+<section class="video_section pt_big pb_big">
 	<div class="contain">
 
 		<div class="section_top">
@@ -77,6 +79,9 @@ use yii\helpers\Url;
 </section>
 <!-- video_section -->
 
+
+
+
 <section class="mixer_main pt_big pb_big">
 	<div class="contain">
 		<div class="section_top">
@@ -88,41 +93,37 @@ use yii\helpers\Url;
 	</div>
 </section>
 
-<section class="you_prize gradient_bg pt_big pb_small">
+
+
+
+<section class="you_prize dark_bg bottom pt_big pb_big">
 	<div class="contain">
 
 		<div class="section_top">
 			<h3 class="section_name">Тв<i>о</i>и призы</h3>
-			<p class="section_desc">май 2019</p>
 		</div>
+
+
+		
+		<div class="prize_top">
+			<img class="tickets" src="img/tickets.png" alt="img">
+			<img class="sticker" src="img/sticker.png" alt="img">
+		</div>
+
+		<div class="offers_wrap">
+			<div class="offers_item one" style="background-image: url(img/offer_1.png)">
+				<div>Дождевик</div>
+			</div>
+			<div class="offers_item two" style="background-image: url(img/offer_2.png)">
+				<img class="sticker_2" src="img/sticker_2.png" alt="img">
+				<div>дождевики на обувь</div>
+			</div>
+			<div class="offers_item three" style="background-image: url(img/offer_3.png)">
+				<div>свитшот</div>
+			</div>
+		</div>
+
 	</div>
+	<!-- contain -->
 </section>
-<!-- video_section -->
-
-<div class="offers_block">
-	<div class="offers">
-
-		<div class="sticker">
-			<img src="/img/sticker.svg" alt="img">
-			<p class="set_text">
-				<span>5</span>
-				<span>наборов</span>
-				<span>каждую неделю</span>
-			</p>
-		</div>
-
-		<div class="offers_item type_1">
-			<p class="name">Дождивик</p>
-			<img src="/img/offer_1.png" alt="img">
-		</div>
-		<div class="offers_item type_2">
-			<p class="name">Дождивики <br> на обувь</p>
-			<img src="/img/offer_2.png" alt="img">
-		</div>
-		<div class="offers_item type_3">
-			<p class="name">Свитшот</p>
-			<img src="/img/offer_3.png" alt="img">
-		</div>
-	</div>
-	<!-- offers -->
-</div>
+<!-- you_prize -->

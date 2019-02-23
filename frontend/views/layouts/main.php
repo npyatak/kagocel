@@ -63,7 +63,7 @@ AppAsset::register($this);
                     <div class="three"></div>
                 </div>
                 <a class="logo_1" href="#">
-                    <img src="/img/logo_1.svg" alt="logo">
+                    <img src="/img/logo_1_2.svg" alt="logo">
                 </a>
                 <nav class="main_menu">
                     <ul>
@@ -71,19 +71,18 @@ AppAsset::register($this);
                             <?php $active = Yii::$app->controller->id == $item['c'] && Yii::$app->controller->action->id == $item['a'];?>
                             <li><a href="<?=Url::toRoute($item['c'].'/'.$item['a']);?>" <?=$active ? 'class="active"' : '';?>><?=$item['label'];?></a></li>
                         <?php endforeach;?>
-                    </ul>
                 </nav>
                 <a class="logo_2" href="#">
-                    <img src="/img/logo_2.svg" alt="logo">
+                    <img src="/img/logo_2.png" alt="logo">
                 </a>
             </div>
         </header>
 
 
 
-        <div class="burger_menu">
+        <div class="burger_menu dark_bg">
             <div class="contain">
-                <img class="close_burger" src="/img/close_middle.svg" alt="close">
+                <img class="close_burger" src="img/close_middle.svg" alt="close">
                 <ul class="burger_ul">
                     <?php foreach ($menuItems as $item):?>
                         <?php $active = Yii::$app->controller->id == $item['c'] && Yii::$app->controller->action->id == $item['a'];?>
@@ -102,7 +101,7 @@ AppAsset::register($this);
                     <div>
                         <div class="logo_block">
                             <a class="footer_logo" href="#"><img src="/img/logo_1_2.svg" alt="logo"></a>
-                            <a class="footer_logo" href="#"><img src="/img/logo_2_2.svg" alt="logo"></a>
+                            <a class="footer_logo" href="#"><img src="/img/logo_2.png" alt="logo"></a>
                         </div>
 
                         <nav class="footer_menu">

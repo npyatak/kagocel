@@ -6,30 +6,31 @@ use yii\helpers\Html;
 
 
 <!-- 
+dark_bg - задает градиент блоку если к нему плюсом добавить класс bottom тога фон состыкуется с фоном футера
 pt_small - малый отступ сверху
 pb_big - большой отступ снизу
 after_header - говорит о том, что этот блок идет после header, что-бы скрипт задал ему отступ сверху
  -->
-<section class="section_main after_header">
-	<div class="decorate_letter">
-		<img src="img/letter_o.png" alt="img">
-	</div>
+<section class="section_main lk dark_bg after_header">
 
-	<div class="contain pt_small">
-		
-		<div class="main_wrap_blocks">
+	<div class="contain">
+
+		<div class="main_wrap_blocks and_button ">
 			<div class="wrap_big_img"><img class="big_img" src="img/packt.png" alt="img"></div>
 			<div class="main_right">
 				<p class="main_name">
-					Прокачай свою заботу с кагоцел<i>о</i>м
+					Прокачай свою заботу с каг<i>о</i>целом
+					<img src="img/big_arrow.svg" alt="img">
 				</p>
 				<p class="anons">
 					Создай свой уникальный музыкальный трек и получи шанс выиграть крутые призы! 
 				</p>
+				
 			</div>
 		</div>
 
 	</div>
+	<p class="sixteen_item"><img src="/img/sixteen.svg" alt="16+"></p>
 </section>
 <!-- section_main -->
 
@@ -64,10 +65,14 @@ after_header - говорит о том, что этот блок идет по�
 
 <!-- /секция с микшером -->
 
-<section class="my_tracks pt_small pb_big">
+
+
+
+
+<section class="my_tracks dark_bg pt_big pb_big">
 	<div class="contain">
 		<div class="section_top">
-			<h3 class="section_name">Мои треки</h3>
+			<h3 class="section_name">М<i>о</i>и треки</h3>
 			<p class="section_anons">треки текущего этапа</p>
 		</div>
 

@@ -10,7 +10,7 @@ $this->registerJsFile('js/dateSelect.js', ['depends' => [\frontend\assets\AppAss
 $this->title = 'Заполните недостающие поля';
 ?>
 
-<section class="authorization after_header">
+<section class="authorization dark_bg bottom after_header min_h">
     <div class="contain">
         <div class="authorization_step_2">
             <h2 class="section_title">Авт<i>о</i>ризация</h2>
@@ -49,26 +49,16 @@ $this->title = 'Заполните недостающие поля';
                 <?php //endif;?>
 
 
-
-                <?php //if(in_array('birthDay', $user->missingFields) || in_array('birthMonth', $user->missingFields) || in_array('birthYear', $user->missingFields)):?>
-           
-                    <div class="date_birth">
-                        <?= $form->field($user, 'birthDay')->textInput(['class' => 'input_1 date', 'placeholder' => $user->attributeLabels()['date'].'*'])->label(false) ?>
-                        <?/*= $form->field($user, 'birthDay')->dropDownList([], ['id' => 'birthDay', 'class' => 'select_type_1 day'])->label(false) ?>
-
-                        <?= $form->field($user, 'birthMonth')->dropDownList([], ['id' => 'birthMonth', 'class' => 'select_type_1 month'])->label(false) ?>
-
-                        <?= $form->field($user, 'birthYear')->dropDownList([], ['id' => 'birthYear', 'class' => 'select_type_1 year'])->label(false) */?>
-
-                        <p>рождения<span> *</span></p>
-                    </div>
-               
-                    
-                    <?= $form->field($user, 'birthdate')->hiddenInput()->label(false);?>
+                <?php //if(in_array('phone', $user->missingFields)):?>
+                    <?= $form->field($user, 'birthDay')->textInput(['class' => 'input_1', 'placeholder' => $user->attributeLabels()['date'].'*'])->label(false) ?>
                 <?php //endif;?>
 
+
+
+
+
                 <p class="form_alert"><span>*</span>- обязательные для заполнения поля</p>
-                <?= Html::submitButton('<span>Готово</span>', ['class' => 'button_bg black_gray', 'name' => 'register-button']) ?>
+                <?= Html::submitButton('<span>Готово</span>', ['class' => 'button_1 point', 'name' => 'register-button']) ?>
 
                 <?php ActiveForm::end(); ?>
 

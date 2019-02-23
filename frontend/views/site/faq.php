@@ -1,4 +1,4 @@
-<section class="faq gradient_bg after_header">
+<section class="faq dark_bg bottom after_header min_h">
 	<div class="contain pt_small pb_big">
 		
 		<div class="section_top">

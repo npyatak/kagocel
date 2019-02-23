@@ -7,12 +7,16 @@ $this->title = 'Contact';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<section class="feedback_section gradient_bg after_header">
+<section class="feedback_section dark_bg bottom after_header min_h">
     <div class="contain">
+        
+
+
         <div class="feedback_wrap pt_small pb_big">
             <h2 class="section_title"><i>О</i>братная связь</h2>
             <p class="form_anons">Возникли вопросы? Напишите нам,</p>
             
+
             <div class="authorization_form_wrap">
                 <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
 
@@ -33,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <p class="form_alert"><span>*</span>- обязательные для заполнения поля</p>
 
                  
-                    <?= Html::submitButton('<span><i>О</i>тправить</span>', ['class' => 'button_bg black_gray', 'name' => 'contact-button']) ?>
+                    <?= Html::submitButton('<span>Отправить</span>', ['class' => 'button_1 point', 'name' => 'contact-button']) ?>
                  
 
                 <?php ActiveForm::end(); ?>            
