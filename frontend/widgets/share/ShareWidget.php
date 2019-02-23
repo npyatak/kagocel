@@ -6,13 +6,14 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 
 use common\models\Share;
+use common\models\PostAction;
 
 class ShareWidget extends \yii\base\Widget 
 {
 
 	public $share = [
-		'title' => 'Я прокачал свою заботу с КАГОЦЕЛОМ! Попробуй и ты!',
-        'text' => 'Собери свой трек и выиграй призы',
+		'title' => 'Прокачай свою заботу с Кагоцелом. #ПрокачайсвоюзаботуcКагоцелом #Кагоцел',
+        'text' => 'Собери свой трек и выиграй призы. #ПрокачайсвоюзаботуcКагоцелом #Кагоцел',
 		'image' => '/img/01_kagocel_studia_souz_sharing_fb.jpg',
 		'image_vk' => '/img/01_kagocel_studia_souz_sharing_vk.jpg',
 		'image_ok' => '/img/01_kagocel_studia_souz_sharing_ok.jpg',
@@ -22,6 +23,7 @@ class ShareWidget extends \yii\base\Widget
 	public $itemWrapClass;
 	public $itemClass = 'share';
 	public $showButtons = true;
+	public $post;
 
     public function init()
     {
@@ -33,7 +35,7 @@ class ShareWidget extends \yii\base\Widget
     public function run() {
     	//$scheme = isset($_SERVER['REQUEST_SCHEME']) ? $_SERVER['REQUEST_SCHEME'] : true;
     	$scheme = 'https';
-        $this->share['url'] = Url::toRoute(['site/index'], $scheme);
+        $this->share['url'] = $this->post ? Url::toRoute(['site/post', 'id' => $this->post->id], $scheme) : Url::toRoute(['site/index'], $scheme);
         $this->share['imageUrl'] = isset($this->share['image']) ? Url::to([$this->share['image']], $scheme) : null;
         $this->share['imageUrlVk'] = isset($this->share['image_vk']) ? Url::to([$this->share['image_vk']], $scheme) : null;
         $this->share['imageUrlOk'] = isset($this->share['image_ok']) ? Url::to([$this->share['image_ok']], $scheme) : null;
@@ -57,29 +59,32 @@ class ShareWidget extends \yii\base\Widget
 		}
 
 		if($this->showButtons) {
-		    echo Html::a('<i class="fa fa-facebook-f" aria-hidden="true"></i>', '', [
-		        'class' => 'share additional_soc face',
-		        'data-type' => 'fb',
+			echo Html::a('<i class="fa fa-facebook" aria-hidden="true"></i>', '', [
+		        'class' => (Yii::$app->user->isGuest || $this->post->userCan(PostAction::TYPE_SHARE_FB)) ? 'action share icon fb active' : 'action share icon fb',
+		        'data-soc' => 'fb',
 		        'data-url' => $this->share['url'],
 		        'data-title' => $this->share['title'],
 		        'data-image' => $this->share['imageUrl'],
 		        'data-text' => $this->share['text'],
+		        'data-type' => PostAction::TYPE_SHARE_FB,
 		    ]);
 		    echo Html::a('<i class="fa fa-vk" aria-hidden="true"></i>', '', [
-		        'class' => 'share additional_soc vk',
-		        'data-type' => 'vk',
+		        'class' => (Yii::$app->user->isGuest || $this->post->userCan(PostAction::TYPE_SHARE_VK)) ? 'action share icon vk active' : 'action share icon vk',
+		        'data-soc' => 'vk',
 		        'data-url' => $this->share['url'],
 		        'data-title' => $this->share['title'],
 		        'data-image' => $this->share['imageUrlVk'],
 		        'data-text' => $this->share['text'],
+		        'data-type' => PostAction::TYPE_SHARE_VK,
 		    ]);
 		    echo Html::a('<i class="fa fa-odnoklassniki" aria-hidden="true"></i>', '#', [
-		        'class' => 'share additional_soc odn',
-		        'data-type' => 'ok',
+		        'class' => (Yii::$app->user->isGuest || $this->post->userCan(PostAction::TYPE_SHARE_OK)) ? 'action share icon ok active' : 'action share icon ok',
+		        'data-soc' => 'ok',
 		        'data-url' => $this->share['url'],
 		        'data-title' => $this->share['title'],
 		        'data-text' => $this->share['text'],
 		        'data-image' => $this->share['imageUrlOk'],
+		        'data-type' => PostAction::TYPE_SHARE_OK,
 		    ]);
 		}
     }

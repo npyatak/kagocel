@@ -204,6 +204,8 @@
 	<!-- mixer_inner -->
 	<div class="mixer_done-message" id="mixer__done-message" style="padding: 30px; text-align: center; display: none;">
 		<h3>Вы успешно создали свой микс!</h3>
+		<a id="tryAgain" href="#">Попробовать снова</a>
+		<a id="resultSend" href="#">Отправить</a>
 		<p>Хотите его прослушать?</p>
 	</div>
 </div>
