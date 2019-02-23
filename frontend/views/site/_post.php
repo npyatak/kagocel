@@ -35,9 +35,7 @@ use common\models\PostAction;
 		<div class="bottom">
 			<p><span>Баллы:</span> <span class="score"><?=$post->score;?></span></p>
 			<div class="track_share">
-				<a href="#" class="action icon fb <?=(Yii::$app->user->isGuest || $post->userCan(PostAction::TYPE_SHARE_FB)) ? 'active' : '';?>" data-type="<?=PostAction::TYPE_SHARE_FB;?>"><i class="fa fa-facebook" aria-hidden="true"></i></a> 
-				<a href="#" class="action icon vk <?=(Yii::$app->user->isGuest || $post->userCan(PostAction::TYPE_SHARE_VK)) ? 'active' : '';?>" data-type="<?=PostAction::TYPE_SHARE_VK;?>"><i class="fa fa-vk" aria-hidden="true"></i></a> 
-				<a href="#" class="action icon ok <?=(Yii::$app->user->isGuest || $post->userCan(PostAction::TYPE_SHARE_OK)) ? 'active' : '';?>" data-type="<?=PostAction::TYPE_SHARE_OK;?>"><i class="fa fa-odnoklassniki" aria-hidden="true"></i></a> 
+            	<?=\frontend\widgets\share\ShareWidget::widget(['post' => $post]);?>
 			</div>
 		</div>
 

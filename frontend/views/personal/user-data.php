@@ -54,9 +54,6 @@ $this->title = 'Заполните недостающие поля';
                 <?php //endif;?>
 
 
-
-
-
                 <p class="form_alert"><span>*</span>- обязательные для заполнения поля</p>
                 <?= Html::submitButton('<span>Готово</span>', ['class' => 'button_1 point', 'name' => 'register-button']) ?>
 

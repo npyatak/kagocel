@@ -3,25 +3,25 @@
 ?>
 
 
-<div class="mixer">
-	<div class="mixer_inner">
+<div class="mixer" id="mixer">
+	<div class="mixer_inner" id="mixer__inner">
 
 		<div class="mixer_top">
 			
 			<!-- при добавлянии класса active когда начинается запись скрываем .text , и показываем timer + меняется цвет-->
-			<div class="recording_button black_gray">
+			<div class="recording_button black_gray" id="mixer__record-button">
 				<p class="text">Запись</p>
-				<p class="timer">0:00:00</p>
+				<p class="timer" id="mixer__record-timer">0:00:00</p>
 			</div>
 
 
 			<div class="mixer_top_item left leftTrack">
 				<div>
 					<p class="name">
-						<span><strong>Название песни</strong></span>
+						<span><strong id="mixer__first-track-name"></strong></span>
 					</p>
 					<!-- <p class="album"><span>Исполнитель - альбом</span></p> -->
-					<p class="timer"><span class="played">0:00</span> / <span class="duration">00:00</span></p>
+					<p class="timer"><span class="played" id="mixer__first-track-played">0:00</span> / <span class="duration" id="mixer__first-track-duration">00:00</span></p>
 				</div>
 				<canvas class="spectr">
 					<img src="/img/test_img/graph.png" alt="">
@@ -31,10 +31,10 @@
 			<div class="mixer_top_item right rightTrack">
 				<div>
 					<p class="name">
-						<span><strong>Название песни</strong></span>
+						<span><strong id="mixer__second-track-name"></strong></span>
 					</p>
 					<!-- <p class="album"></span>Исполнитель - альбом</span></p> -->
-					<p class="timer"><span class="played">0:00</span> / <span class="duration">00:00</span></p>
+					<p class="timer"><span class="played"  id="mixer__second-track-played">0:00</span> / <span class="duration" id="mixer__second-track-duration">00:00</span></p>
 				</div>
 				<canvas class="spectr">
 					<img src="/img/test_img/graph.png" alt="">
@@ -51,7 +51,7 @@
 				<div class="plate_wrap">
 					<img class="plate" src="/img/plate_1.png" alt="img">
 					<!-- класс active отвечает за то что ручка находится на пластинке , если его убрать то ручка развернется -->
-					<img class="handle leftTrack" src="/img/plate_handle.png" alt="img">
+					<img class="handle leftTrack" id="first-handle" src="/img/plate_handle.png" alt="img">
 				</div>
 				
 				<div class="record_buttons">
@@ -62,7 +62,7 @@
 						<div class="minus black_gray">+</div>
 					</div>
 
-					<div class="play_stop black_gray trackLeft">
+					<div class="play_stop black_gray trackLeft" id="mixer__first-track-play-button">
 						<i class="fa fa-play" aria-hidden="true"></i>
 						<img class="fa-pause" src="/img/pause.svg" alt="pause">
 					</div>
@@ -84,7 +84,7 @@
 						<div class="wrap_knob">
 							<span class="grey_circle"></span>
 							<span class="color_circle"></span>
-							<div id="" class="knob"></div>
+							<div id="mixer__first-track-mid-filter" class="knob"></div>
 							<span class	="shadow black_gray"></span>
 							<p class="name">mid</p>
 						</div>
@@ -92,7 +92,7 @@
 						<div class="wrap_knob">
 							<span class="grey_circle"></span>
 							<span class="color_circle"></span>
-							<div id="" class="knob"></div>
+							<div id="mixer__first-track-bass-filter" class="knob"></div>
 							<span class	="shadow black_gray"></span>
 							<p class="name">bass</p>
 						</div>
@@ -100,9 +100,9 @@
 						<div class="wrap_knob">
 							<span class="grey_circle"></span>
 							<span class="color_circle"></span>
-							<div id="" class="knob"></div>
+							<div id="mixer__first-track-high-filter" class="knob"></div>
 							<span class	="shadow black_gray"></span>
-							<p class="name">filter</p>
+							<p class="name">high</p>
 						</div>
 					</div>
 					<!-- mbi_item -->
@@ -116,15 +116,15 @@
 						<div class="wrap_record_slider_vertical">
 							<!-- span высота визуального эквалайзера -->
 							<div class="record_slider_vertical">
-								<div class="rsv"></div>
-								<div class="line"><span style="height: 5%"></span></div>
-								<div class="line"><span style="height: 5%"></span></div>
+								<div id="mixer__first-track-loudness-control"></div>
+								<div class="line"><span id="mixer__first-track-loudness-line-1"></span></div>
+								<div class="line"><span id="mixer__first-track-loudness-line-2"></span></div>
 							</div>
 							<!-- span высота визуального эквалайзера -->
 							<div class="record_slider_vertical">
-								<div class="rsv"></div>
-								<div class="line orange"><span style="height: 35%"></span></div>
-								<div class="line orange"><span style="height: 35%"></span></div>
+								<div id="mixer__second-track-loudness-control"></div>
+								<div class="line orange"><span id="mixer__second-track-loudness-line-1"></span></div>
+								<div class="line orange"><span id="mixer__second-track-loudness-line-2"></span></div>
 							</div>
 						</div>
 					</div>
@@ -135,7 +135,7 @@
 						<div class="wrap_knob">
 							<span class="grey_circle"></span>
 							<span class="color_circle orange"></span>
-							<div id="" class="knob"></div>
+							<div id="mixer__second-track-mid-filter" class="knob"></div>
 							<span class	="shadow black_gray"></span>
 							<p class="name">mid</p>
 						</div>
@@ -144,7 +144,7 @@
 						<div class="wrap_knob">
 							<span class="grey_circle"></span>
 							<span class="color_circle orange"></span>
-							<div id="" class="knob"></div>
+							<div id="mixer__second-track-bass-filter" class="knob"></div>
 							<span class	="shadow black_gray"></span>
 							<p class="name">bass</p>
 						</div>
@@ -152,15 +152,15 @@
 						<div class="wrap_knob">
 							<span class="grey_circle"></span>
 							<span class="color_circle orange"></span>
-							<div id="" class="knob"></div>
-							<span class	="shadow black_gray"></span>
-							<p class="name">filter</p>
+							<div id="mixer__second-track-high-filter" class="knob"></div>
+							<span class="shadow black_gray"></span>
+							<p class="name">high</p>
 						</div>
 					</div>
 					<!-- mbi_item -->
 
 					<div class="record_slider_horizontal_2">
-						<div class="rsh_2"></div>
+						<div id="mixer__balance-control"></div>
 					</div>
 
 				</div>
@@ -175,11 +175,11 @@
 				<div class="plate_wrap">
 					<img class="plate" src="/img/plate_1.png" alt="img">
 					<!-- класс active отвечает за то что ручка находится на пластинке , если его убрать то ручка развернется -->
-					<img class="handle rightTrack" src="/img/plate_handle.png" alt="img">
+					<img class="handle rightTrack" id="second-handle" src="/img/plate_handle.png" alt="img">
 				</div>
 				
 				<div class="record_buttons">
-					<div class="play_stop black_gray orange rightLeft">
+					<div class="play_stop black_gray orange rightLeft" id="mixer__second-track-play-button">
 						<i class="fa fa-play" aria-hidden="true"></i>
 						<img class="fa-pause" src="/img/pause.svg" alt="pause">
 					</div>
@@ -202,5 +202,11 @@
 
 	</div>
 	<!-- mixer_inner -->
+	<div class="mixer_done-message" id="mixer__done-message" style="padding: 30px; text-align: center; display: none;">
+		<h3>Вы успешно создали свой микс!</h3>
+		<a id="tryAgain" href="#">Попробовать снова</a>
+		<a id="resultSend" href="#">Отправить</a>
+		<p>Хотите его прослушать?</p>
+	</div>
 </div>
 <!-- mixer -->

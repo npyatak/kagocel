@@ -88,7 +88,7 @@ class SiteController extends CController
         if (isset($serviceName)) {
             $eauth = Yii::$app->get('eauth')->getIdentity($serviceName);
             $eauth->setRedirectUrl(Url::toRoute('personal/index'));
-            if($ref && $ref !== '') {
+            if($ref && $ref !== '' && $ref !== '/login') {
                 $eauth->setRedirectUrl(Url::to($ref));
             }
             $eauth->setCancelUrl(Url::toRoute('site/login'));
@@ -149,6 +149,15 @@ class SiteController extends CController
         }
 
         return $this->render('login');
+    }
+
+    public function actionPost($id) 
+    {
+        $post = $this->findPost($id);
+
+        return $this->render('post', [
+            'post' => $post,
+        ]);
     }
 
     public function actionGallery()

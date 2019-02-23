@@ -90,6 +90,8 @@ use yii\helpers\Url;
 		</div>
 
 		<?=$this->render('@frontend/views/personal/_mixer');?>
+
+		<?=$this->render('@frontend/views/personal/_playlist');?>
 	</div>
 </section>
 

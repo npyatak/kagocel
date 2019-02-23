@@ -192,58 +192,11 @@ if($("div").is(".tracks_slider")){
 
 
 
-// Крутилки на микшире
-$.each($(".knob"), function(i,e){
-	// console.log($(this).attr("class"));
-
-	Draggable.create(e, {
-		type: "rotation", 
-		throwProps: true,
-		// trigger: $(this),
-		// dragClickables: true,
-		// minimumMovement: 10,
-		bounds:{minRotation:-140, maxRotation:140},
-		// allowNativeTouchScrolling: false,
-		onDrag: function(){
-			
-					var parent = $(this.target).parent();
-					// console.log(parent);
-
-					//  вращаем элемент вместе с крутилкой 
-					parent.children(".color_circle").css("transform","rotate("+ this.rotation +"deg)");
-
-					if(this.rotation <= 0){
-						parent.children(".color_circle").addClass("left");
-						parent.children(".grey_circle").addClass("right");
-						// parent.css("background-color","#fff")
-					}else{
-						parent.children(".color_circle").removeClass("left");
-						parent.children(".grey_circle").removeClass("right");
-					}
-
-
-				},
-
-	});
-
-
-});
-
-
-
 
 // кнопка запись 
-$(".recording_button").on("click", function(){
-	$(this).toggleClass("active");
-});
 
 $(".plus_minus .center").on("click", function(){
 	$(this).parent().toggleClass("active");
-});
-
-$(".play_stop").on("click", function(){
-	$(this).toggleClass("active");
-	$(this).parent().prev().children(".plate_wrap .handle").toggleClass("active");
 });
 
 $(".play_li").on("click", function(){

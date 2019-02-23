@@ -110,6 +110,7 @@ class PersonalController extends CController
             }
 
             $user->save();
+            Yii::$app->session->setFlash("success", 'Данные успешно обновлены');
 
             return $this->redirect(['personal/index']);
         }

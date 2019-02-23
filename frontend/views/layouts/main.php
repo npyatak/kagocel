@@ -51,7 +51,7 @@ AppAsset::register($this);
             ['label' => 'О продукте', 'c' => 'site', 'a' => 'about'],
             ['label' => 'Обратная связь', 'c' => 'site', 'a' => 'contact'],
             ['label' => 'Faq', 'c' => 'site', 'a' => 'faq'],
-            ['label' => 'Правила', 'c' => 'site', 'a' => 'rules'],
+            ['label' => 'Правила', 'c' => 'site', 'a' => 'rules', 'target' => '_blank'],
         ];?>
 
 
@@ -62,17 +62,23 @@ AppAsset::register($this);
                     <div class="two"></div>
                     <div class="three"></div>
                 </div>
-                <a class="logo_1" href="#">
+
+                <a class="logo_1" href="https://www.kagocel.ru/" target="_blank">
                     <img src="/img/logo_1_2.svg" alt="logo">
                 </a>
                 <nav class="main_menu">
                     <ul>
                         <?php foreach ($menuItems as $item):?>
                             <?php $active = Yii::$app->controller->id == $item['c'] && Yii::$app->controller->action->id == $item['a'];?>
-                            <li><a href="<?=Url::toRoute($item['c'].'/'.$item['a']);?>" <?=$active ? 'class="active"' : '';?>><?=$item['label'];?></a></li>
+                            <li><a href="<?=Url::toRoute($item['c'].'/'.$item['a']);?>" 
+                                <?=isset($item['target']) ? 'target='.$item['target'] : '';?> 
+                                <?=$active ? 'class="active"' : '';?>>
+                                    <?=$item['label'];?>
+                                </a>
+                            </li>
                         <?php endforeach;?>
                 </nav>
-                <a class="logo_2" href="#">
+                <a class="logo_2" href="http://studia-soyuz.tnt-online.ru/" target="_blank">
                     <img src="/img/logo_2.png" alt="logo">
                 </a>
             </div>
@@ -86,7 +92,12 @@ AppAsset::register($this);
                 <ul class="burger_ul">
                     <?php foreach ($menuItems as $item):?>
                         <?php $active = Yii::$app->controller->id == $item['c'] && Yii::$app->controller->action->id == $item['a'];?>
-                        <li><a href="<?=Url::toRoute($item['c'].'/'.$item['a']);?>" <?=$active ? 'class="active"' : '';?>><?=$item['label'];?></a></li>
+                            <li><a href="<?=Url::toRoute($item['c'].'/'.$item['a']);?>" 
+                                <?=isset($item['target']) ? 'target='.$item['target'] : '';?> 
+                                <?=$active ? 'class="active"' : '';?>>
+                                    <?=$item['label'];?>
+                                </a>
+                            </li>
                     <?php endforeach;?>
                 </ul>
             </div>
@@ -100,15 +111,21 @@ AppAsset::register($this);
                 <div class="contain">
                     <div>
                         <div class="logo_block">
-                            <a class="footer_logo" href="#"><img src="/img/logo_1_2.svg" alt="logo"></a>
-                            <a class="footer_logo" href="#"><img src="/img/logo_2.png" alt="logo"></a>
+
+                            <a class="footer_logo" href="https://www.kagocel.ru/" target="_blank"><img src="/img/logo_1_2.svg" alt="logo"></a>
+                            <a class="footer_logo" href="http://studia-soyuz.tnt-online.ru/" target="_blank"><img src="/img/logo_2.png" alt="logo"></a>
                         </div>
 
                         <nav class="footer_menu">
                             <ul>
                                 <?php foreach ($menuItems as $item):?>
                                     <?php $active = Yii::$app->controller->id == $item['c'] && Yii::$app->controller->action->id == $item['a'];?>
-                                    <li><a href="<?=Url::toRoute($item['c'].'/'.$item['a']);?>"><?=$item['label'];?></a></li>
+                                    <li><a href="<?=Url::toRoute($item['c'].'/'.$item['a']);?>" 
+                                        <?=isset($item['target']) ? 'target='.$item['target'] : '';?> 
+                                        <?=$active ? 'class="active"' : '';?>>
+                                            <?=$item['label'];?>
+                                        </a>
+                                    </li>
                                 <?php endforeach;?>
                             </ul>
                         </nav>
