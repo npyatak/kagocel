@@ -48,10 +48,10 @@ $this->title = 'Заполните недостающие поля';
                     <?= $form->field($user, 'phone')->textInput(['class' => 'input_1', 'placeholder' => $user->attributeLabels()['phone'].'*'])->label(false) ?>
                 <?php //endif;?>
 
-
-                <?php //if(in_array('phone', $user->missingFields)):?>
-                    <?= $form->field($user, 'birthDay')->textInput(['class' => 'input_1', 'placeholder' => $user->attributeLabels()['date'].'*'])->label(false) ?>
-                <?php //endif;?>
+                <div class="date_birth">
+                    <?= $form->field($user, 'birthdateFormatted')->textInput(['class' => 'input_1 date', 'placeholder' => $user->attributeLabels()['birthdate'].'*'])->label(false) ?>
+                    <p>рождения<span> *</span></p>
+                </div>
 
 
                 <p class="form_alert"><span>*</span>- обязательные для заполнения поля</p>

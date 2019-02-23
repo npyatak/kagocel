@@ -117,6 +117,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'rulesCheckbox' => 'Регистрируясь, я соглашаюсь с Правилами проведения Конкурса и подтверждаю, что мне есть 18 лет.',
             'personalDataCheckbox' => 'Я согласен на обработку моих персональных данных.',
             'birthdate' => 'Дата рождения',
+            'birthdateFormatted' => 'Дата рождения',
             'email_subscribe' => 'Подписка на рассылку',
             'userStageScores' => 'Баллы за этапы',
         ];
