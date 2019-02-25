@@ -362,3 +362,6 @@ $(".section_name.show span").on("click", function(){
 	el.parent().toggleClass("active");
 	el.parent().next().slideToggle(700);
 });
+
+
+

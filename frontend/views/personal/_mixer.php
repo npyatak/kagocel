@@ -173,7 +173,7 @@
 
 			<div class="mixer_bottom_item">
 				<div class="plate_wrap">
-					<img class="plate" src="/img/plate_1.png" alt="img">
+					<img class="plate" src="/img/plate_2.png" alt="img">
 					<!-- класс active отвечает за то что ручка находится на пластинке , если его убрать то ручка развернется -->
 					<img class="handle rightTrack" id="second-handle" src="/img/plate_handle.png" alt="img">
 				</div>

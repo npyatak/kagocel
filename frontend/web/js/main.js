@@ -76,3 +76,4 @@ function formatTime(time) {
 
   return minutes + ":" + seconds;
 }
+
