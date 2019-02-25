@@ -9,9 +9,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <section class="feedback_section dark_bg bottom after_header min_h">
     <div class="contain">
-        
-
-
         <div class="feedback_wrap pt_small pb_big">
             <h2 class="section_title"><i>О</i>братная связь</h2>
             <p class="form_anons">Возникли вопросы? Напишите нам,</p>
