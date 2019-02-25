@@ -1,5 +1,6 @@
 <?php
 \frontend\assets\MixerAsset::register($this);
+use yii\widgets\ActiveForm;
 ?>
 
 
@@ -214,7 +215,8 @@
 		<h3>Вы успешно создали свой микс!</h3>
 		<div class="listen_done"><p>Хотите его прослушать?</p></div>
 		<a id="tryAgain" href="#" style="background: #f7323f; padding: 10px 20px; color: #fff; display: inline-block; border-radius: 4px; margin: 20px;">Попробовать снова</a>
-		<a id="resultSend" href="#" style="background: #000; padding: 10px 20px; color: #fff; display: inline-block; border-radius: 4px; margin: 20px;">Отправить</a>
+		<a id="resultSend" href="javascript:void(0)" style="background: #000; padding: 10px 20px; color: #fff; display: inline-block; border-radius: 4px; margin: 20px;">Отправить</a>
 	</div>
 </div>
+
 <!-- mixer -->

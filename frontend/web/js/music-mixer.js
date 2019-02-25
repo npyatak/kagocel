@@ -142,7 +142,10 @@ selectAsFirstButton.on("click", function(e) {
     var url = container.data("sound_url");
     var soundName = container.find(".mixer__select-music-name").html();
     var musicAuthor = container.find(".mixer__select-music-author").html();
-    var audio = new Audio("first", url, { name: soundName, author: musicAuthor});
+    var audio = new Audio("first", url, {
+      name: soundName,
+      author: musicAuthor
+    });
     if (alreadyStartedOne) {
       setTimeout(audio.initAudio.bind(audio), 2000);
     } else {
@@ -160,7 +163,10 @@ selectAsSecondButton.on("click", function(e) {
     var url = container.data("sound_url");
     var soundName = container.find(".mixer__select-music-name").html();
     var musicAuthor = container.find(".mixer__select-music-author").html();
-    var audio = new Audio("second", url, { name: soundName, author: musicAuthor });
+    var audio = new Audio("second", url, {
+      name: soundName,
+      author: musicAuthor
+    });
     if (alreadyStartedOne) {
       setTimeout(audio.initAudio.bind(audio), 2000);
     } else {
@@ -276,7 +282,6 @@ secondRateControl.slider({
     audioCtxS.second.filterControls.rate(ui.value / 100);
   }
 });
-
 
 function updateVolume(audioCtxLink) {
   var target = audioCtxS[audioCtxLink];
@@ -452,6 +457,18 @@ function startRecording() {
         )
       );
     }, 500);
+
+    $("#resultSend").on("click", function() {
+
+      console.log("SENDING FILE");
+
+      var formData = new FormData();
+      formData.append("file", blob, "filename.ogg");
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("post", "/personal/add-post");
+      xhr.send(formData);
+    });
   });
 
   mediaRecorder.start();
@@ -502,8 +519,8 @@ function Audio(audioCtxLink, musicLink, musicInfo) {
 
     // try {
     //   window.audioCtx = window.AudioContext || window.webkitAudioContext;
-      audioObject.audioCtx = new AudioContext();
-      audioObject.analyser = audioObject.audioCtx.createAnalyser();
+    audioObject.audioCtx = new AudioContext();
+    audioObject.analyser = audioObject.audioCtx.createAnalyser();
     // } catch (e) {
     //   alert("Web Audio API is not supported in this browser");
     // }
@@ -543,7 +560,7 @@ function Audio(audioCtxLink, musicLink, musicInfo) {
             );
           }, 1000);
 
-          console.log(audioObject)
+          console.log(audioObject);
           audioObject.source.connect(ourAnalyser);
           audioObject.source.loop = true;
           ourAnalyser.connect(gainNode);
@@ -599,7 +616,7 @@ function Audio(audioCtxLink, musicLink, musicInfo) {
             var rateValue = val;
             audioObject.filterInstances.rate.value = rateValue;
             audioObject.filters.rate = rateValue;
-          }
+          };
 
           bassFilter.frequency.setValueAtTime(1000, ourContext.currentTime);
 
