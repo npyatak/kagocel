@@ -68,6 +68,10 @@
 					</div>
 
 				</div>
+				<div class="record_slider_horizontal_1" style="margin-top: 40px;">
+					<p><span>140</span>bpm</p>
+					<div id="mixer__first-track-playback-rate" class="rsh_1"></div>
+				</div>
 				<!-- record_buttons -->
 
 			</div>
@@ -109,10 +113,10 @@
 
 
 					<div class="mbi_item">
-						<div class="record_slider_horizontal_1">
+						<!-- <div class="record_slider_horizontal_1">
 							<p><span>140</span>bpm</p>
 							<div class="rsh_1"></div>
-						</div>
+						</div> -->
 						<div class="wrap_record_slider_vertical">
 							<!-- span высота визуального эквалайзера -->
 							<div class="record_slider_vertical">
@@ -189,6 +193,10 @@
 						<div class="center black_gray"><i class="fa fa-retweet" aria-hidden="true"></i> 4</div>
 						<div class="minus black_gray">+</div>
 					</div>
+				</div>
+				<div class="record_slider_horizontal_1" style="margin-top: 40px;">
+					<p><span>140</span>bpm</p>
+					<div id="mixer__second-track-playback-rate" class="rsh_1"></div>
 				</div>
 				<!-- record_buttons -->
 

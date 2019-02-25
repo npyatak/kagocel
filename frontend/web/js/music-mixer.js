@@ -56,6 +56,10 @@ var selectableMusic = $(".mixer__select-music-container");
 var selectAsFirstButton = $(".mixer__select-music-first");
 var selectAsSecondButton = $(".mixer__select-music-second");
 
+// track playback rate sliders
+var firstRateControl = $("#mixer__first-track-playback-rate");
+var secondRateControl = $("#mixer__second-track-playback-rate");
+
 // VARIABLES
 // ------
 
@@ -76,17 +80,20 @@ var audioCtxS = {
     filterInstances: {
       bass: null,
       mid: null,
-      high: null
+      high: null,
+      rate: null
     },
     filters: {
       bass: 0,
       mid: 0,
-      high: 0
+      high: 0,
+      rate: 1
     },
     filterControls: {
       bass: null,
       mid: null,
-      high: null
+      high: null,
+      rate: null
     },
     loudLines: firstTrackLoudLines,
     dest: null
@@ -106,17 +113,20 @@ var audioCtxS = {
     filters: {
       bass: 0,
       mid: 0,
-      high: 0
+      high: 0,
+      rate: 1
     },
     filterInstances: {
       bass: null,
       mid: null,
-      high: null
+      high: null,
+      rate: null
     },
     filterControls: {
       bass: null,
       mid: null,
-      high: null
+      high: null,
+      rate: null
     },
     loudLines: secondTrackLoudLines,
     dest: null
@@ -132,7 +142,13 @@ selectAsFirstButton.on("click", function(e) {
     var url = container.data("sound_url");
     var soundName = container.find(".mixer__select-music-name").html();
     var musicAuthor = container.find(".mixer__select-music-author").html();
-    initAudio("first", url, { name: soundName, author: musicAuthor });
+    var audio = new Audio("first", url, { name: soundName, author: musicAuthor});
+    if (alreadyStartedOne) {
+      setTimeout(audio.initAudio.bind(audio), 2000);
+    } else {
+      audio.initAudio();
+    }
+    // initAudio("first", url, { name: soundName, author: musicAuthor });
   } else {
     e.stopPropagation();
   }
@@ -144,7 +160,13 @@ selectAsSecondButton.on("click", function(e) {
     var url = container.data("sound_url");
     var soundName = container.find(".mixer__select-music-name").html();
     var musicAuthor = container.find(".mixer__select-music-author").html();
-    initAudio("second", url, { name: soundName, author: musicAuthor });
+    var audio = new Audio("second", url, { name: soundName, author: musicAuthor });
+    if (alreadyStartedOne) {
+      setTimeout(audio.initAudio.bind(audio), 2000);
+    } else {
+      audio.initAudio();
+    }
+    // initAudio("second", url, { name: soundName, author: musicAuthor });
   } else {
     e.stopPropagation();
   }
@@ -230,6 +252,31 @@ balanceControl.slider({
     updateVolume("second");
   }
 });
+
+firstRateControl.slider({
+  value: audioCtxS.first.filters.rate * 100,
+  orientation: "horizontal",
+  range: "min",
+  min: 0,
+  max: 200,
+  animate: true,
+  slide: function(event, ui) {
+    audioCtxS.first.filterControls.rate(ui.value / 100);
+  }
+});
+
+secondRateControl.slider({
+  value: audioCtxS.second.filters.rate * 100,
+  orientation: "horizontal",
+  range: "min",
+  min: 0,
+  max: 200,
+  animate: true,
+  slide: function(event, ui) {
+    audioCtxS.second.filterControls.rate(ui.value / 100);
+  }
+});
+
 
 function updateVolume(audioCtxLink) {
   var target = audioCtxS[audioCtxLink];
@@ -373,7 +420,7 @@ function startRecording() {
     audioCtxS.second.dest.stream
   ]);
 
-  mediaRecorder = new MediaRecorder(mixedStream, {});
+  mediaRecorder = new MediaRecorder(mixedStream);
 
   chunks = [];
   mediaRecorder.addEventListener("dataavailable", function(evt) {
@@ -436,157 +483,155 @@ function initTimer(duration) {
   }, 10);
 }
 
-function initAudio(audioCtxLink, musicLink, musicInfo) {
-  try {
-    window.audioCtx = window.AudioContext || window.webkitAudioContext;
-    audioCtxS[audioCtxLink].audioCtx = new AudioContext();
-    audioCtxS[audioCtxLink].analyser = audioCtxS[
-      audioCtxLink
-    ].audioCtx.createAnalyser();
-  } catch (e) {
-    alert("Web Audio API is not supported in this browser");
-  }
+var alreadyStartedOne = false;
 
-  // load the audio file
-  var ourContext = audioCtxS[audioCtxLink].audioCtx;
-  var ourAnalyser = audioCtxS[audioCtxLink].analyser;
-  audioCtxS[audioCtxLink].nameDom.html(
-    musicInfo.name + " - " + musicInfo.author
-  );
-  source = ourContext.createBufferSource();
-  var gainNode = ourContext.createGain();
-  var request = new XMLHttpRequest();
-  request.open("GET", musicLink, true);
-  request.responseType = "arraybuffer";
-  request.onload = function() {
-    var audioData = request.response;
-    ourContext.decodeAudioData(
-      audioData,
-      function(buffer) {
-        source.buffer = buffer;
+function Audio(audioCtxLink, musicLink, musicInfo) {
+  this.audioCtxLink = audioCtxLink;
+  this.musicLink = musicLink;
+  this.musicInfo = musicInfo;
+  this.request = null;
 
-        songDuration = moment.duration(buffer.duration, "seconds");
-        audioCtxS[audioCtxLink].duration = songDuration;
-        audioCtxS[audioCtxLink].durationDom.html(
-          moment.utc(songDuration.as("milliseconds")).format("mm:ss")
-        );
+  this.initAudio = function() {
+    alreadyStartedOne = true;
 
-        setInterval(function() {
-          audioCtxS[audioCtxLink].playedDom.html(
-            moment
-              .utc(
-                moment
-                  .duration(ourContext.currentTime, "seconds")
-                  .as("milliseconds")
-              )
-              .format("mm:ss")
+    var audioCtxLink = this.audioCtxLink;
+    var musicLink = this.musicLink;
+    var musicInfo = this.musicInfo;
+
+    var audioObject = audioCtxS[audioCtxLink];
+
+    // try {
+    //   window.audioCtx = window.AudioContext || window.webkitAudioContext;
+      audioObject.audioCtx = new AudioContext();
+      audioObject.analyser = audioObject.audioCtx.createAnalyser();
+    // } catch (e) {
+    //   alert("Web Audio API is not supported in this browser");
+    // }
+
+    // load the audio file
+    var ourContext = audioObject.audioCtx;
+    var ourAnalyser = audioObject.analyser;
+    audioObject.nameDom.html(musicInfo.name + " - " + musicInfo.author);
+    audioObject.source = ourContext.createBufferSource();
+    var gainNode = ourContext.createGain();
+    this.request = new XMLHttpRequest();
+    console.log(this.request);
+    this.request.open("GET", musicLink, true);
+    this.request.responseType = "arraybuffer";
+    this.request.onload = function() {
+      var audioData = this.request.response;
+      ourContext.decodeAudioData(
+        audioData,
+        function(buffer) {
+          audioObject.source.buffer = buffer;
+
+          songDuration = moment.duration(buffer.duration, "seconds");
+          audioObject.duration = songDuration;
+          audioObject.durationDom.html(
+            moment.utc(songDuration.as("milliseconds")).format("mm:ss")
           );
-        }, 1000);
 
-        source.connect(ourAnalyser);
-        source.loop = true;
-        ourAnalyser.connect(gainNode);
+          setInterval(function() {
+            audioObject.playedDom.html(
+              moment
+                .utc(
+                  moment
+                    .duration(ourContext.currentTime, "seconds")
+                    .as("milliseconds")
+                )
+                .format("mm:ss")
+            );
+          }, 1000);
 
-        bassFilter = ourContext.createBiquadFilter();
-        bassFilter.type = "lowshelf";
+          console.log(audioObject)
+          audioObject.source.connect(ourAnalyser);
+          audioObject.source.loop = true;
+          ourAnalyser.connect(gainNode);
 
-        midFilter = ourContext.createBiquadFilter();
-        midFilter.type = "peaking";
+          bassFilter = ourContext.createBiquadFilter();
+          bassFilter.type = "lowshelf";
 
-        highFilter = ourContext.createBiquadFilter();
-        highFilter.type = "highshelf";
+          midFilter = ourContext.createBiquadFilter();
+          midFilter.type = "peaking";
 
-        mediaDest = ourContext.createMediaStreamDestination();
+          highFilter = ourContext.createBiquadFilter();
+          highFilter.type = "highshelf";
 
-        audioCtxS[audioCtxLink].filterInstances.bass = bassFilter;
-        audioCtxS[audioCtxLink].filterInstances.mid = midFilter;
-        audioCtxS[audioCtxLink].filterInstances.high = highFilter;
+          mediaDest = ourContext.createMediaStreamDestination();
 
-        window.ourBassFilter = bassFilter;
+          audioObject.filterInstances.bass = bassFilter;
+          audioObject.filterInstances.mid = midFilter;
+          audioObject.filterInstances.high = highFilter;
+          audioObject.filterInstances.rate = audioObject.source.playbackRate;
 
-        gainNode.connect(bassFilter);
-        gainNode.gain.value =
-          (audioCtxS[audioCtxLink].volume / 100) *
-          audioCtxS[audioCtxLink].balanceMultiplier;
-        bassFilter.connect(midFilter);
-        midFilter.connect(highFilter);
-        highFilter.connect(mediaDest);
-        highFilter.connect(ourContext.destination);
+          window.ourBassFilter = bassFilter;
 
-        source.start(0);
-        ourContext.suspend();
+          gainNode.connect(bassFilter);
+          gainNode.gain.value =
+            (audioObject.volume / 100) * audioObject.balanceMultiplier;
+          bassFilter.connect(midFilter);
+          midFilter.connect(highFilter);
+          highFilter.connect(mediaDest);
+          highFilter.connect(ourContext.destination);
 
-        audioCtxS[audioCtxLink].filterControls.bass = function(val) {
-          var bassValue = (val / 140) * 50;
-          audioCtxS[audioCtxLink].filterInstances.bass.gain.value = bassValue;
-          audioCtxS[audioCtxLink].filters.bass = bassValue;
-          soundPusher(coder("b", bassValue, getSoundIndex(audioCtxLink)));
-        };
+          audioObject.source.start(0);
+          ourContext.suspend();
 
-        audioCtxS[audioCtxLink].filterControls.mid = function(val) {
-          var midValue = (val / 140) * 50;
-          audioCtxS[audioCtxLink].filterInstances.mid.gain.value = midValue;
-          audioCtxS[audioCtxLink].filters.mid = midValue;
-          soundPusher(coder("m", midValue, getSoundIndex(audioCtxLink)));
-        };
-
-        audioCtxS[audioCtxLink].filterControls.high = function(val) {
-          var highValue = (val / 140) * 50;
-          audioCtxS[audioCtxLink].filterInstances.high.gain.value = highValue;
-          audioCtxS[audioCtxLink].filters.high = highValue;
-          soundPusher(coder("h", highValue, getSoundIndex(audioCtxLink)));
-        };
-
-        bassFilter.frequency.setValueAtTime(1000, ourContext.currentTime);
-
-        audioCtxS[audioCtxLink].gain = gainNode;
-
-        audioCtxS[audioCtxLink].dest = mediaDest;
-
-        (function() {
-          var analyser = ourAnalyser;
-          analyser.fftSize = 128;
-          analyser.smoothingTimeConstant = 0.4;
-          var freqByteData = new Uint8Array(analyser.frequencyBinCount);
-          var renderFFT = function() {
-            analyser.getByteFrequencyData(freqByteData);
-            audioCtxS[audioCtxLink].loudLines.map(function(line) {
-              line.css(
-                "height",
-                ((audioCtxS[audioCtxLink].volume *
-                  audioCtxS[audioCtxLink].balanceMultiplier) /
-                  128) *
-                  mean(freqByteData) +
-                  "%"
-              );
-            });
-            window.requestAnimationFrame(renderFFT);
+          audioObject.filterControls.bass = function(val) {
+            var bassValue = (val / 140) * 50;
+            audioObject.filterInstances.bass.gain.value = bassValue;
+            audioObject.filters.bass = bassValue;
           };
-          renderFFT();
-        })();
-      },
-      function(e) {
-        "Error with decoding audio data" + e.err;
-      }
-    );
+
+          audioObject.filterControls.mid = function(val) {
+            var midValue = (val / 140) * 50;
+            audioObject.filterInstances.mid.gain.value = midValue;
+            audioObject.filters.mid = midValue;
+          };
+
+          audioObject.filterControls.high = function(val) {
+            var highValue = (val / 140) * 50;
+            audioObject.filterInstances.high.gain.value = highValue;
+            audioObject.filters.high = highValue;
+          };
+
+          audioObject.filterControls.rate = function(val) {
+            var rateValue = val;
+            audioObject.filterInstances.rate.value = rateValue;
+            audioObject.filters.rate = rateValue;
+          }
+
+          bassFilter.frequency.setValueAtTime(1000, ourContext.currentTime);
+
+          audioObject.gain = gainNode;
+
+          audioObject.dest = mediaDest;
+
+          (function() {
+            var analyser = ourAnalyser;
+            analyser.fftSize = 128;
+            analyser.smoothingTimeConstant = 0.4;
+            var freqByteData = new Uint8Array(analyser.frequencyBinCount);
+            var renderFFT = function() {
+              analyser.getByteFrequencyData(freqByteData);
+              audioObject.loudLines.map(function(line) {
+                line.css(
+                  "height",
+                  ((audioObject.volume * audioObject.balanceMultiplier) / 128) *
+                    mean(freqByteData) +
+                    "%"
+                );
+              });
+              window.requestAnimationFrame(renderFFT);
+            };
+            renderFFT();
+          })();
+        },
+        function(e) {
+          "Error with decoding audio data" + e.err;
+        }
+      );
+    }.bind(this);
+    this.request.send();
   };
-  request.send();
 }
-
-// SOUND PLAYER
-
-// var playingSoundCtxs = {
-
-// }
-
-// function initializeSoundPlayer(mixedSoundData) {
-//   try {
-//     window.audioCtx = window.AudioContext || window.webkitAudioContext;
-//     audioCtxS[audioCtxLink].audioCtx = new AudioContext();
-//     audioCtxS[audioCtxLink].analyser = audioCtxS[
-//       audioCtxLink
-//     ].audioCtx.createAnalyser();
-//   } catch (e) {
-//     alert("Web Audio API is not supported in this browser");
-//   }
-// }
