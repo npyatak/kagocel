@@ -269,12 +269,12 @@ $('img').attr({
 
 
 
-$(".rsh_1").slider({
-    value: 50,
-    orientation: "horizontal",
-    range: "min",
-    animate: true
-});
+// $(".rsh_1").slider({
+//     value: 50,
+//     orientation: "horizontal",
+//     range: "min",
+//     animate: true
+// });
 
 $(".rsv").slider({
     value: 50,
