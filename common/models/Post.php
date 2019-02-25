@@ -10,6 +10,7 @@ class Post extends \yii\db\ActiveRecord
     const STATUS_ACTIVE = 1;
     const STATUS_BANNED = 5;
 
+    public $audioFile;
     public $_userActions;
 
     /**
@@ -26,9 +27,10 @@ class Post extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'audio'], 'required'],
+            [['audio'], 'required'],
             [['user_id', 'score', 'status', 'created_at', 'updated_at'], 'integer'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['audioFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'mp3, ogg', 'maxSize' => 1024 * 1024 * 10, 'tooBig' => 'Файл не должен быть больше 10Мб', 'mimeTypes' => 'audio/mpeg, audio/ogg'],
         ];
     }  
 

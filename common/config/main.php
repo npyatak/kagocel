@@ -33,7 +33,7 @@ return [
             'class' => 'yii\web\urlManager',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'baseUrl' => '/ad3434sji28',
+            'baseUrl' => '/admin',
         ],  
     ],
 
