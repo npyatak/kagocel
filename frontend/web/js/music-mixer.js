@@ -444,7 +444,7 @@ function startRecording() {
     $("#mixer__inner").css({ display: "none" });
 
     setTimeout(function() {
-      $("#mixer__done-message").append(
+      $("#mixer__done-message .listen_done").append(
         $(
           "<audio controls style='margin-top: 20px;'><source src='" +
             url +
