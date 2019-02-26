@@ -442,7 +442,8 @@ function startRecording() {
     console.log(chunks);
     console.log(url);
 
-    var ourFile = new File([blob], "audio.ogg")
+    var ourFile = new File([blob], "audio.ogg", { type: "audio/ogg" });
+    console.log(ourFile);
 
     audioCtxS.first.audioCtx.suspend();
     audioCtxS.second.audioCtx.suspend();
