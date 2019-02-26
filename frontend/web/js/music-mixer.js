@@ -463,7 +463,7 @@ function startRecording() {
       console.log("SENDING FILE");
 
       var formData = new FormData();
-      formData.append("file", blob, "filename.ogg");
+      formData.append("audio", blob, "filename.ogg");
 
       var xhr = new XMLHttpRequest();
       xhr.open("post", "/personal/add-post");
