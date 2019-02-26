@@ -442,6 +442,8 @@ function startRecording() {
     console.log(chunks);
     console.log(url);
 
+    var ourFile = new File([blob], "audio.ogg")
+
     audioCtxS.first.audioCtx.suspend();
     audioCtxS.second.audioCtx.suspend();
 
@@ -463,7 +465,7 @@ function startRecording() {
       console.log("SENDING FILE");
 
       var formData = new FormData();
-      formData.append("audio", blob, "filename.ogg");
+      formData.append("audio", ourFile);
 
       var xhr = new XMLHttpRequest();
       xhr.open("post", "/personal/add-post");
