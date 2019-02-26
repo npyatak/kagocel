@@ -13,7 +13,9 @@ $this->title = 'Заполните недостающие поля';
 <section class="authorization dark_bg bottom after_header min_h">
     <div class="contain">
         <div class="authorization_step_2">
-            <h2 class="section_title">Авт<i>о</i>ризация</h2>
+            <h2 class="section_title">
+                Авт<i>о</i>ризация
+            </h2>
             
             <div class="authorization_form_wrap">
 
@@ -48,10 +50,10 @@ $this->title = 'Заполните недостающие поля';
                     <?= $form->field($user, 'phone')->textInput(['class' => 'input_1', 'placeholder' => $user->attributeLabels()['phone'].'*'])->label(false) ?>
                 <?php //endif;?>
 
-                <div class="date_birth">
+                <!-- <div class="date_birth"> -->
                     <?= $form->field($user, 'birthdateFormatted')->textInput(['class' => 'input_1 date', 'placeholder' => $user->attributeLabels()['birthdate'].'*'])->label(false) ?>
-                    <p>рождения<span> *</span></p>
-                </div>
+                    <!-- <p>рождения<span> *</span></p> -->
+                <!-- </div> -->
 
 
                 <p class="form_alert"><span>*</span>- обязательные для заполнения поля</p>
@@ -59,7 +61,7 @@ $this->title = 'Заполните недостающие поля';
 
                 <?php ActiveForm::end(); ?>
 
-                <a href="#" class="authoriation_refer">Авторизация</a>
+                <!-- <a href="#" class="authoriation_refer">Авторизация</a> -->
             </div>
 
         </div>
