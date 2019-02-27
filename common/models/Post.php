@@ -28,16 +28,11 @@ class Post extends \yii\db\ActiveRecord
     {
         return [
             [['audio'], 'required'],
-            [['user_id', 'score', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['user_id', 'score', 'status', 'created_at', 'updated_at', 'length'], 'integer'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['audioFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'mp3, ogg', 'maxSize' => 1024 * 1024 * 10, 'tooBig' => 'Файл не должен быть больше 10Мб', 'checkExtensionByMimeType' => false/*, 'mimeTypes' => 'audio/mpeg, audio/ogg'*/],
         ];
-    }  
-
-    /*public function scenarios() {
-        $scenarios = parent::scenarios();
-        return $scenarios;
-    }*/
+    } 
 
     public function behaviors() 
     {
@@ -143,6 +138,6 @@ class Post extends \yii\db\ActiveRecord
 
     public function getDate()
     {
-        return date('d.M', $this->created_at);
+        return date('d', $this->created_at).' '.Stage::getMonthsArray()[date('n', $this->created_at)][0];
     }
 }

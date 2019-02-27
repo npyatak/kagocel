@@ -16,6 +16,7 @@ class m190124_185340_create_table_post extends Migration
             'user_id' => $this->integer()->notNull(),
             'stage_id' => $this->integer()->notNull(),
             'audio' => $this->string()->notNull(),
+            'length' => $this->integer(),
             'score' => $this->integer()->notNull()->defaultValue(0),
             'status' => $this->integer(1)->notNull()->defaultValue(1),
 
