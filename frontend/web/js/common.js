@@ -320,33 +320,57 @@ $(".input_1.date").inputmask({
 // видео rutube
 $(function(){
 	if($("iframe").is("#video_player")){
-		setTimeout(function(){
 
-			var player = document.getElementById('video_player');
+		var player = document.getElementById('video_player');
+
+		setTimeout(function(){
 			player.contentWindow.postMessage(JSON.stringify({
 			    type: 'player:setSkinColor',
-			    // type: 'player:remove',
 			    data: {
 			    	color: 'f7323f'
-			        // params: {
-			        //     color: '000000' // цвет в RGB, HEX (без решетки)
-			        // }
-			        
 			    }
 			}), '*');
-
-// var msg = {data:{id:"0e55cada5e97feb53a1d81616d7e74fc"}, type:"player:mute"};
-// window.frames["video_player"]//.postMessage( JSON.stringify(msg), '*' );
-
-
-			player.contentWindow.postMessage(JSON.stringify({
-				type: 'player:mute',
-			}), '*');
-
 		},300);
+
+
+
+	// console.log(player);
+		setTimeout(function(){
+			player.contentWindow.postMessage(JSON.stringify({
+				type: 'player:pause',
+				data: {}
+			}), '*');
+		},200);
+
+		var topPos = $('.video_section').offset().top;
+		var section_height = $('.video_section').outerHeight();
+		var count = 1;
+		$(window).scroll(function() {
+			var top = $(document).scrollTop();
+
+				
+			    // pip = $('.section_6_footer').offset().top;
+
+			    if(top > topPos && count == 1){
+			    	// console.log(count);
+			    	player.contentWindow.postMessage(JSON.stringify({
+						type: 'player:play',
+						data: {}
+					}), '*');
+					count++;
+			    }
+		});
+
+
+		// player.contentWindow.postMessage(JSON.stringify({
+		// 	type: 'player:mute',
+		// }), '*');
+
 	}//if
 
 })
+
+
 
 
 // открываем - закрываем блоки на странице gallery
