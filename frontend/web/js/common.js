@@ -320,7 +320,7 @@ $(".input_1.date").inputmask({
 // видео rutube
 $(function(){
 	if($("iframe").is("#video_player")){
-
+ 
 		var player = document.getElementById('video_player');
 
 		player.contentWindow.postMessage(JSON.stringify({
