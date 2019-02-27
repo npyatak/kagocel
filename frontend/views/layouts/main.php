@@ -48,7 +48,7 @@ AppAsset::register($this);
             })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
             ga('create', 'UA-2865583-8', 'auto');
-            ga('send', 'pageview',{'page':<?=Url::canonical();?>});
+            ga('send', 'pageview',{'page': "<?=Url::canonical();?>"});
               
             // Yandex.Metrika counter 
 
@@ -101,7 +101,7 @@ AppAsset::register($this);
 
     
         <?php $menuItems = [
-            ['label' => 'Главная', 'c' => 'site', 'a' => 'index'],
+            ['label' => 'Главная', 'c' => 'site', 'a' => 'index', 'data-ga-click' => 'click_main_page'],
             ['label' => 'Личный кабинет', 'c' => 'personal', 'a' => 'index'],
             ['label' => 'Галерея', 'c' => 'site', 'a' => 'gallery'],
             ['label' => 'О продукте', 'c' => 'site', 'a' => 'about'],
@@ -127,9 +127,11 @@ AppAsset::register($this);
                         <?php foreach ($menuItems as $item):?>
                             <?php $active = Yii::$app->controller->id == $item['c'] && Yii::$app->controller->action->id == $item['a'];?>
                             <li><a href="<?=Url::toRoute($item['c'].'/'.$item['a']);?>" 
-                                <?=isset($item['target']) ? 'target='.$item['target'] : '';?> 
-                                <?=$active ? 'class="active"' : '';?>>
-                                    <?=$item['label'];?>
+                                    <?=isset($item['target']) ? 'target='.$item['target'] : '';?> 
+                                    <?=isset($item['data-ga-click']) ? 'data-ga-click="'.$item['data-ga-click'].'"' : '';?>
+                                    <?=$active ? 'class="active"' : '';?>
+                                    >
+                                        <?=$item['label'];?>
                                 </a>
                             </li>
                         <?php endforeach;?>
@@ -150,7 +152,9 @@ AppAsset::register($this);
                         <?php $active = Yii::$app->controller->id == $item['c'] && Yii::$app->controller->action->id == $item['a'];?>
                             <li><a href="<?=Url::toRoute($item['c'].'/'.$item['a']);?>" 
                                 <?=isset($item['target']) ? 'target='.$item['target'] : '';?> 
-                                <?=$active ? 'class="active"' : '';?>>
+                                <?=isset($item['data-ga-click']) ? 'data-ga-click="'.$item['data-ga-click'].'"' : '';?>
+                                <?=$active ? 'class="active"' : '';?>
+                                >
                                     <?=$item['label'];?>
                                 </a>
                             </li>
@@ -177,8 +181,10 @@ AppAsset::register($this);
                                 <?php foreach ($menuItems as $item):?>
                                     <?php $active = Yii::$app->controller->id == $item['c'] && Yii::$app->controller->action->id == $item['a'];?>
                                     <li><a href="<?=Url::toRoute($item['c'].'/'.$item['a']);?>" 
-                                        <?=isset($item['target']) ? 'target='.$item['target'] : '';?> 
-                                        <?=$active ? 'class="active"' : '';?>>
+                                        <?=isset($item['target']) ? 'target='.$item['target'] : '';?>
+                                        <?=isset($item['data-ga-click']) ? 'data-ga-click="'.$item['data-ga-click'].'"' : '';?> 
+                                        <?=$active ? 'class="active"' : '';?>
+                                        >
                                             <?=$item['label'];?>
                                         </a>
                                     </li>

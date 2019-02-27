@@ -17,7 +17,7 @@ use yii\helpers\Url;
 				<p class="anons">
 					Создай свой уникальный музыкальный трек и получи шанс выиграть крутые призы! 
 				</p>
-				<a href="<?=Url::toRoute(['personal/index']);?>" class="button_1 point"><span>Участвовать</span></a>
+				<a href="<?=Url::toRoute(['personal/index']);?>" class="button_1 point" data-ga-click="click_button_participate"><span>Участвовать</span></a>
 			</div>
 		</div>
 

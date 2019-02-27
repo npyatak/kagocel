@@ -17,7 +17,7 @@ use yii\helpers\Url;
 				<p class="anons">
 					Создай свой уникальный музыкальный трек и получи шанс выиграть крутые призы! 
 				</p>
-				<a href="<?=Url::toRoute(['personal/index']);?>" class="button_1 point"><span>Участвовать</span></a>
+				<a href="<?=Url::toRoute(['personal/index']);?>" class="button_1 point" data-ga-click="click_button_participate"><span>Участвовать</span></a>
 			</div>
 		</div>
 
@@ -85,7 +85,7 @@ use yii\helpers\Url;
 	<div class="contain">
 		<div class="section_top">
 			<h3 class="section_name">Создай св<i>о</i>й микс</h3>
-			<a href="#" target="_blank" class="regulations_button">Как сделать свой трек</a>
+			<a href="#" target="_blank" class="regulations_button" data-ga-click="click_button_how_to_make">Как сделать свой трек</a>
 		</div>
 
 		<?=$this->render('@frontend/views/personal/_mixer');?>

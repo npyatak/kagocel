@@ -16,11 +16,11 @@ after_header - говорит о том, что этот блок идет по�
 	<div class="contain">
 
 		<div class="main_wrap_blocks and_button ">
-			<div class="wrap_big_img"><img class="big_img" src="img/packt.png" alt="img"></div>
+			<div class="wrap_big_img"><img class="big_img" src="/img/packt.png" alt="img"></div>
 			<div class="main_right">
 				<p class="main_name">
 					Прокачай свою заботу с каг<i>о</i>целом
-					<img src="img/big_arrow.svg" alt="img">
+					<img src="/img/big_arrow.svg" alt="img">
 				</p>
 				<p class="anons">
 					Создай свой уникальный музыкальный трек и получи шанс выиграть крутые призы! 
@@ -53,7 +53,7 @@ after_header - говорит о том, что этот блок идет по�
 
 		<div class="section_top">
 			<h3 class="section_name">Создай св<i>о</i>й микс</h3>
-			<a href="<?=Url::toRoute(['site/faq']);?>"" target="_blank" class="regulations_button">Как сделать свой трек</a>
+			<a href="<?=Url::toRoute(['site/faq']);?>"" target="_blank" class="regulations_button" data-ga-click="click_button_how_to_make">Как сделать свой трек</a>
 		</div>
 
 		<?=$this->render('_mixer');?>
