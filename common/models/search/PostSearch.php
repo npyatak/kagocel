@@ -18,7 +18,7 @@ class PostSearch extends Post
     public function rules()
     {
         return [
-            [['id', 'user_id', 'stage_id', 'score', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'user_id', 'stage_id', 'score', 'status', 'length', 'created_at', 'updated_at'], 'integer'],
         ];
     }
 
@@ -63,6 +63,7 @@ class PostSearch extends Post
             'stage_id' => $this->stage_id,
             'score' => $this->score,
             'status' => $this->status,
+            'length' => $this->length,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);

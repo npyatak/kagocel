@@ -12,7 +12,7 @@ use common\models\PostAction;
 		<!-- <img src="/img/test_img/graph.png" alt=""> -->
 	</div>
 	<div class="timer_range">
-		<p><span class="current">00:00</span> / <span class="duration"></span></p>
+		<p><span class="current">00:00</span> / <span class="duration"><?=$post->length;?></span></p>
 	</div>
 	<div class="volume_range_wrap">
 		<img class="not_volume" src="/img/not_volume.svg" alt="icon">
