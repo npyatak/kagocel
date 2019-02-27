@@ -227,7 +227,7 @@ use yii\widgets\ActiveForm;
 
 
 		<div class="track_item light your_track">
-			<audio src="<?=$post->audio;?>"></audio>
+			<audio src=""></audio>
 			<div class="spectrogram">
 				<!-- картинка просто для демонстрации!!! -->
 				<img src="/img/test_img/graph.png" alt="">
