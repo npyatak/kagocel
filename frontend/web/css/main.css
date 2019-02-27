@@ -1002,8 +1002,8 @@ img {
   color: #fff;
   -webkit-border-radius: 50%;
   border-radius: 50%;
-  top: 51%;
-  left: 46.2%;
+  top: 50.5%;
+  left: 46%;
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
@@ -1975,6 +1975,7 @@ img {
   -ms-transform-origin: 100% 50%;
   transform-origin: 100% 50%;
   z-index: 1;
+  /*transform: scale(1.01);*/
 }
 
 .grey_circle.right {
@@ -2009,7 +2010,7 @@ img {
   border-radius: 100% 0 0 100% / 50% 0 0 50%;
   background-color: #f7323f;
   top: 0;
-  left: 0px;
+  left: .5px;
   -webkit-transform-origin: 100% 50%;
   -ms-transform-origin: 100% 50%;
   transform-origin: 100% 50%;
@@ -2019,7 +2020,7 @@ img {
   -webkit-border-radius: 0 100% 100% 0 / 0 50% 50% 0;
   border-radius: 0 100% 100% 0 / 0 50% 50% 0;
   left: auto;
-  right: 0px;
+  right: .5px;
   -webkit-transform-origin: 0% 50%;
   -ms-transform-origin: 0% 50%;
   transform-origin: 0% 50%;
