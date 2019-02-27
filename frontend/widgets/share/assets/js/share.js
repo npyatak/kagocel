@@ -1,5 +1,5 @@
 $(document).on('click', 'a.share', function(e) {
-    if($(this).hasClass("active"))
+    if($(this).hasClass("active")) {
         if(typeof $(this).data('data-ga-click') !== 'undefined') {
             ga('send', 'event', 'click', $(this).data('data-ga-click'));
         }
