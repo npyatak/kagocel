@@ -105,6 +105,11 @@ class Post extends \yii\db\ActiveRecord
         return __DIR__ . '/../../frontend/web/uploads/post/'.$this->user_id.'/';
     }
 
+    public function getAudioFileUrl()
+    {
+        return '/uploads/post/'.$this->user_id.'/'.$this->audio;
+    }
+
     public static function getStatusArray() 
     {
         return [
@@ -134,5 +139,10 @@ class Post extends \yii\db\ActiveRecord
     public function userCan($type) 
     {
         return !in_array($type, $this->getUserActions());
+    }
+
+    public function getDate()
+    {
+        return date('d.M', $this->created_at);
     }
 }

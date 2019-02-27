@@ -5,14 +5,14 @@ use yii\helpers\Html;
 use common\models\PostAction;
 ?>
 
-<div class="track_item">
-	<audio src="<?=$post->audio;?>"></audio>
+<div class="track_item" id="post_<?=$post->id;?>" data-id="<?=$post->id;?>">
+	<audio src="<?=$post->audioFileUrl;?>"></audio>
 	<div class="spectrogram">
 		<!-- картинка просто для демонстрации!!! -->
-		<img src="/img/test_img/graph.png" alt="">
+		<!-- <img src="/img/test_img/graph.png" alt=""> -->
 	</div>
 	<div class="timer_range">
-		<p><span class="current">00:00</span> / <span class="duration">01:00</span></p>
+		<p><span class="current">00:00</span> / <span class="duration"></span></p>
 	</div>
 	<div class="volume_range_wrap">
 		<img class="not_volume" src="/img/not_volume.svg" alt="icon">
@@ -29,8 +29,8 @@ use common\models\PostAction;
 	</div>
 	<div class="record_info">
 		<div class="top">
-			<span class="date">4 мар.</span>
-			<p>Трек №1</p>
+			<span class="date"><?=$post->date;?></span>
+			<p>Трек №<?=$post->id;?></p>
 		</div>
 		<div class="bottom">
 			<p><span>Баллы:</span> <?=$post->score;?></p>

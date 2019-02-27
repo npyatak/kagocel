@@ -402,3 +402,10 @@ $(".popup_bg").on("click", function(){
 $(".exit_popup, .close_popup").on("click", function(){
 	close_popup();
 });
+
+
+$(document).on('click', 'a, button', function(e) {
+    if(typeof $(this).attr('data-ga-click') !== 'undefined') {
+        ga('send', 'event', 'click', $(this).attr('data-ga-click'));
+    }
+});

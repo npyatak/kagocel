@@ -1,6 +1,6 @@
 $(document).on('click', 'a.share', function(e) {
-    if(typeof $(this).data('event') !== 'undefined') {
-        ga('send', 'event', $(this).data('event'), $(this).data('param'));
+    if(typeof $(this).data('data-ga-click') !== 'undefined') {
+        ga('send', 'event', 'click', $(this).data('data-ga-click'));
     }
     
     url = getShareUrl($(this));

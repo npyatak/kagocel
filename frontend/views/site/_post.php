@@ -6,10 +6,10 @@ use common\models\PostAction;
 ?>
 
 <div class="post track_item light" id="post_<?=$post->id;?>" data-id="<?=$post->id;?>">
-	<audio src="<?=$post->audio;?>"></audio>
+	<audio src="<?=$post->audioFileUrl;?>"></audio>
 	<div class="spectrogram"></div>
 	<div class="timer_range">
-		<p><span class="current">00:00</span> / <span class="duration">01:00</span></p>
+		<p><span class="current">00:00</span> / <span class="duration"></span></p>
 	</div>
 	<div class="volume_range_wrap">
 		<img class="not_volume" src="/img/not_volume.svg" alt="icon">

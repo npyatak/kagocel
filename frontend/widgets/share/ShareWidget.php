@@ -67,6 +67,7 @@ class ShareWidget extends \yii\base\Widget
 		        'data-image' => $this->share['imageUrl'],
 		        'data-text' => $this->share['text'],
 		        'data-type' => PostAction::TYPE_SHARE_FB,
+		        'data-ga-click' => 'click_share_fb',
 		    ]);
 		    echo Html::a('<i class="fa fa-vk" aria-hidden="true"></i>', '', [
 		        'class' => (Yii::$app->user->isGuest || $this->post->userCan(PostAction::TYPE_SHARE_VK)) ? 'action share icon vk active' : 'action share icon vk',
@@ -76,6 +77,7 @@ class ShareWidget extends \yii\base\Widget
 		        'data-image' => $this->share['imageUrlVk'],
 		        'data-text' => $this->share['text'],
 		        'data-type' => PostAction::TYPE_SHARE_VK,
+		        'data-ga-click' => 'click_share_vk',
 		    ]);
 		    echo Html::a('<i class="fa fa-odnoklassniki" aria-hidden="true"></i>', '#', [
 		        'class' => (Yii::$app->user->isGuest || $this->post->userCan(PostAction::TYPE_SHARE_OK)) ? 'action share icon ok active' : 'action share icon ok',
@@ -85,6 +87,7 @@ class ShareWidget extends \yii\base\Widget
 		        'data-text' => $this->share['text'],
 		        'data-image' => $this->share['imageUrlOk'],
 		        'data-type' => PostAction::TYPE_SHARE_OK,
+		        'data-ga-click' => 'click_share_ok',
 		    ]);
 		}
     }
