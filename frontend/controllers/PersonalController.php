@@ -79,6 +79,9 @@ class PersonalController extends CController
     public function actionAddPost() 
     {
         $model = new Post();
+        echo '<pre>';
+        print_r(Yii::$app->request->post());
+        //exit;
 
         if(/*Yii::$app->request->isAjax && */!Yii::$app->user->isGuest && $model->load(Yii::$app->request->post())) {
             $stage = Stage::getCurrent(Stage::TYPE_MAIN);
