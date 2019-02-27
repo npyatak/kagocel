@@ -10,11 +10,10 @@ use yii\widgets\ActiveForm;
 		<div class="mixer_top">
 			
 			<!-- при добавлянии класса active когда начинается запись скрываем .text , и показываем timer + меняется цвет-->
-			<div class="recording_button black_gray" id="mixer__record-button">
+			<div class="recording_button black_gray" id="mixer__record-button" data-ga-click="click_record_button">
 				<p class="text">Запись</p>
 				<p class="timer" id="mixer__record-timer">0:00:00</p>
 			</div>
-
 
 			<div class="mixer_top_item left leftTrack">
 				<div>

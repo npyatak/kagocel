@@ -60,7 +60,7 @@ class ShareWidget extends \yii\base\Widget
 
 		if($this->showButtons) {
 			echo Html::a('<i class="fa fa-facebook" aria-hidden="true"></i>', '', [
-		        'class' => (Yii::$app->user->isGuest || $this->post->userCan(PostAction::TYPE_SHARE_FB)) ? 'action share icon fb active' : 'action share icon fb',
+		        'class' => (Yii::$app->user->isGuest || $this->post->userCan(PostAction::TYPE_SHARE_FB) && $this->post->user_id == Yii::$app->user->id) ? 'action share icon fb active' : 'action share icon fb',
 		        'data-soc' => 'fb',
 		        'data-url' => $this->share['url'],
 		        'data-title' => $this->share['title'],
@@ -70,7 +70,7 @@ class ShareWidget extends \yii\base\Widget
 		        'data-ga-click' => 'click_share_fb',
 		    ]);
 		    echo Html::a('<i class="fa fa-vk" aria-hidden="true"></i>', '', [
-		        'class' => (Yii::$app->user->isGuest || $this->post->userCan(PostAction::TYPE_SHARE_VK)) ? 'action share icon vk active' : 'action share icon vk',
+		        'class' => (Yii::$app->user->isGuest || $this->post->userCan(PostAction::TYPE_SHARE_VK) && $this->post->user_id == Yii::$app->user->id) ? 'action share icon vk active' : 'action share icon vk',
 		        'data-soc' => 'vk',
 		        'data-url' => $this->share['url'],
 		        'data-title' => $this->share['title'],
@@ -80,7 +80,7 @@ class ShareWidget extends \yii\base\Widget
 		        'data-ga-click' => 'click_share_vk',
 		    ]);
 		    echo Html::a('<i class="fa fa-odnoklassniki" aria-hidden="true"></i>', '#', [
-		        'class' => (Yii::$app->user->isGuest || $this->post->userCan(PostAction::TYPE_SHARE_OK)) ? 'action share icon ok active' : 'action share icon ok',
+		        'class' => (Yii::$app->user->isGuest || $this->post->userCan(PostAction::TYPE_SHARE_OK) && $this->post->user_id == Yii::$app->user->id) ? 'action share icon ok active' : 'action share icon ok',
 		        'data-soc' => 'ok',
 		        'data-url' => $this->share['url'],
 		        'data-title' => $this->share['title'],

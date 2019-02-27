@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				<h3 class="section_name">выб<i>о</i>р специалистов</h3>
 				<p class="section_desc">Кагоцел - противовирусное средство широкого спектра действия, которое применяется для профилактики и лечения простуды и гриппа у взрослых и детей с 3-х лет.</p>
 			</div>
-			<a href="https://www.kagocel.ru/" target="_blank" class="button_1 point"><span>Подробнее о продукте</span></a>
+			<a href="https://www.kagocel.ru/" target="_blank" class="button_1 point" data-ga-click="click_product_info"><span>Подробнее о продукте</span></a>
 		</div>
 
 	</div>

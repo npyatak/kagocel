@@ -40,7 +40,7 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title>kagocel <?=$this->title ? ' - '.Html::encode($this->title) : '';?></title>
 
-    <?php if($_SERVER['HTTP_HOST'] != 'kagocel.local'):?>
+    <?php // if($_SERVER['HTTP_HOST'] != 'kagocel.local'):?>
         <script type="text/javascript">
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -48,7 +48,7 @@ AppAsset::register($this);
             })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
             ga('create', 'UA-2865583-8', 'auto');
-            ga('send', 'pageview',{'page': "<?=Url::canonical();?>"});
+            ga('send', 'pageview',{'page': "<?=Url::current();?>"});
               
             // Yandex.Metrika counter 
 
@@ -91,7 +91,7 @@ AppAsset::register($this);
             </script>
             <noscript><img src="//www.tns-counter.ru/V13a****tnt_ru/ru/CP1251/tmsec=tnt_online/" width="1" height="1" alt="" /></noscript>
             <noscript><div><img src="https://mc.yandex.ru/watch/32937699" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <?php endif;?>
+    <?php //endif;?>
 
     <?php $this->head() ?>
 </head>
@@ -102,12 +102,12 @@ AppAsset::register($this);
     
         <?php $menuItems = [
             ['label' => 'Главная', 'c' => 'site', 'a' => 'index', 'data-ga-click' => 'click_main_page'],
-            ['label' => 'Личный кабинет', 'c' => 'personal', 'a' => 'index'],
-            ['label' => 'Галерея', 'c' => 'site', 'a' => 'gallery'],
-            ['label' => 'О продукте', 'c' => 'site', 'a' => 'about'],
+            ['label' => 'Личный кабинет', 'c' => 'personal', 'a' => 'index', 'data-ga-click' => 'click_personal_page'],
+            ['label' => 'Галерея', 'c' => 'site', 'a' => 'gallery', 'data-ga-click' => 'click_gallery_page'],
+            ['label' => 'О продукте', 'c' => 'site', 'a' => 'about', 'data-ga-click' => 'click_about_page'],
             ['label' => 'Обратная связь', 'c' => 'site', 'a' => 'contact'],
-            ['label' => 'Faq', 'c' => 'site', 'a' => 'faq'],
-            ['label' => 'Правила', 'c' => 'site', 'a' => 'rules', 'target' => '_blank'],
+            ['label' => 'Faq', 'c' => 'site', 'a' => 'faq', 'data-ga-click' => 'click_faq_page'],
+            ['label' => 'Правила', 'c' => 'site', 'a' => 'rules', 'target' => '_blank', 'data-ga-click' => 'click_rules_page'],
         ];?>
 
 
@@ -119,7 +119,7 @@ AppAsset::register($this);
                     <div class="three"></div>
                 </div>
 
-                <a class="logo_1" href="https://www.kagocel.ru/" target="_blank">
+                <a class="logo_1" href="https://www.kagocel.ru/" target="_blank" data-ga-click="click_kagocel_logo">
                     <img src="/img/logo_1_2.svg" alt="logo">
                 </a>
                 <nav class="main_menu">
@@ -136,13 +136,11 @@ AppAsset::register($this);
                             </li>
                         <?php endforeach;?>
                 </nav>
-                <a class="logo_2" href="http://studia-soyuz.tnt-online.ru/" target="_blank">
+                <a class="logo_2" href="http://studia-soyuz.tnt-online.ru/" target="_blank" data-ga-click="click_soyuz_logo">
                     <img src="/img/logo_2.png" alt="logo">
                 </a>
             </div>
         </header>
-
-
 
         <div class="burger_menu dark_bg">
             <div class="contain">
@@ -166,14 +164,13 @@ AppAsset::register($this);
         <?= $content ?>
 
         <footer class="main_footer">
-
             <div class="footer_top">
                 <div class="contain">
                     <div>
                         <div class="logo_block">
 
-                            <a class="footer_logo" href="https://www.kagocel.ru/" target="_blank"><img src="/img/logo_1_2.svg" alt="logo"></a>
-                            <a class="footer_logo" href="http://studia-soyuz.tnt-online.ru/" target="_blank"><img src="/img/logo_2.png" alt="logo"></a>
+                            <a class="footer_logo" href="https://www.kagocel.ru/" target="_blank" data-ga-click="click_kagocel_logo"><img src="/img/logo_1_2.svg" alt="logo"></a>
+                            <a class="footer_logo" href="http://studia-soyuz.tnt-online.ru/" target="_blank" data-ga-click="click_soyuz_logo"><img src="/img/logo_2.png" alt="logo"></a>
                         </div>
 
                         <nav class="footer_menu">

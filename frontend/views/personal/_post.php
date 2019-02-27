@@ -21,7 +21,7 @@ use common\models\PostAction;
 		<img class="go_volume" src="/img/volume.svg" alt="icon">
 	</div>
 	<div class="record_img">
-		<div class="play">
+		<div class="play" data-ga-click="click_play_button">
 			<i class="fa fa-play" aria-hidden="true"></i>
 			<img class="fa-pause" src="/img/pause.svg" alt="pause">
 		</div>

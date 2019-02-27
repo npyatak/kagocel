@@ -264,6 +264,10 @@ class SiteController extends CController
             $post = $this->findPost($id);
 
             if($post !== null && $post->userCan($type)) {
+                if(in_array($type, [PostAction::TYPE_SHARE_VK, PostAction::TYPE_SHARE_FB, PostAction::TYPE_SHARE_OK]) && $post->user_id !== Yii::$app->user->id) {
+                    return ['status' => 'error'];
+                }
+
                 $postAction = new PostAction();
                 $postAction->post_id = $id;
                 $postAction->type = $type;

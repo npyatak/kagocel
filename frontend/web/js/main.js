@@ -14,7 +14,7 @@ $(document).on("click", ".post .action", function(e) {
   var obj = $(this);
   var post = $(this).closest(".post");
 
-  if (!obj.hasClass("inactive")) {
+  if (obj.hasClass("active")) {
     $.ajax({
       type: "GET",
       url: "/site/post-action",

@@ -18,7 +18,7 @@ use common\models\PostAction;
 		<img class="go_volume" src="/img/volume.svg" alt="icon">
 	</div>
 	<div class="record_img">
-		<div class="play">
+		<div class="play" data-ga-click="click_play_button">
 			<i class="fa fa-play" aria-hidden="true"></i>
 			<img class="fa-pause" src="/img/pause.svg" alt="pause">
 		</div>
@@ -39,8 +39,8 @@ use common\models\PostAction;
 			</div>
 		</div>
 
-		<a class="track_vote action  <?=(!Yii::$app->user->isGuest && !$post->userCan(PostAction::TYPE_LIKE)) ? '' : 'active';?>" data-type="<?=PostAction::TYPE_LIKE;?>">
-			<p class="vote" href="#">Голосовать</p>
+		<a class="track_vote action  <?=(!Yii::$app->user->isGuest && !$post->userCan(PostAction::TYPE_LIKE)) ? '' : 'active';?>" data-type="<?=PostAction::TYPE_LIKE;?>"  data-ga-click="click_vote_button">
+			<p class="vote">Голосовать</p>
 		</a>
 	</div>
 </div>
