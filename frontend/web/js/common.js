@@ -332,9 +332,6 @@ $(function(){
 			}), '*');
 		},300);
 
-
-
-	// console.log(player);
 		setTimeout(function(){
 			player.contentWindow.postMessage(JSON.stringify({
 				type: 'player:pause',
@@ -348,17 +345,14 @@ $(function(){
 		$(window).scroll(function() {
 			var top = $(document).scrollTop();
 
-				
-			    // pip = $('.section_6_footer').offset().top;
-
-			    if(top > topPos && count == 1){
-			    	// console.log(count);
-			    	player.contentWindow.postMessage(JSON.stringify({
-						type: 'player:play',
-						data: {}
-					}), '*');
-					count++;
-			    }
+			if(top > topPos && count == 1){
+				// console.log(count);
+				player.contentWindow.postMessage(JSON.stringify({
+					type: 'player:play',
+					data: {}
+				}), '*');
+				count++;
+			}
 		});
 
 
