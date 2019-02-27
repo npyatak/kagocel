@@ -211,12 +211,57 @@ use yii\widgets\ActiveForm;
 
 	</div>
 	<!-- mixer_inner -->
-	<div class="mixer_done-message" id="mixer__done-message" style="padding: 30px; text-align: center; display: none;">
-		<h3>Вы успешно создали свой микс!</h3>
-		<div class="listen_done"><p>Хотите его прослушать?</p></div>
-		<a id="tryAgain" href="#" style="background: #f7323f; padding: 10px 20px; color: #fff; display: inline-block; border-radius: 4px; margin: 20px;">Попробовать снова</a>
-		<a id="resultSend" href="javascript:void(0)" style="background: #000; padding: 10px 20px; color: #fff; display: inline-block; border-radius: 4px; margin: 20px;">Отправить</a>
-	</div>
 </div>
-
 <!-- mixer -->
+
+
+<!-- нужно чтобы свойство display: none  задавалось не .mixer_inner а самому .mixer, чтобы убрать серую полосу-->
+
+	<div class="mixer_done-message" id="mixer__done-message">
+		<h3 class="your_mix_name">Вы успешно создали свой микс!</h3>
+<!-- 		<div class="listen_done"><p>Хотите его прослушать?</p></div>
+		<a id="tryAgain" href="#" style="background: #f7323f; padding: 10px 20px; color: #fff; display: inline-block; border-radius: 4px; margin: 20px;">Попробовать снова</a>
+		<a id="resultSend" href="javascript:void(0)" style="background: #000; padding: 10px 20px; color: #fff; display: inline-block; border-radius: 4px; margin: 20px;">Отправить</a> -->
+
+
+
+
+		<div class="track_item light your_track">
+			<audio src=""></audio>
+			<div class="spectrogram">
+				<!-- картинка просто для демонстрации!!! -->
+				<img src="/img/test_img/graph.png" alt="">
+			</div>
+			<div class="timer_range">
+				<p><span class="current">00:00</span> / <span class="duration">01:00</span></p>
+			</div>
+			<div class="volume_range_wrap">
+				<img class="not_volume" src="/img/not_volume.svg" alt="icon">
+				<div class="volume_range" id="example_id" name="example_name"></div>
+				<!-- <input class="volume_range" type="text" id="example_id" name="example_name" value="" /> -->
+				<img class="go_volume" src="/img/volume.svg" alt="icon">
+			</div>
+			<div class="record_img">
+				<div class="play">
+					<i class="fa fa-play" aria-hidden="true"></i>
+					<img class="fa-pause" src="/img/pause.svg" alt="pause">
+				</div>
+				<img src="/img/record.png" alt="img">
+			</div>
+			<div class="record_info">
+				<div class="top">
+					<span class="date">4 мар.</span>
+					<p>Трек №1</p>
+				</div>
+				<a id="resultSend" href="javascript:void(0)" class="track_vote action  active" data-type="1">
+					<p class="vote">отправить <img src="/img/arrow_white.svg" alt="img"></p>
+				</a>
+			</div>
+		</div>
+		<!-- track_item -->
+		<div class="center">
+			<a class="refer_style" id="tryAgain" href="javascript:void(0)">Попробовать снова</a>
+		</div>
+
+	</div>
+	<!-- mixer_done-messages -->

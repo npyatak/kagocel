@@ -137,3 +137,48 @@ after_header - говорит о том, что этот блок идет по�
 	</div>
 </section>
 <!-- voting -->
+
+
+
+
+
+<!-- class="open_form"  и параметр data-form="2" являются определяющими того, какая форма всплывает у, нее параметр data-flag="2" должен соответсвовать параметру data-form у кнопки
+
+вообще же чтобы открыть необходимую всплывашку нужно просто вызвать функцию show_popup(data-form) с параметром data-form нужной нам формы
+-->
+<!-- кнопки для теста всплывашек -->
+<!-- <button class="button1 open_form" data-form="1">сначала выберите трек</button> -->
+<!-- <button class="button1 open_form" data-form="2">сначала выберите трек</button> -->
+
+
+
+<div class="popup_bg">
+	
+	<div class="popup_block style_1" data-flag="1">
+		<div class="popup_decor">
+			<span class="top"></span>
+			<span class="bottom"></span>
+		</div>
+		<img class="exit_popup" src="/img/close_middle.svg" alt="close">
+		<p class="popup_text">Пожалуйста, для начала выберите трек из списка снизу</p>
+		<div class="center">
+			<button class="button_1 point close_popup"><span>хорошо</span></button>
+		</div>		
+	</div>
+	<!-- popup_block -->
+
+	<div class="popup_block style_1 wide" data-flag="2">
+		<div class="popup_decor">
+			<span class="top"></span>
+			<span class="bottom"></span>
+		</div>
+		<img class="exit_popup" src="/img/close_middle.svg" alt="close">
+		<p class="section_name">Данные успешно обн<i>о</i>влены</p>
+		<div class="center">
+			<p class="popup_text">Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют</p>
+			<button class="button_1 point close_popup"><span>хорошо</span></button>
+		</div>		
+	</div>
+	<!-- popup_block -->
+	
+</div>

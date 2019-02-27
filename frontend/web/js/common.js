@@ -365,3 +365,40 @@ $(".section_name.show span").on("click", function(){
 
 
 
+// Открываем нужный попап
+function show_popup(form_number){
+	$("[data-flag="+form_number+"]").css("display","inline-block");
+	$(".popup_bg").css('display','block').delay(100).queue(function () {  // delay() позволяет сделать паузу 
+		$(".popup_bg").css('opacity', '1');
+		$("body").css('overflow-y','hidden'); 
+		$(".popup_bg").dequeue(); //должно применяться к тому же элементу что и .queue
+	});
+	// alert(form_number);
+}
+
+function close_popup(){
+	$(".popup_bg").css('opacity','0').delay(200).queue(function () {  // delay() позволяет сделать паузу между изменениями свойств
+		$(".popup_bg").css('display', 'none');
+		$("body").css('overflow-y','auto'); 
+		$(".popup_bg .popup_block").css("display","none");
+		$(".popup_bg").dequeue(); //должно применяться к тому же элементу что и .queue
+		// $(".popup_form").css("display","none");
+		//$("[data-form-ident="+form_number+"]").css("display","none"); заменил на верхнее если что пробуем этот вариант
+	}); 
+};
+
+// Пот клике открываем попап
+$(".open_form").on("click",function() {
+	var form_number = $(this).data("form");
+	show_popup(form_number);
+});
+
+// Закрываем попап
+$(".popup_bg").on("click", function(){
+	close_popup();
+}).children().click(function(e){        // вешаем на потомков
+	e.stopPropagation();   // предотвращаем распространение на потомков
+});
+$(".exit_popup, .close_popup").on("click", function(){
+	close_popup();
+});

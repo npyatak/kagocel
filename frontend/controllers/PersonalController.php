@@ -19,6 +19,15 @@ use common\models\Post;
 class PersonalController extends CController
 {
 
+    public function beforeAction($action) 
+    { 
+        if($this->action->id == 'add-post') {
+            $this->enableCsrfValidation = false; 
+        }
+
+        return parent::beforeAction($action); 
+    }
+
     public function behaviors()
     {
         return [

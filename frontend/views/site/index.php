@@ -2,7 +2,6 @@
 use yii\helpers\Url;
 ?>
 
-
 <section class="section_main dark_bg pb_big after_header">
 
 	<div class="contain">

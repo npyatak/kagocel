@@ -472,7 +472,7 @@ function startRecording() {
     stopTimer();
 
     $("#mixer__done-message").css({ display: "block" });
-    $("#mixer__inner").css({ display: "none" });
+    $("#mixer").css({ display: "none" });
 
     setTimeout(function() {
       $("#mixer__done-message .listen_done").append(

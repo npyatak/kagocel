@@ -8,16 +8,16 @@ after_header - говорит о том, что этот блок идет по�
 	<div class="contain">
 
 		<div class="main_wrap_blocks and_button ">
-			<div class="wrap_big_img"><img class="big_img" src="img/packt.png" alt="img"></div>
+			<div class="wrap_big_img"><img class="big_img" src="/img/packt.png" alt="img"></div>
 			<div class="main_right">
 				<p class="main_name">
 					Прокачай свою заботу с каг<i>о</i>целом
-					<img src="img/big_arrow.svg" alt="img">
+					<img src="/img/big_arrow.svg" alt="img">
 				</p>
 				<p class="anons">
 					Создай свой уникальный музыкальный трек и получи шанс выиграть крутые призы! 
 				</p>
-				<a href="#" class="button_1 point"><span>Участвовать</span></a>
+				<a href="<?=Url::toRoute(['personal/index']);?>" class="button_1 point"><span>Участвовать</span></a>
 			</div>
 		</div>
 
