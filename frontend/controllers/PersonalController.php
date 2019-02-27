@@ -79,16 +79,12 @@ class PersonalController extends CController
     public function actionAddPost() 
     {
         $model = new Post();
-        echo '<pre>';
-        print_r(Yii::$app->request->post());
-        //exit;
+        $model->audioFile = UploadedFile::getInstanceByName('audioFile');
 
-        if(/*Yii::$app->request->isAjax && */!Yii::$app->user->isGuest && $model->load(Yii::$app->request->post())) {
+        if(/*Yii::$app->request->isAjax && */!Yii::$app->user->isGuest && !empty($model->audioFile)) {
             $stage = Stage::getCurrent(Stage::TYPE_MAIN);
             $model->user_id = Yii::$app->user->id;
             $model->stage_id = $stage->id;
-
-            $model->audioFile = UploadedFile::getInstance($model, 'audioFile');
 
             $model->audio = md5(time()).'.'.$model->audioFile->extension;
 
@@ -101,6 +97,8 @@ class PersonalController extends CController
 
                 Yii::$app->response->format = Response::FORMAT_JSON;
                 return ['link' => Url::toRoute(['site/post', 'id' => $model->id])];
+            } else {
+                print_r($model->getErrors());
             }
         } 
     }

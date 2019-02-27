@@ -15,8 +15,15 @@ AppAsset::register($this);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="img/favicon/tnt-144.png">
+    <link rel="apple-touch-icon" sizes="16x16" href="//cdn.tnt-online.ru/tnt2012/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="32x32" href="//cdn.tnt-online.ru/tnt2012/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="96x96" href="//cdn.tnt-online.ru/tnt2012/favicon-96x96.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="//cdn.tnt-online.ru/tnt2012/tnt-114.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="//cdn.tnt-online.ru/tnt2012/tnt-144.png" />    
+    <link rel="shortcut icon" type="image/icon" href="/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="//cdn.tnt-online.ru/cookie/accept_cookie.css" title="application/x-javascript" />
+    <script type="application/x-javascript" src="//cdn.tnt-online.ru/cookie/accept_cookie.js"></script>
     <!-- <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png"> -->
 
@@ -34,7 +41,56 @@ AppAsset::register($this);
     <title>kagocel <?=$this->title ? ' - '.Html::encode($this->title) : '';?></title>
 
     <?php if($_SERVER['HTTP_HOST'] != 'kagocel.local'):?>
+        <script type="text/javascript">
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
+            ga('create', 'UA-2865583-8', 'auto');
+            ga('send', 'pageview',{'page':<?=Url::canonical();?>});
+              
+            // Yandex.Metrika counter 
+
+            (function (d, w, c) {
+                (w[c] = w[c] || []).push(function() {
+                    try {
+                        w.yaCounter32937699 = new Ya.Metrika({
+                            id:32937699,
+                            clickmap:true,
+                            trackLinks:true,
+                            accurateTrackBounce:true
+                        });
+                    } catch(e) { }
+                });
+
+                var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+                s.type = "text/javascript";
+                s.async = true;
+                s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+                if (w.opera == "[object Opera]") {
+                    d.addEventListener("DOMContentLoaded", f, false);
+                } else { f(); }
+            })(document, window, "yandex_metrika_callbacks");
+
+            // TNS Counter
+            var img = new Image();
+            img.src = '//www.tns-counter.ru/V13a***R>' + document.referrer.replace(/\*/g,'%2a') + '*tnt_ru/ru/CP1251/tmsec=tnt_online/';
+
+            // Cookies agreement
+            window.onload = function() {
+                if(!document.getElementsByClassName('gpm-cookie-accepted').length) {
+                    var GPM_AcceptCookie = new GPMAcceptCookie('tnt-online.ru');
+                    GPM_AcceptCookie.googleAnalytics(ga);
+                    GPM_AcceptCookie.check();
+                }
+            };
+            </script>
+            <noscript><img src="//www.tns-counter.ru/V13a****tnt_ru/ru/CP1251/tmsec=tnt_online/" width="1" height="1" alt="" /></noscript>
+            <noscript><div><img src="https://mc.yandex.ru/watch/32937699" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <?php endif;?>
 
     <?php $this->head() ?>

@@ -46,9 +46,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 [
                     'attribute' => 'audio',
-                    'value' => function($data) {
-                        return $data->audio;
-                    },
+                    'format' => 'raw',
+                    'value' => function ($data) {                      
+                        return "<audio controls='controls'>
+                                <source src='".$data->audio."' type='audio/mp3' />
+                            </audio>" ;
+                    }
                 ],
                 [
                     'attribute' => 'score',
