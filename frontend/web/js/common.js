@@ -323,6 +323,11 @@ $(function(){
 
 		var player = document.getElementById('video_player');
 
+		player.contentWindow.postMessage(JSON.stringify({
+			type: 'player:pause',
+			data: {}
+		}), '*');
+
 		setTimeout(function(){
 			player.contentWindow.postMessage(JSON.stringify({
 			    type: 'player:setSkinColor',
@@ -332,28 +337,27 @@ $(function(){
 			}), '*');
 		},300);
 
-		setTimeout(function(){
-			player.contentWindow.postMessage(JSON.stringify({
-				type: 'player:pause',
-				data: {}
-			}), '*');
-		},200);
+		// setTimeout(function(){
+			
+		// },300);
 
-		var topPos = $('.video_section').offset().top;
-		var section_height = $('.video_section').outerHeight();
-		var count = 1;
-		$(window).scroll(function() {
-			var top = $(document).scrollTop();
 
-			if(top > topPos && count == 1){
-				// console.log(count);
-				player.contentWindow.postMessage(JSON.stringify({
-					type: 'player:play',
-					data: {}
-				}), '*');
-				count++;
-			}
-		});
+		// var topPos = $('.video_section').offset().top;
+		// var count = 1;
+
+		// $(window).scroll(function() {
+		// 	var top = $(document).scrollTop();
+
+		// 	if(top > topPos && count == 1){
+		// 		// console.log(count);
+		// 		player.contentWindow.postMessage(JSON.stringify({
+		// 			type: 'player:play',
+		// 			data: {}
+		// 		}), '*');
+				
+		// 	}
+		// 	count++;
+		// });
 
 
 		// player.contentWindow.postMessage(JSON.stringify({
