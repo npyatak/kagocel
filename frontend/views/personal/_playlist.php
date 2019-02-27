@@ -7,8 +7,8 @@
 // ];
 
 $melodies = [
-	['id' => 0, 'url' => '/audio/kino.mp3', 'name' => 'Когда твоя девушка больна', 'author' => 'Кино'],
-	['id' => 1, 'url' => '/audio/splean.mp3', 'name' => 'Дочь самурая', 'author' => 'Сплин']
+	['id' => 0, 'url' => '/audio/kino.mp3', 'name' => 'Когда твоя девушка больна', 'author' => 'Кино', 'bpm' => 140],
+	['id' => 1, 'url' => '/audio/splean.mp3', 'name' => 'Дочь самурая', 'author' => 'Сплин', 'bpm' => 140]
 ];
 
 $sounds = scandir(__DIR__.'/../../web/sounds');
@@ -21,7 +21,7 @@ $sounds = scandir(__DIR__.'/../../web/sounds');
 		<div class="playlist">
 			<ul>
 				<?php foreach ($melodies as $m):?>
-					<li class="play_li sound mixer__select-music-container" data-sound_url="<?=$m['url'];?>" data-id="<?=$m['id'];?>">
+					<li class="play_li sound mixer__select-music-container" data-sound_url="<?=$m['url'];?>" data-bpm="<?=$m['bpm'];?>" data-id="<?=$m['id'];?>">
 						<div class="butt_wrap">
 							<button class="button_play red trackLeft mixer__select-music-first"><i class="fa fa-play" aria-hidden="true"></i></button>
 							<button class="button_play orange trackRight mixer__select-music-second"><i class="fa fa-play" aria-hidden="true"></i></button>

@@ -24,8 +24,8 @@ use yii\widgets\ActiveForm;
 					<!-- <p class="album"><span>Исполнитель - альбом</span></p> -->
 					<p class="timer"><span class="played" id="mixer__first-track-played">0:00</span> / <span class="duration" id="mixer__first-track-duration">00:00</span></p>
 				</div>
-				<canvas class="spectr">
-					<img src="/img/test_img/graph.png" alt="">
+				<canvas class="spectr" id="mixer__first-seek">
+					<!-- <img src="/img/test_img/graph.png" alt=""> -->
 				</canvas>
 			</div>
 
@@ -37,8 +37,8 @@ use yii\widgets\ActiveForm;
 					<!-- <p class="album"></span>Исполнитель - альбом</span></p> -->
 					<p class="timer"><span class="played"  id="mixer__second-track-played">0:00</span> / <span class="duration" id="mixer__second-track-duration">00:00</span></p>
 				</div>
-				<canvas class="spectr">
-					<img src="/img/test_img/graph.png" alt="">
+				<canvas class="spectr" id="mixer__second-seek">
+					<!-- <img src="/img/test_img/graph.png" alt=""> -->
 				</canvas>
 			</div>
 
@@ -50,7 +50,7 @@ use yii\widgets\ActiveForm;
 
 			<div class="mixer_bottom_item">
 				<div class="plate_wrap">
-					<img class="plate" src="/img/plate_1.png" alt="img">
+					<img class="plate" id="plate__first" src="/img/plate_1.png" alt="img">
 					<!-- класс active отвечает за то что ручка находится на пластинке , если его убрать то ручка развернется -->
 					<img class="handle leftTrack" id="first-handle" src="/img/plate_handle.png" alt="img">
 				</div>
@@ -70,7 +70,7 @@ use yii\widgets\ActiveForm;
 
 				</div>
 				<div class="record_slider_horizontal_1" style="margin-top: 40px;">
-					<p><span>140</span>bpm</p>
+					<p><span id="first__bpm"></span>bpm</p>
 					<div id="mixer__first-track-playback-rate" class="rsh_1"></div>
 				</div>
 				<!-- record_buttons -->
@@ -178,7 +178,7 @@ use yii\widgets\ActiveForm;
 
 			<div class="mixer_bottom_item">
 				<div class="plate_wrap">
-					<img class="plate" src="/img/plate_2.png" alt="img">
+					<img class="plate" src="/img/plate_2.png" id="plate__second" alt="img">
 					<!-- класс active отвечает за то что ручка находится на пластинке , если его убрать то ручка развернется -->
 					<img class="handle rightTrack" id="second-handle" src="/img/plate_handle.png" alt="img">
 				</div>
@@ -196,7 +196,7 @@ use yii\widgets\ActiveForm;
 					</div>
 				</div>
 				<div class="record_slider_horizontal_1" style="margin-top: 40px;">
-					<p><span>140</span>bpm</p>
+					<p><span id="second__bpm"></span>bpm</p>
 					<div id="mixer__second-track-playback-rate" class="rsh_1"></div>
 				</div>
 				<!-- record_buttons -->

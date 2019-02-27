@@ -63,64 +63,51 @@ var secondRateControl = $("#mixer__second-track-playback-rate");
 // VARIABLES
 // ------
 
-var balance = 50;
-
-var audioCtxS = {
+var DOMInstances = {
   first: {
-    audioCtx: null,
-    analyser: null,
-    bufferLength: null,
-    dataArray: null,
-    volume: 100,
-    balanceMultiplier: 0.5,
-    duration: null,
-    durationDom: firstTrackDuration,
-    playedDom: firstTrackPlayed,
-    nameDom: firstTrackName,
-    filterInstances: {
-      bass: null,
-      mid: null,
-      high: null,
-      rate: null
-    },
-    filters: {
-      bass: 0,
-      mid: 0,
-      high: 0,
-      rate: 1
-    },
-    filterControls: {
-      bass: null,
-      mid: null,
-      high: null,
-      rate: null
-    },
-    loudLines: firstTrackLoudLines,
-    dest: null
+    trackDuration: firstTrackDuration,
+    trackPlayed: firstTrackPlayed,
+    trackName: firstTrackName,
+    trackLoudLines: firstTrackLoudLines,
+    bpm: $("#first__bpm")
   },
   second: {
+    trackDuration: secondTrackDuration,
+    trackPlayed: secondTrackPlayed,
+    trackName: secondTrackName,
+    trackLoudLines: secondTrackLoudLines,
+    bpm: $("#second__bpm")
+  }
+};
+
+var balance = 50;
+
+function createAudioCtxObject(audioCtxLink) {
+  var dom = DOMInstances[audioCtxLink];
+  return {
     audioCtx: null,
     analyser: null,
     bufferLength: null,
     dataArray: null,
-    gain: null,
-    duration: null,
-    durationDom: secondTrackDuration,
-    playedDom: secondTrackPlayed,
-    nameDom: secondTrackName,
     volume: 100,
     balanceMultiplier: 0.5,
-    filters: {
-      bass: 0,
-      mid: 0,
-      high: 0,
-      rate: 1
-    },
+    duration: null,
+    durationDom: dom.trackDuration /* firstTrackDuration */,
+    playedDom: dom.trackPlayed /* firstTrackPlayed */,
+    nameDom: dom.trackName /* firstTrackName */,
+    bpmDom: dom.bpm,
+    seekTo: null,
     filterInstances: {
       bass: null,
       mid: null,
       high: null,
       rate: null
+    },
+    filters: {
+      bass: 0,
+      mid: 0,
+      high: 0,
+      rate: 1
     },
     filterControls: {
       bass: null,
@@ -128,23 +115,37 @@ var audioCtxS = {
       high: null,
       rate: null
     },
-    loudLines: secondTrackLoudLines,
-    dest: null
-  }
+    bpm: 0,
+    loudLines: dom.trackLoudLines /* firstTrackLoudLines */,
+    dest: null,
+    timerInterval: null
+  };
+}
+
+var audioCtxS = {
+  first: createAudioCtxObject("first"),
+  second: createAudioCtxObject("second")
 };
+
+var playedOnce = false;
 
 // EVENTS
 // ------
 
 selectAsFirstButton.on("click", function(e) {
-  if (!audioCtxS.first.audioCtx) {
+  if (!playedOnce) {
+    if (audioCtxS.first.audioCtx) {
+      resetAudioObject("first");
+    }
     var container = $(e.target).closest(".mixer__select-music-container");
     var url = container.data("sound_url");
+    var bpm = container.data("bpm");
     var soundName = container.find(".mixer__select-music-name").html();
     var musicAuthor = container.find(".mixer__select-music-author").html();
     var audio = new Audio("first", url, {
       name: soundName,
-      author: musicAuthor
+      author: musicAuthor,
+      bpm: bpm
     });
     if (alreadyStartedOne) {
       setTimeout(audio.initAudio.bind(audio), 2000);
@@ -158,14 +159,19 @@ selectAsFirstButton.on("click", function(e) {
 });
 
 selectAsSecondButton.on("click", function(e) {
-  if (!audioCtxS.second.audioCtx) {
+  if (!playedOnce) {
+    if (audioCtxS.second.audioCtx) {
+      resetAudioObject("second");
+    }
     var container = $(e.target).closest(".mixer__select-music-container");
     var url = container.data("sound_url");
+    var bpm = container.data("bpm");
     var soundName = container.find(".mixer__select-music-name").html();
     var musicAuthor = container.find(".mixer__select-music-author").html();
     var audio = new Audio("second", url, {
       name: soundName,
-      author: musicAuthor
+      author: musicAuthor,
+      bpm: bpm
     });
     if (alreadyStartedOne) {
       setTimeout(audio.initAudio.bind(audio), 2000);
@@ -177,6 +183,19 @@ selectAsSecondButton.on("click", function(e) {
     e.stopPropagation();
   }
 });
+
+// $("#mixer__first-seek").slider({
+//   value: balance,
+//   orientation: "horizontal",
+//   range: "min",
+//   animate: true,
+//   min: 0,
+//   max: 100,
+//   value: 0,
+//   slide: function(event, ui) {
+//     console.log(ui.value);
+//   }
+// })
 
 var recording = false;
 
@@ -339,6 +358,7 @@ function initAudioProccesser(audioCtxLink, e) {
   if (!context) {
     alert("Пожалуйста, для начала выберите трек из списка снизу.");
   } else if (context.state === "running") {
+    playedOnce = true;
     context.suspend();
     $(e.target)
       .closest(".play_stop")
@@ -352,6 +372,7 @@ function initAudioProccesser(audioCtxLink, e) {
       line.css("height", "0 !important");
     });
   } else {
+    playedOnce = true;
     $(e.target)
       .closest(".play_stop")
       .addClass("active");
@@ -374,39 +395,9 @@ secondTrackPlayButton.click(function(e) {
 
 var allowedToPush = false;
 
-window.sound = {};
-
 var mediaRecorder = null;
 
 function startRecording() {
-  window.sound = {
-    operations: {},
-    sources: [
-      "http://localhost:5000/files/kino.mp3",
-      "http://localhost:5000/files/splean.mp3"
-    ],
-    startValues: {
-      first: {
-        v: audioCtxS.first.volume,
-        b: audioCtxS.first.filters.bass,
-        m: audioCtxS.first.filters.mid,
-        h: audioCtxS.first.filters.high,
-        timecode: audioCtxS.first.currentTime
-          ? audioCtxS.first.audioCtx.currentTime
-          : 0
-      },
-      second: {
-        v: audioCtxS.second.volume,
-        b: audioCtxS.second.filters.bass,
-        m: audioCtxS.second.filters.mid,
-        h: audioCtxS.second.filters.high,
-        timecode: audioCtxS.second.audioCtx
-          ? audioCtxS.second.audioCtx.currentTime
-          : 0
-      }
-    }
-  };
-
   console.log(audioCtxS.first.dest.stream);
   console.log(audioCtxS.second.dest.stream);
 
@@ -448,6 +439,38 @@ function startRecording() {
     audioCtxS.first.audioCtx.suspend();
     audioCtxS.second.audioCtx.suspend();
 
+    cancelAnimationFrame(audioCtxS.first.analyserAnimation);
+    cancelAnimationFrame(audioCtxS.second.analyserAnimation);
+
+    resetMixer();
+
+    setTimeout(function() {
+      audioCtxS.first.loudLines.map(function(line) {
+        line.css(
+          "height",
+          "0%"
+        );
+      });
+      audioCtxS.second.loudLines.map(function(line) {
+        line.css(
+          "height",
+          "0%"
+        );
+      });
+    }, 2000);
+
+    firstTrackPlayButton.closest(".play_stop").removeClass("active");
+    secondTrackPlayButton.closest(".play_stop").removeClass("active");
+
+    setTimeout(function() {
+      $("#first-handle").removeClass("active");
+      $("#second-handle").removeClass("active");
+    }, 100);
+
+    $(".plate").removeClass("spinning");
+
+    stopTimer();
+
     $("#mixer__done-message").css({ display: "block" });
     $("#mixer__inner").css({ display: "none" });
 
@@ -462,7 +485,6 @@ function startRecording() {
     }, 500);
 
     $("#resultSend").on("click", function() {
-
       console.log("SENDING FILE");
 
       var formData = new FormData();
@@ -471,15 +493,19 @@ function startRecording() {
       var xhr = new XMLHttpRequest();
       xhr.open("post", "/personal/add-post");
       xhr.send(formData);
+      $("#resultSend").off("click");
+      $("#tryAgain").off("click");
     });
+
+    $("#tryAgain").on("click", function() {
+      $("#mixer__done-message").css({ display: "none" });
+      $("#mixer__inner").css({ display: "block" });
+    });
+
+
   });
 
   mediaRecorder.start();
-
-  allowedToPush = true;
-  setInterval(function() {
-    allowedToPush = true;
-  }, 200);
   initTimer();
 }
 
@@ -487,20 +513,39 @@ function stopRecording() {
   mediaRecorder.stop();
 }
 
-function soundPusher(frame) {
-  if (allowedToPush) {
-    sound.operations[time] = frame;
-    allowedToPush = false;
-  }
-}
-
 var time = 0;
+var timer = null;
 
 function initTimer(duration) {
-  setInterval(function() {
+  timer = setInterval(function() {
     time += 10;
     recordTimer.html(moment.utc(time).format("mm:ss:SSSS"));
   }, 10);
+}
+
+function stopTimer() {
+  clearInterval(timer);
+  recordTimer.html("00:00:0000");
+}
+
+function resetAudioObject(audioCtxLink) {
+  if (audioCtxS[audioCtxLink].audioCtx) {
+    audioCtxS[audioCtxLink].audioCtx.close();
+    clearInterval(audioCtxS[audioCtxLink].timerInterval);
+    audioCtxS[audioCtxLink].playedDom.html("00:00");
+    audioCtxS[audioCtxLink].durationDom.html("00:00");
+    audioCtxS[audioCtxLink].nameDom.html("");
+    $(".mixer__select-music-"+audioCtxLink).removeClass("active");
+  }
+
+  audioCtxS[audioCtxLink] = createAudioCtxObject(audioCtxLink);
+}
+
+function resetMixer() {
+  ["first", "second"].map(function(i) {
+    resetAudioObject(i);
+  });
+  playedOnce = false;
 }
 
 var alreadyStartedOne = false;
@@ -512,6 +557,7 @@ function Audio(audioCtxLink, musicLink, musicInfo) {
   this.request = null;
 
   this.initAudio = function() {
+    $("#plate__" + this.audioCtxLink).attr("src", "/img/plate_3.png").addClass("spinning");
     alreadyStartedOne = true;
 
     var audioCtxLink = this.audioCtxLink;
@@ -519,6 +565,7 @@ function Audio(audioCtxLink, musicLink, musicInfo) {
     var musicInfo = this.musicInfo;
 
     var audioObject = audioCtxS[audioCtxLink];
+    audioObject.bpm = this.musicInfo.bpm;
 
     // try {
     //   window.audioCtx = window.AudioContext || window.webkitAudioContext;
@@ -532,6 +579,7 @@ function Audio(audioCtxLink, musicLink, musicInfo) {
     var ourContext = audioObject.audioCtx;
     var ourAnalyser = audioObject.analyser;
     audioObject.nameDom.html(musicInfo.name + " - " + musicInfo.author);
+    audioObject.bpmDom.html(audioObject.bpm);
     audioObject.source = ourContext.createBufferSource();
     var gainNode = ourContext.createGain();
     this.request = new XMLHttpRequest();
@@ -544,6 +592,9 @@ function Audio(audioCtxLink, musicLink, musicInfo) {
         audioData,
         function(buffer) {
           audioObject.source.buffer = buffer;
+          
+          var canvas = $("#mixer__"+audioCtxLink+"-seek")[0];
+          drawBuffer(canvas.width, canvas.height, canvas.getContext("2d"), buffer);
 
           songDuration = moment.duration(buffer.duration, "seconds");
           audioObject.duration = songDuration;
@@ -551,7 +602,17 @@ function Audio(audioCtxLink, musicLink, musicInfo) {
             moment.utc(songDuration.as("milliseconds")).format("mm:ss")
           );
 
-          setInterval(function() {
+          audioObject.seekTo = function(sec) {
+            audioObject.source.stop();
+            audioObject.source = ourContext.createBufferSource();
+            audioObject.source.buffer = buffer;
+            audioObject.source.start(0, sec);
+            audioObject.source.connect(ourAnalyser);
+          }.bind(this);
+
+          window.buffAudio = new BuffAudio(ourContext, audioObject.source);
+
+          audioObject.timerInterval = setInterval(function() {
             audioObject.playedDom.html(
               moment
                 .utc(
@@ -618,6 +679,7 @@ function Audio(audioCtxLink, musicLink, musicInfo) {
           audioObject.filterControls.rate = function(val) {
             var rateValue = val;
             audioObject.filterInstances.rate.value = rateValue;
+            audioObject.bpmDom.html(Math.ceil(rateValue * audioObject.bpm));
             audioObject.filters.rate = rateValue;
           };
 
@@ -642,10 +704,17 @@ function Audio(audioCtxLink, musicLink, musicInfo) {
                     "%"
                 );
               });
-              window.requestAnimationFrame(renderFFT);
+              audioObject.analyserAnimation = window.requestAnimationFrame(renderFFT);
             };
-            renderFFT();
+            audioObject.analyserAnimation = renderFFT();
           })();
+
+          var plates = {
+            first: "/img/plate_1.png",
+            second: "/img/plate_2.png"
+          }
+
+          $("#plate__" + audioCtxLink).attr("src", plates[audioCtxLink]).removeClass("spinning");
         },
         function(e) {
           "Error with decoding audio data" + e.err;
