@@ -4408,6 +4408,10 @@ img {
     transform: scale(1);
     left: 0;
   }
+
+  .main_menu a{
+    letter-spacing: 0;
+  }
 }
 
 /* Medium Devices, Desktops */

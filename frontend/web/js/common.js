@@ -337,27 +337,60 @@ $(function(){
 			}), '*');
 		},300);
 
-		// setTimeout(function(){
-			
-		// },300);
+		setTimeout(function(){
+			player.contentWindow.postMessage(JSON.stringify({
+				type: 'player:pause',
+				data: {}
+			}), '*');
+		},200);
 
 
-		// var topPos = $('.video_section').offset().top;
-		// var count = 1;
+		var topPos = $('.video_section').offset().top;
+		var count = 0;
 
-		// $(window).scroll(function() {
-		// 	var top = $(document).scrollTop();
 
-		// 	if(top > topPos && count == 1){
-		// 		// console.log(count);
-		// 		player.contentWindow.postMessage(JSON.stringify({
-		// 			type: 'player:play',
-		// 			data: {}
-		// 		}), '*');
-				
-		// 	}
-		// 	count++;
-		// });
+
+		var topPos = $('.video_section').offset().top;
+		$(window).scroll(function() {
+			var win_w = $(window).width();
+			if(win_w > 992){
+				var top = $(document).scrollTop(),
+				    pip = $('.video_section').offset().top + $('.video_section').outerHeight();
+
+				if (top > topPos && top < pip){
+					if (count == 0) {
+						player.contentWindow.postMessage(JSON.stringify({
+							type: 'player:play',
+							data: {}
+						}), '*');
+						console.log("1")
+						count++;
+					}
+				} 
+				else if (top > pip) {
+					if (count == 1) {
+						player.contentWindow.postMessage(JSON.stringify({
+							type: 'player:pause',
+							data: {}
+						}), '*');
+						console.log("2")
+						count--;
+					}
+				}
+				else {
+					if (count == 1) {
+						player.contentWindow.postMessage(JSON.stringify({
+							type: 'player:pause',
+							data: {}
+						}), '*');
+						console.log("3")
+						count--;
+					}
+				}
+			}//if(win_w > 992)
+		});
+
+
 
 
 		// player.contentWindow.postMessage(JSON.stringify({
@@ -367,6 +400,10 @@ $(function(){
 	}//if
 
 })
+
+
+
+
 
 
 
