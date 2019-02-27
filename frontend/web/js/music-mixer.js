@@ -488,7 +488,7 @@ function startRecording() {
       console.log("SENDING FILE");
 
       var formData = new FormData();
-      formData.append("audio", ourFile);
+      formData.append("Post['audio']", ourFile);
 
       var xhr = new XMLHttpRequest();
       xhr.open("post", "/personal/add-post");
