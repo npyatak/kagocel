@@ -127,3 +127,49 @@ use yii\helpers\Url;
 	<!-- contain -->
 </section>
 <!-- you_prize -->
+
+
+<div class="popup_bg">
+        
+    <div class="popup_block style_1" data-flag="1">
+        <div class="popup_decor">
+            <span class="top"></span>
+            <span class="bottom"></span>
+        </div>
+        <img class="exit_popup" src="/img/close_middle.svg" alt="close">
+        <p class="popup_text">Пожалуйста, для начала выберите трек из списка снизу</p>
+        <div class="center">
+            <button class="button_1 point close_popup"><span>хорошо</span></button>
+        </div>      
+    </div>
+    <!-- popup_block -->
+
+    <div class="popup_block style_1" data-flag="2">
+        <div class="popup_decor">
+            <span class="top"></span>
+            <span class="bottom"></span>
+        </div>
+        <img class="exit_popup" src="/img/close_middle.svg" alt="close">
+        <p class="popup_text">Пожалуйста, сначала выберите оба трека в списке снизу.</p>
+        <div class="center">
+            <button class="button_1 point close_popup"><span>хорошо</span></button>
+        </div>      
+    </div>
+    <!-- popup_block -->
+
+    <div class="popup_block style_1 wide" data-flag="3">
+        <div class="popup_decor">
+            <span class="top"></span>
+            <span class="bottom"></span>
+        </div>
+        <img class="exit_popup" src="/img/close_middle.svg" alt="close">
+        <p class="section_name">Данные успешно обн<i>о</i>влены</p>
+        <div class="center">
+            <p class="popup_text">Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют</p>
+            <button class="button_1 point close_popup"><span>хорошо</span></button>
+        </div>      
+    </div>
+    <!-- popup_block -->
+        
+</div>
+<!-- popup_bg -->

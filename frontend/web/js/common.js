@@ -428,6 +428,8 @@ function show_popup(form_number){
 	// alert(form_number);
 }
 
+// show_popup(1);
+
 function close_popup(){
 	$(".popup_bg").css('opacity','0').delay(200).queue(function () {  // delay() позволяет сделать паузу между изменениями свойств
 		$(".popup_bg").css('display', 'none');

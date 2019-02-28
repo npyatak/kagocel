@@ -167,7 +167,20 @@ after_header - говорит о том, что этот блок идет по�
 	</div>
 	<!-- popup_block -->
 
-	<div class="popup_block style_1 wide" data-flag="2">
+	<div class="popup_block style_1" data-flag="2">
+		<div class="popup_decor">
+			<span class="top"></span>
+			<span class="bottom"></span>
+		</div>
+		<img class="exit_popup" src="/img/close_middle.svg" alt="close">
+		<p class="popup_text">Пожалуйста, сначала выберите оба трека в списке снизу.</p>
+		<div class="center">
+			<button class="button_1 point close_popup"><span>хорошо</span></button>
+		</div>		
+	</div>
+	<!-- popup_block -->
+
+	<div class="popup_block style_1 wide" data-flag="3">
 		<div class="popup_decor">
 			<span class="top"></span>
 			<span class="bottom"></span>
