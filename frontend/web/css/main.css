@@ -202,12 +202,54 @@ img {
 
 .footer_bottom {
   background-color: #ededed;
-  font-size: 4.85vw;
+  font-size: 4.9vw;
   font-family: "Bebas", sans-serif;
-  text-align: justify;
+  text-align: center;
   padding: 20px 15px;
   text-transform: uppercase;
 }
+
+
+.footer_bottom > div{
+  display: inline-block;
+  text-align: justify;
+}
+
+.footer_bottom span{
+  letter-spacing: .15vw;
+  display: block;
+  /*font-size: 5vw;*/
+}
+
+.footer_bottom p{
+  display: inline-block;
+  
+}
+
+@media(max-width: 1200px){
+  .footer_bottom{
+    font-size: 4.87vw;
+  }
+  .footer_bottom span{
+    letter-spacing: .13vw;
+  }
+}
+@media(max-width: 930px){
+  .footer_bottom{
+    font-size: 4.8vw;
+  }
+}
+@media(max-width: 768px){
+  .footer_bottom{
+    font-size: 30px;
+  }
+  .footer_bottom span{
+    display: inline;
+    margin-right: 10px;
+  }
+}
+
+
 
 .logo_block {
   max-width: 260px;
@@ -851,6 +893,10 @@ img {
 
 .section_desc {
   font-size: 21px;
+  margin-top: 10px;
+}
+.section_desc_small{
+  font-size: 14px;
   margin-top: 10px;
 }
 
@@ -3945,7 +3991,11 @@ img {
 }
 
 .about_product .section_desc {
-  max-width: 700px;
+  max-width: 600px;
+  margin: 20px auto 0;
+}
+.about_product .section_desc_small {
+  max-width: 600px;
   margin: 20px auto 0;
 }
 
@@ -4902,7 +4952,7 @@ img {
     max-width: 320px;
   }
   .footer_bottom {
-    font-size: 21px;
+    font-size: 20px;
   }
   .footer_bottom br {
     display: none;
