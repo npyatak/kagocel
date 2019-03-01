@@ -7,8 +7,15 @@
 // ];
 
 $melodies = [
-	['id' => 0, 'url' => '/audio/kino.mp3', 'name' => 'Когда твоя девушка больна', 'author' => 'Кино', 'bpm' => 140],
-	['id' => 1, 'url' => '/audio/splean.mp3', 'name' => 'Дочь самурая', 'author' => 'Сплин', 'bpm' => 140]
+	['id' => 0, 'url' => '/audio/abstract_technology_corporate.mp3', 'name' => 'Abstract technology corporate', 'author' => '', 'bpm' => 140],
+	['id' => 1, 'url' => '/audio/ambient_tech_hip_hop_middle.mp3', 'name' => 'Tech hip hop middle', 'author' => '', 'bpm' => 140],
+	['id' => 1, 'url' => '/audio/ambient_tech_hip_hop.mp3', 'name' => 'Tech hip hop', 'author' => '', 'bpm' => 140],
+	['id' => 1, 'url' => '/audio/ambient_tech_hip_hop_short.mp3', 'name' => 'Tech hip hop short', 'author' => '', 'bpm' => 140],
+	['id' => 1, 'url' => '/audio/ambient_tech_hip_hop_short_2.mp3', 'name' => 'Tech hip hop short 2', 'author' => '', 'bpm' => 140],
+	['id' => 1, 'url' => '/audio/ambient_tech_hip_hop_teaser.mp3', 'name' => 'Tech hip hop teaser', 'author' => '', 'bpm' => 140],
+	['id' => 1, 'url' => '/audio/just_trap.mp3', 'name' => 'Just trap', 'author' => '', 'bpm' => 140],
+	['id' => 1, 'url' => '/audio/motivation.mp3', 'name' => 'Motivation', 'author' => '', 'bpm' => 140],
+	['id' => 1, 'url' => '/audio/this_technology.mp3', 'name' => 'This technology', 'author' => '', 'bpm' => 140]
 ];
 
 $sounds = [
