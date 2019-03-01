@@ -14,7 +14,16 @@ $(document).on("click", ".post .action", function(e) {
   var obj = $(this);
   var post = $(this).closest(".post");
 
-  if (obj.hasClass("active")) {
+  if($(this).hasClass("active")) {
+    if($(this).hasClass("share")) {
+      if(typeof $(this).data('data-ga-click') !== 'undefined') {
+          ga('send', 'event', 'click', $(this).data('data-ga-click'));
+      }
+      
+      url = getShareUrl($(this));
+      window.open(url,'','toolbar=0,status=0,width=626,height=500');
+    }
+
     $.ajax({
       type: "GET",
       url: "/site/post-action",

@@ -214,13 +214,23 @@ AppAsset::register($this);
             </div>
         </footer>
     </div>
-            
+
+    <div class="popup_bg">
+        <div class="popup_block style_1 wide">
+            <div class="popup_decor">
+                <span class="top"></span>
+                <span class="bottom"></span>
+            </div>
+            <img class="exit_popup" src="/img/close_middle.svg" alt="close">
+            <p class="section_name"></p>
+            <div class="center">
+                <p class="popup_text"></p>
+                <button class="button_1 point close_popup"><span>хорошо</span></button>
+            </div>      
+        </div>
+    </div>
+
     <?= Alert::widget() ?>
-    
-
-    <?php if($_SERVER['HTTP_HOST'] != 'kagocel.local'):?>
-
-    <?php endif;?>
 
     <?php $this->endBody() ?>
 </body>

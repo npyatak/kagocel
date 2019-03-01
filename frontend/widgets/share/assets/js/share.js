@@ -1,16 +1,3 @@
-$(document).on('click', 'a.share', function(e) {
-    if($(this).hasClass("active")) {
-        if(typeof $(this).data('data-ga-click') !== 'undefined') {
-            ga('send', 'event', 'click', $(this).data('data-ga-click'));
-        }
-        
-        url = getShareUrl($(this));
-        window.open(url,'','toolbar=0,status=0,width=626,height=436');
-    }
-
-    return false;
-});
-
 function getShareUrl(obj) {
     if(obj.data('soc') == 'vk') {
         url  = 'http://vkontakte.ru/share.php?';

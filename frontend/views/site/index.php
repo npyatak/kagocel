@@ -77,9 +77,6 @@ use yii\helpers\Url;
 </section>
 <!-- video_section -->
 
-
-
-
 <section class="mixer_main pt_big pb_big">
 	<div class="contain">
 		<div class="section_top">
@@ -88,13 +85,8 @@ use yii\helpers\Url;
 		</div>
 
 		<?=$this->render('@frontend/views/personal/_mixer');?>
-
-		<?=$this->render('@frontend/views/personal/_playlist');?>
 	</div>
 </section>
-
-
-
 
 <section class="you_prize dark_bg bottom pt_big pb_big">
 	<div class="contain">
@@ -103,8 +95,6 @@ use yii\helpers\Url;
 			<h3 class="section_name">Тв<i>о</i>и призы</h3>
 		</div>
 
-
-		
 		<div class="prize_top">
 			<img class="tickets" src="img/tickets.png" alt="img">
 			<img class="sticker" src="img/sticker.png" alt="img">
@@ -127,3 +117,12 @@ use yii\helpers\Url;
 	<!-- contain -->
 </section>
 <!-- you_prize -->
+
+<?php $script = "
+    $('#mixer').click(function(e) {
+    	e.preventDefault();
+    	window.location.href = '/personal';
+    })
+";
+
+$this->registerJs($script, yii\web\View::POS_END);?>
