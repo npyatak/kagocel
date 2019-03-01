@@ -56,11 +56,11 @@ use yii\widgets\ActiveForm;
 				
 				<div class="record_buttons">
 					
-					<div class="plus_minus">
+					<!-- <div class="plus_minus">
 						<div class="plus black_gray">-</div>
 						<div class="center black_gray"><i class="fa fa-retweet" aria-hidden="true"></i> 4</div>
 						<div class="minus black_gray">+</div>
-					</div>
+					</div> -->
 
 					<div class="play_stop black_gray trackLeft" id="mixer__first-track-play-button">
 						<i class="fa fa-play" aria-hidden="true"></i>
@@ -188,11 +188,12 @@ use yii\widgets\ActiveForm;
 						<img class="fa-pause" src="/img/pause.svg" alt="pause">
 					</div>
 
-					<div class="plus_minus orange">
+					<!-- <div class="plus_minus orange">
 						<div class="plus black_gray">-</div>
 						<div class="center black_gray"><i class="fa fa-retweet" aria-hidden="true"></i> 4</div>
 						<div class="minus black_gray">+</div>
-					</div>
+					</div> -->
+					
 				</div>
 				<div class="record_slider_horizontal_1" style="margin-top: 40px;">
 					<p><span id="second__bpm"></span>bpm</p>
@@ -232,7 +233,7 @@ use yii\widgets\ActiveForm;
 				<img class="go_volume" src="/img/volume.svg" alt="icon">
 			</div>
 			<div class="record_img">
-				<div class="play">
+				<div class="play" id="mixer__result-play-button">
 					<i class="fa fa-play" aria-hidden="true"></i>
 					<img class="fa-pause" src="/img/pause.svg" alt="pause">
 				</div>

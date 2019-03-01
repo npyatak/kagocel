@@ -11,7 +11,14 @@ $melodies = [
 	['id' => 1, 'url' => '/audio/splean.mp3', 'name' => 'Дочь самурая', 'author' => 'Сплин', 'bpm' => 140]
 ];
 
-$sounds = scandir(__DIR__.'/../../web/sounds');
+$sounds = [
+	['url' => '/audio/additional_tracks/voice_2.mp3', 'name' => 'Voice 2'],
+	['url' => '/audio/additional_tracks/voice_3.mp3', 'name' => 'Voice 3'],
+	['url' => '/audio/additional_tracks/voice_4.mp3', 'name' => 'Voice 4'],
+	['url' => '/audio/additional_tracks/voice_5.mp3', 'name' => 'Voice 5'],
+	['url' => '/audio/additional_tracks/voice_6.mp3', 'name' => 'Voice 6'],
+	['url' => '/audio/additional_tracks/voice_7.mp3', 'name' => 'Voice 7'],
+]
 ?>
 
 <div class="mixer_playlist pb_big">
@@ -44,15 +51,13 @@ $sounds = scandir(__DIR__.'/../../web/sounds');
 		<p class="playlist_name">Дополнительные опции</p>
 		<div class="playlist">
 			<ul>
-				<?php foreach ($sounds as $key => $sound):?>
-					<?php if(!in_array($sound, [".",".."])):?>
-						<li class="play_li active" data-url="/sounds/<?=$sound;?>" data-id="<?=$key + 1;?>">
+				<?php foreach ($sounds as $key => $s):?>
+						<li class="play_li mixer__additional-track-player" data-url="<?=$s['url'];?>" data-id="<?= $s['name'] ?>">
 							<span class="num"><?=$key + 1;?>.</span>
 							<div>
-								<p class="name_sound"><?=$sound;?></p>
+								<p class="name_sound"><?=$s['name'];?></p>
 							</div>
 						</li>
-					<?php endif;?>
 					<?php if($key >= 30) break;?>
 				<?php endforeach;?>
 			</ul>

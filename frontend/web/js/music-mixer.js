@@ -475,9 +475,9 @@ function startRecording() {
     $("#mixer").css({ display: "none" });
 
     setTimeout(function() {
-      $("#mixer__done-message .listen_done").append(
+      $("body").append(
         $(
-          "<audio controls style='margin-top: 20px;'><source src='" +
+          "<audio controls style='display: none' id='audio-result'><source src='" +
             url +
             "' type='audio/ogg' /></audio>"
         )
@@ -497,9 +497,14 @@ function startRecording() {
       $("#tryAgain").off("click");
     });
 
+    $("#mixer__result-play-button").on("click", function(e) {
+      e.stopPropagation();
+      $("#audio-result")[0].play();
+    })
+
     $("#tryAgain").on("click", function() {
       $("#mixer__done-message").css({ display: "none" });
-      $("#mixer__inner").css({ display: "block" });
+      $("#mixer").css({ display: "block" });
     });
 
 
@@ -724,3 +729,58 @@ function Audio(audioCtxLink, musicLink, musicInfo) {
     this.request.send();
   };
 }
+
+function Sample(url) {
+  this.url = url;
+  this.request = null;
+
+  this.getAudioBuffer = function(callback) {
+    console.log("we are here");
+    this.request = new XMLHttpRequest();
+    var request = this.request;
+    this.request.open("GET", this.url, true);
+    this.request.responseType = "arraybuffer";
+
+    this.request.onload = function() {
+      callback(request.response);
+    }
+
+    this.request.send();
+  }
+}
+
+function SampleAudioCtx() {
+  this.audioCtx = null;
+  this.stream = null;
+
+  this.init = function() {
+    this.audioCtx = new AudioContext();
+    this.stream = this.audioCtx.createMediaStreamDestination();
+    console.log(this.audioCtx, "AUDIO CTX");
+  }
+
+  this.playSample = function(link) {
+    var source = this.audioCtx.createBufferSource();
+    console.log("step 1")
+    var sample = new Sample(link);
+    console.log("step 2")
+    sample.getAudioBuffer(function(data) {
+      console.log('WE ARE HERE');
+      this.audioCtx.decodeAudioData(data, function(buffer) {
+        source.buffer = buffer;
+        source.connect(this.audioCtx.destination);
+        source.loop = false;
+        source.start(0);
+      }.bind(this))
+    }.bind(this));
+  }
+}
+
+window.sampleAudioCtx = new SampleAudioCtx();
+sampleAudioCtx.init();
+
+$(".mixer__additional-track-player").on("click", function(e) {
+  var audioUrl = $(this).data("url");
+  console.log(audioUrl);
+  sampleAudioCtx.playSample(audioUrl);
+})
