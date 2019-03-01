@@ -77,9 +77,6 @@ use yii\helpers\Url;
 </section>
 <!-- video_section -->
 
-
-
-
 <section class="mixer_main pt_big pb_big">
 	<div class="contain">
 		<div class="section_top">
@@ -88,13 +85,8 @@ use yii\helpers\Url;
 		</div>
 
 		<?=$this->render('@frontend/views/personal/_mixer');?>
-
-		<?=$this->render('@frontend/views/personal/_playlist');?>
 	</div>
 </section>
-
-
-
 
 <section class="you_prize dark_bg bottom pt_big pb_big">
 	<div class="contain">
@@ -103,8 +95,6 @@ use yii\helpers\Url;
 			<h3 class="section_name">Тв<i>о</i>и призы</h3>
 		</div>
 
-
-		
 		<div class="prize_top">
 			<img class="tickets" src="img/tickets.png" alt="img">
 			<img class="sticker" src="img/sticker.png" alt="img">
@@ -128,48 +118,11 @@ use yii\helpers\Url;
 </section>
 <!-- you_prize -->
 
+<?php $script = "
+    $('#mixer').click(function(e) {
+    	e.preventDefault();
+    	window.location.href = '/personal';
+    })
+";
 
-<div class="popup_bg">
-        
-    <div class="popup_block style_1" data-flag="1">
-        <div class="popup_decor">
-            <span class="top"></span>
-            <span class="bottom"></span>
-        </div>
-        <img class="exit_popup" src="/img/close_middle.svg" alt="close">
-        <p class="popup_text">Пожалуйста, для начала выберите трек из списка снизу</p>
-        <div class="center">
-            <button class="button_1 point close_popup"><span>хорошо</span></button>
-        </div>      
-    </div>
-    <!-- popup_block -->
-
-    <div class="popup_block style_1" data-flag="2">
-        <div class="popup_decor">
-            <span class="top"></span>
-            <span class="bottom"></span>
-        </div>
-        <img class="exit_popup" src="/img/close_middle.svg" alt="close">
-        <p class="popup_text">Пожалуйста, сначала выберите оба трека в списке снизу.</p>
-        <div class="center">
-            <button class="button_1 point close_popup"><span>хорошо</span></button>
-        </div>      
-    </div>
-    <!-- popup_block -->
-
-    <div class="popup_block style_1 wide" data-flag="3">
-        <div class="popup_decor">
-            <span class="top"></span>
-            <span class="bottom"></span>
-        </div>
-        <img class="exit_popup" src="/img/close_middle.svg" alt="close">
-        <p class="section_name">Данные успешно обн<i>о</i>влены</p>
-        <div class="center">
-            <p class="popup_text">Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют</p>
-            <button class="button_1 point close_popup"><span>хорошо</span></button>
-        </div>      
-    </div>
-    <!-- popup_block -->
-        
-</div>
-<!-- popup_bg -->
+$this->registerJs($script, yii\web\View::POS_END);?>

@@ -63,13 +63,9 @@ class Alert extends \yii\bootstrap\Widget
 
             foreach ((array) $flash as $i => $message) {
                 $script .= "
-                    new PNotify({
-                        delay: 15000,
-                        text: '$message',
-                        type: '$type',
-
-                        addclass: 'pnotify-center',
-                    });
+                    var message = '$message';
+                    var type = '$type';
+                    show_popup(message, type);
                 ";
             }
 

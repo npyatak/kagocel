@@ -211,8 +211,7 @@ recordButton.on("click", function(e) {
       recording = false;
     }
   } else {
-    // alert("Пожалуйста, сначала выберите оба трека в списке снизу.");
-    show_popup(2);
+    show_popup("Пожалуйста, сначала выберите оба трека в списке снизу.");
   }
 });
 
@@ -357,9 +356,7 @@ function initAudioProccesser(audioCtxLink, e) {
   var context = audioCtxS[audioCtxLink].audioCtx;
   var container = $(e.target).closest(".mixer_bottom_item");
   if (!context) {
-    show_popup(1);
-    // alert("Пожалуйста, для начала выберите трек из списка снизу.");
-
+    show_popup("Пожалуйста, для начала выберите трек из списка снизу.");
   } else if (context.state === "running") {
     playedOnce = true;
     context.suspend();

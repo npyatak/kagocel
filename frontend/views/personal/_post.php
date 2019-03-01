@@ -5,7 +5,7 @@ use yii\helpers\Html;
 use common\models\PostAction;
 ?>
 
-<div class="track_item" id="post_<?=$post->id;?>" data-id="<?=$post->id;?>">
+<div class="post track_item" id="post_<?=$post->id;?>" data-id="<?=$post->id;?>">
 	<audio src="<?=$post->audioFileUrl;?>"></audio>
 	<div class="spectrogram">
 		<!-- картинка просто для демонстрации!!! -->
@@ -33,8 +33,11 @@ use common\models\PostAction;
 			<p>Трек №<?=$post->id;?></p>
 		</div>
 		<div class="bottom">
-			<p><span>Баллы:</span> <?=$post->score;?></p>
+			<p><span>Баллы:</span> <span class="score"><?=$post->score;?></span></p>
 			<a class="link" href="#"><i class="fa fa-link" aria-hidden="true"></i></a>
+			<div class="track_share">
+            	<?=\frontend\widgets\share\ShareWidget::widget(['post' => $post]);?>
+			</div>
 		</div>
 	</div>
 </div>

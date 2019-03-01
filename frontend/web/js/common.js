@@ -418,8 +418,8 @@ $(".section_name.show span").on("click", function(){
 
 
 // Открываем нужный попап
-function show_popup(form_number){
-	$("[data-flag="+form_number+"]").css("display","inline-block");
+function show_popup(message){
+	$(".popup_block").css("display","inline-block").find('.popup_text').html(message);
 	$(".popup_bg").css('display','block').delay(100).queue(function () {  // delay() позволяет сделать паузу 
 		$(".popup_bg").css('opacity', '1');
 		$("body").css('overflow-y','hidden'); 
@@ -458,7 +458,7 @@ $(".exit_popup, .close_popup").on("click", function(){
 });
 
 
-$(document).on('click', 'a, button', function(e) {
+$(document).on('click', '*', function(e) {
     if(typeof $(this).attr('data-ga-click') !== 'undefined') {
         ga('send', 'event', 'click', $(this).attr('data-ga-click'));
     }

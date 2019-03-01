@@ -24,7 +24,7 @@ class CController extends Controller
 
         if(!Yii::$app->user->isGuest && Yii::$app->user->identity->isUnder18()) {
             Yii::$app->user->logout();
-            Yii::$app->getSession()->setFlash('error', 'В соответствии с п. 3.5. <a href="'.Url::toRoute(['site/rules']).'">правил конкурса</a> в Конкурсе могут принять участие граждане Российской Федереции, достигшие 18 лет');            
+            Yii::$app->getSession()->setFlash('error', 'В соответствии с п. 3.4. <a href="'.Url::toRoute(['site/rules']).'">правил конкурса</a> в Конкурсе могут принять участие граждане Российской Федереции, достигшие 18 лет');            
         }
 
 
