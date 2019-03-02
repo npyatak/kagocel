@@ -69,7 +69,7 @@ use yii\widgets\ActiveForm;
 
 				</div>
 				<div class="record_slider_horizontal_1" style="margin-top: 40px;">
-					<p><span id="first__bpm"></span>bpm</p>
+					<p><span id="first__bpm"></span>bpm (скорость)</p>
 					<div id="mixer__first-track-playback-rate" class="rsh_1"></div>
 				</div>
 				<!-- record_buttons -->
@@ -90,7 +90,7 @@ use yii\widgets\ActiveForm;
 							<span class="color_circle"></span>
 							<div id="mixer__first-track-mid-filter" class="knob"></div>
 							<span class	="shadow black_gray"></span>
-							<p class="name">mid</p>
+							<p class="name">Миды</p>
 						</div>
 
 						<div class="wrap_knob">
@@ -98,7 +98,7 @@ use yii\widgets\ActiveForm;
 							<span class="color_circle"></span>
 							<div id="mixer__first-track-bass-filter" class="knob"></div>
 							<span class	="shadow black_gray"></span>
-							<p class="name">bass</p>
+							<p class="name">Басы</p>
 						</div>
 
 						<div class="wrap_knob">
@@ -106,13 +106,14 @@ use yii\widgets\ActiveForm;
 							<span class="color_circle"></span>
 							<div id="mixer__first-track-high-filter" class="knob"></div>
 							<span class	="shadow black_gray"></span>
-							<p class="name">high</p>
+							<p class="name">Высокие</p>
 						</div>
 					</div>
 					<!-- mbi_item -->
 
 
 					<div class="mbi_item">
+						<div style="text-align: center">Громкость</div>
 						<!-- <div class="record_slider_horizontal_1">
 							<p><span>140</span>bpm</p>
 							<div class="rsh_1"></div>
@@ -141,7 +142,7 @@ use yii\widgets\ActiveForm;
 							<span class="color_circle orange"></span>
 							<div id="mixer__second-track-mid-filter" class="knob"></div>
 							<span class	="shadow black_gray"></span>
-							<p class="name">mid</p>
+							<p class="name">Миды</p>
 						</div>
 
 
@@ -150,7 +151,7 @@ use yii\widgets\ActiveForm;
 							<span class="color_circle orange"></span>
 							<div id="mixer__second-track-bass-filter" class="knob"></div>
 							<span class	="shadow black_gray"></span>
-							<p class="name">bass</p>
+							<p class="name">Басы</p>
 						</div>
 
 						<div class="wrap_knob">
@@ -158,7 +159,7 @@ use yii\widgets\ActiveForm;
 							<span class="color_circle orange"></span>
 							<div id="mixer__second-track-high-filter" class="knob"></div>
 							<span class="shadow black_gray"></span>
-							<p class="name">high</p>
+							<p class="name">Высокие</p>
 						</div>
 					</div>
 					<!-- mbi_item -->
@@ -196,7 +197,7 @@ use yii\widgets\ActiveForm;
 					
 				</div>
 				<div class="record_slider_horizontal_1" style="margin-top: 40px;">
-					<p><span id="second__bpm"></span>bpm</p>
+					<p><span id="second__bpm"></span>bpm (скорость)</p>
 					<div id="mixer__second-track-playback-rate" class="rsh_1"></div>
 				</div>
 				<!-- record_buttons -->

@@ -85,6 +85,7 @@ use yii\helpers\Url;
 		</div>
 
 		<?=$this->render('@frontend/views/personal/_mixer');?>
+		<?=$this->render('@frontend/views/personal/_playlist');?>
 	</div>
 </section>
 
@@ -118,11 +119,15 @@ use yii\helpers\Url;
 </section>
 <!-- you_prize -->
 
-<?php $script = "
-    $('#mixer').click(function(e) {
-    	e.preventDefault();
-    	window.location.href = '/personal';
-    })
-";
+<?php 
 
-$this->registerJs($script, yii\web\View::POS_END);?>
+// $script = "
+//     $('#mixer').click(function(e) {
+//     	e.preventDefault();
+//     	window.location.href = '/personal';
+//     })
+// ";
+
+// $this->registerJs($script, yii\web\View::POS_END);
+
+?>

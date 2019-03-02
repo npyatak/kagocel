@@ -56,6 +56,10 @@ $sounds = [
 
 	<div class="playlist_right">
 		<p class="playlist_name">Дополнительные опции</p>
+		<div class="record_slider_horizontal_1" style="margin-bottom: 40px; margin-right: 20px; margin-left: auto">
+			<p>Громкость</p>
+			<div id="mixer__samples-volume" class="rsh_1"></div>
+		</div>
 		<div class="playlist">
 			<ul>
 				<?php foreach ($sounds as $key => $s):?>
