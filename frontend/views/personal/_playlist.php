@@ -233,7 +233,7 @@ $sounds = [
 								<p class="name_sound"><?=$s['name'];?></p>
 							</div>
 						</li>
-					<?php if($key >= 30) break;?>
+					<?php if($key >= 120) break;?>
 				<?php endforeach;?>
 			</ul>
 		</div>
