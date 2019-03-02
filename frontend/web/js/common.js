@@ -332,6 +332,13 @@ $(function(){
 			}), '*');
 		},300);
 
+		player.contentWindow.postMessage(JSON.stringify({
+		    type: 'player:setVolume',
+		    data: {
+		            volume: 0.50//значение от 0 до 1
+		          }
+		}), '*');
+		
 		setTimeout(function(){
 			player.contentWindow.postMessage(JSON.stringify({
 				type: 'player:pause',

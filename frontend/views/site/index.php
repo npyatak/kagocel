@@ -70,7 +70,7 @@ use yii\helpers\Url;
 		</div>
 
 		<div class="video_player_wrap">
-			<iframe id="video_player" width="720" height="405" src="//rutube.ru/play/embed/11982280?quality=1&platform=someplatform" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowfullscreen></iframe>
+			<iframe id="video_player" width="720" height="405" src="//rutube.ru/play/embed/11982280?quality=1&platform=someplatform&autoplay=true" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowfullscreen allow="autoplay"></iframe>
 
 			
 	</div>
@@ -118,11 +118,15 @@ use yii\helpers\Url;
 </section>
 <!-- you_prize -->
 
-<?php $script = "
+<?php 
+
+$script = "
     $('#mixer').click(function(e) {
     	e.preventDefault();
     	window.location.href = '/personal';
     })
 ";
 
-$this->registerJs($script, yii\web\View::POS_END);?>
+$this->registerJs($script, yii\web\View::POS_END);
+
+?>

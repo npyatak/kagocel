@@ -60,6 +60,9 @@ var selectAsSecondButton = $(".mixer__select-music-second");
 var firstRateControl = $("#mixer__first-track-playback-rate");
 var secondRateControl = $("#mixer__second-track-playback-rate");
 
+// samples volume
+var samplesVolumeControl = $("#mixer__samples-volume");
+
 // VARIABLES
 // ------
 
@@ -127,13 +130,25 @@ var audioCtxS = {
   second: createAudioCtxObject("second")
 };
 
-var playedOnce = false;
+var playedOnce = {
+  first: false,
+  second: false
+};
+
+$("#mixer").on("click", function(e) {
+  if (!audioCtxS.first.audioCtx && !audioCtxS.second.audioCtx) {
+    e.stopPropagation();
+    e.preventDefault();
+
+    show_popup("Пожалуйста, сначала выберите оба трека в списке снизу.");
+  }
+})
 
 // EVENTS
 // ------
 
 selectAsFirstButton.on("click", function(e) {
-  if (!playedOnce) {
+  if (!playedOnce.first) {
     if (audioCtxS.first.audioCtx) {
       resetAudioObject("first");
     }
@@ -159,7 +174,7 @@ selectAsFirstButton.on("click", function(e) {
 });
 
 selectAsSecondButton.on("click", function(e) {
-  if (!playedOnce) {
+  if (!playedOnce.second) {
     if (audioCtxS.second.audioCtx) {
       resetAudioObject("second");
     }
@@ -282,8 +297,8 @@ firstRateControl.slider({
   value: audioCtxS.first.filters.rate * 100,
   orientation: "horizontal",
   range: "min",
-  min: 0,
-  max: 200,
+  min: 80,
+  max: 120,
   animate: true,
   slide: function(event, ui) {
     audioCtxS.first.filterControls.rate(ui.value / 100);
@@ -294,13 +309,24 @@ secondRateControl.slider({
   value: audioCtxS.second.filters.rate * 100,
   orientation: "horizontal",
   range: "min",
-  min: 0,
-  max: 200,
+  min: 80,
+  max: 120,
   animate: true,
   slide: function(event, ui) {
     audioCtxS.second.filterControls.rate(ui.value / 100);
   }
 });
+
+samplesVolumeControl.slider({
+  value: 50,
+  orientation: "horizontal",
+  min: 0,
+  max: 100,
+  animate: true,
+  slide: function(event, ui) {
+    sampleAudioCtx.changeVolume(ui.value / 100)
+  }
+})
 
 function updateVolume(audioCtxLink) {
   var target = audioCtxS[audioCtxLink];
@@ -358,7 +384,7 @@ function initAudioProccesser(audioCtxLink, e) {
   if (!context) {
     show_popup("Пожалуйста, для начала выберите трек из списка снизу.");
   } else if (context.state === "running") {
-    playedOnce = true;
+    playedOnce[audioCtxLink] = true;
     context.suspend();
     $(e.target)
       .closest(".play_stop")
@@ -372,7 +398,7 @@ function initAudioProccesser(audioCtxLink, e) {
       line.css("height", "0 !important");
     });
   } else {
-    playedOnce = true;
+    playedOnce[audioCtxLink] = true;
     $(e.target)
       .closest(".play_stop")
       .addClass("active");
@@ -472,12 +498,13 @@ function startRecording() {
     stopTimer();
 
     $("#mixer__done-message").css({ display: "block" });
+    $(".mixer_playlist").css({ display: "none" });
     $("#mixer").css({ display: "none" });
 
     setTimeout(function() {
-      $("#mixer__done-message .listen_done").append(
+      $("body").append(
         $(
-          "<audio controls style='margin-top: 20px;'><source src='" +
+          "<audio controls style='display: none' id='audio-result'><source src='" +
             url +
             "' type='audio/ogg' /></audio>"
         )
@@ -493,13 +520,37 @@ function startRecording() {
       var xhr = new XMLHttpRequest();
       xhr.open("post", "/personal/add-post");
       xhr.send(formData);
+      xhr.onload = function() {
+        $("#mixer__done-message").css({ display: "none" });
+        $(".mixer_playlist").css({ display: "" });
+        $("#mixer").css({ display: "block" });
+        show_popup("Мы успешно отправили ваш трек на сервер!");
+      }
       $("#resultSend").off("click");
       $("#tryAgain").off("click");
     });
 
+    var playing = false;
+
+    $("#mixer__result-play-button").on("click", function(e) {
+      e.stopPropagation();
+      if (playing) {
+        $("#audio-result")[0].pause();
+        playing = false;
+      } else {
+        $("#audio-result")[0].play();
+        playing = true;
+      }
+    });
+
     $("#tryAgain").on("click", function() {
       $("#mixer__done-message").css({ display: "none" });
-      $("#mixer__inner").css({ display: "block" });
+      $(".mixer_playlist").css({ display: "" });
+      $("#mixer").css({ display: "block" });
+
+      $("mixer__result-play-button").off("click");
+
+      $("#audio-result").remove();
     });
 
 
@@ -545,7 +596,7 @@ function resetMixer() {
   ["first", "second"].map(function(i) {
     resetAudioObject(i);
   });
-  playedOnce = false;
+  playedOnce = { first: false, second: false };
 }
 
 var alreadyStartedOne = false;
@@ -724,3 +775,65 @@ function Audio(audioCtxLink, musicLink, musicInfo) {
     this.request.send();
   };
 }
+
+function Sample(url) {
+  this.url = url;
+  this.request = null;
+
+  this.getAudioBuffer = function(callback) {
+    console.log("we are here");
+    this.request = new XMLHttpRequest();
+    var request = this.request;
+    this.request.open("GET", this.url, true);
+    this.request.responseType = "arraybuffer";
+
+    this.request.onload = function() {
+      callback(request.response);
+    }
+
+    this.request.send();
+  }
+}
+
+function SampleAudioCtx() {
+  this.audioCtx = null;
+  this.stream = null;
+  this.gain = null;
+
+  this.init = function() {
+    this.audioCtx = new AudioContext();
+    this.stream = this.audioCtx.createMediaStreamDestination();
+    this.gain = this.audioCtx.createGain();
+    this.gain.gain.value = 0.5;
+    
+    this.gain.connect(this.audioCtx.destination);
+    console.log(this.audioCtx, "AUDIO CTX");
+  }
+
+  this.changeVolume = function(vol) {
+    this.gain.gain.value = vol;
+  }
+
+  this.playSample = function(link) {
+    var source = this.audioCtx.createBufferSource();
+    var sample = new Sample(link);
+    sample.getAudioBuffer(function(data) {
+      console.log('WE ARE HERE');
+      this.audioCtx.decodeAudioData(data, function(buffer) {
+        source.buffer = buffer;
+        source.connect(this.gain);
+        source.loop = false;
+        source.start(0);
+      }.bind(this))
+    }.bind(this));
+  }
+}
+
+window.sampleAudioCtx = new SampleAudioCtx();
+sampleAudioCtx.init();
+
+$(".mixer__additional-track-player").on("click", function(e) {
+  var audioUrl = $(this).data("url");
+  console.log(audioUrl);
+  sampleAudioCtx.playSample(audioUrl);
+})

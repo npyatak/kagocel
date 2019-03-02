@@ -210,7 +210,11 @@ AppAsset::register($this);
             <!-- footer_top -->
 
             <div class="footer_bottom">
-                <p>Имеются противопоказания. необходимо ознакомиться <br>с инструкцией или проконсультироваться со специалистом</p>
+                <div>
+                    <p>Имеются &nbsp;противопоказания. &nbsp;необходимо &nbsp;ознакомиться c</p>
+                    <p>инструкцией или проконсультироваться со специалистом</p>
+                    <!-- <svg id="Слой_1" data-name="Слой 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 90 1395 150"><defs><style>.cls-1{font-size:72px;font-family:"Bebas",sans-serif;font-weight:200;}</style></defs><title>text</title><text class="cls-1" x="-141.085" y="-105.614"><tspan x="0" y="147.607" xml:space="preserve">Имеются  противопоказания.  необходимо  ознакомиться с </tspan><tspan x="0" y="234.007">инструкцией или проконсультироваться со специалистом</tspan></text></svg> -->
+                </div>
             </div>
         </footer>
     </div>

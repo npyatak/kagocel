@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
 			
 			<!-- при добавлянии класса active когда начинается запись скрываем .text , и показываем timer + меняется цвет-->
 			<div class="recording_button black_gray" id="mixer__record-button" data-ga-click="click_record_button">
-				<p class="text">Запись</p>
+				<p class="text">Начать запись</p>
 				<p class="timer" id="mixer__record-timer">0:00:00</p>
 			</div>
 
@@ -56,11 +56,11 @@ use yii\widgets\ActiveForm;
 				
 				<div class="record_buttons">
 					
-					<div class="plus_minus">
+					<!-- <div class="plus_minus">
 						<div class="plus black_gray">-</div>
 						<div class="center black_gray"><i class="fa fa-retweet" aria-hidden="true"></i> 4</div>
 						<div class="minus black_gray">+</div>
-					</div>
+					</div> -->
 
 					<div class="play_stop black_gray trackLeft" id="mixer__first-track-play-button">
 						<i class="fa fa-play" aria-hidden="true"></i>
@@ -69,7 +69,7 @@ use yii\widgets\ActiveForm;
 
 				</div>
 				<div class="record_slider_horizontal_1" style="margin-top: 40px;">
-					<p><span id="first__bpm"></span>bpm</p>
+					<p><span id="first__bpm"></span>bpm (скорость)</p>
 					<div id="mixer__first-track-playback-rate" class="rsh_1"></div>
 				</div>
 				<!-- record_buttons -->
@@ -90,7 +90,7 @@ use yii\widgets\ActiveForm;
 							<span class="color_circle"></span>
 							<div id="mixer__first-track-mid-filter" class="knob"></div>
 							<span class	="shadow black_gray"></span>
-							<p class="name">mid</p>
+							<p class="name">Миды</p>
 						</div>
 
 						<div class="wrap_knob">
@@ -98,7 +98,7 @@ use yii\widgets\ActiveForm;
 							<span class="color_circle"></span>
 							<div id="mixer__first-track-bass-filter" class="knob"></div>
 							<span class	="shadow black_gray"></span>
-							<p class="name">bass</p>
+							<p class="name">Басы</p>
 						</div>
 
 						<div class="wrap_knob">
@@ -106,13 +106,14 @@ use yii\widgets\ActiveForm;
 							<span class="color_circle"></span>
 							<div id="mixer__first-track-high-filter" class="knob"></div>
 							<span class	="shadow black_gray"></span>
-							<p class="name">high</p>
+							<p class="name">Высокие</p>
 						</div>
 					</div>
 					<!-- mbi_item -->
 
 
 					<div class="mbi_item">
+						<div style="text-align: center">Громкость</div>
 						<!-- <div class="record_slider_horizontal_1">
 							<p><span>140</span>bpm</p>
 							<div class="rsh_1"></div>
@@ -141,7 +142,7 @@ use yii\widgets\ActiveForm;
 							<span class="color_circle orange"></span>
 							<div id="mixer__second-track-mid-filter" class="knob"></div>
 							<span class	="shadow black_gray"></span>
-							<p class="name">mid</p>
+							<p class="name">Миды</p>
 						</div>
 
 
@@ -150,7 +151,7 @@ use yii\widgets\ActiveForm;
 							<span class="color_circle orange"></span>
 							<div id="mixer__second-track-bass-filter" class="knob"></div>
 							<span class	="shadow black_gray"></span>
-							<p class="name">bass</p>
+							<p class="name">Басы</p>
 						</div>
 
 						<div class="wrap_knob">
@@ -158,7 +159,7 @@ use yii\widgets\ActiveForm;
 							<span class="color_circle orange"></span>
 							<div id="mixer__second-track-high-filter" class="knob"></div>
 							<span class="shadow black_gray"></span>
-							<p class="name">high</p>
+							<p class="name">Высокие</p>
 						</div>
 					</div>
 					<!-- mbi_item -->
@@ -188,14 +189,15 @@ use yii\widgets\ActiveForm;
 						<img class="fa-pause" src="/img/pause.svg" alt="pause">
 					</div>
 
-					<div class="plus_minus orange">
+					<!-- <div class="plus_minus orange">
 						<div class="plus black_gray">-</div>
 						<div class="center black_gray"><i class="fa fa-retweet" aria-hidden="true"></i> 4</div>
 						<div class="minus black_gray">+</div>
-					</div>
+					</div> -->
+					
 				</div>
 				<div class="record_slider_horizontal_1" style="margin-top: 40px;">
-					<p><span id="second__bpm"></span>bpm</p>
+					<p><span id="second__bpm"></span>bpm (скорость)</p>
 					<div id="mixer__second-track-playback-rate" class="rsh_1"></div>
 				</div>
 				<!-- record_buttons -->
@@ -232,7 +234,7 @@ use yii\widgets\ActiveForm;
 				<img class="go_volume" src="/img/volume.svg" alt="icon">
 			</div>
 			<div class="record_img">
-				<div class="play">
+				<div class="play" id="mixer__result-play-button">
 					<i class="fa fa-play" aria-hidden="true"></i>
 					<img class="fa-pause" src="/img/pause.svg" alt="pause">
 				</div>
