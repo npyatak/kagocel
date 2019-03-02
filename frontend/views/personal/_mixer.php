@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
 			
 			<!-- при добавлянии класса active когда начинается запись скрываем .text , и показываем timer + меняется цвет-->
 			<div class="recording_button black_gray" id="mixer__record-button" data-ga-click="click_record_button">
-				<p class="text">Запись</p>
+				<p class="text">Начать запись</p>
 				<p class="timer" id="mixer__record-timer">0:00:00</p>
 			</div>
 

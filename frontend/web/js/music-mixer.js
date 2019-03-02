@@ -530,15 +530,27 @@ function startRecording() {
       $("#tryAgain").off("click");
     });
 
+    var playing = false;
+
     $("#mixer__result-play-button").on("click", function(e) {
       e.stopPropagation();
-      $("#audio-result")[0].play();
-    })
+      if (playing) {
+        $("#audio-result")[0].pause();
+        playing = false;
+      } else {
+        $("#audio-result")[0].play();
+        playing = true;
+      }
+    });
 
     $("#tryAgain").on("click", function() {
       $("#mixer__done-message").css({ display: "none" });
       $(".mixer_playlist").css({ display: "" });
       $("#mixer").css({ display: "block" });
+
+      $("mixer__result-play-button").off("click");
+
+      $("#audio-result").remove();
     });
 
 
