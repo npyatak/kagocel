@@ -212,43 +212,35 @@ img {
 
 .footer_bottom > div{
   display: inline-block;
-  text-align: justify;
 }
 
 .footer_bottom span{
-  letter-spacing: .15vw;
   display: block;
-  /*font-size: 5vw;*/
 }
 
 .footer_bottom p{
-  display: inline-block;
-  
+  /*display: inline-block;*/
+  text-align: justify;
+  line-height: 1;
 }
 
-@media(max-width: 1200px){
-  .footer_bottom{
-    font-size: 4.87vw;
-  }
-  .footer_bottom span{
-    letter-spacing: .13vw;
-  }
-}
-@media(max-width: 930px){
+
+@media(max-width: 992px){
   .footer_bottom{
     font-size: 4.8vw;
   }
 }
 @media(max-width: 768px){
   .footer_bottom{
-    font-size: 30px;
-  }
-  .footer_bottom span{
-    display: inline;
-    margin-right: 10px;
+    font-size: 4.6vw;
   }
 }
-
+@media(max-width: 480px){
+  .footer_bottom p{
+    display: inline;
+    
+  }
+}
 
 
 .logo_block {
