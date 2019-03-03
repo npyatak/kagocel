@@ -1329,7 +1329,6 @@ img {
 .track_share .icon {
   width: 22px;
   height: 22px;
-  background-color: #818181;
   display: inline-block;
   position: relative;
   color: #fff;
@@ -1359,16 +1358,18 @@ img {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-
-.track_share .icon.active.vk {
+.track_share .icon.active.vk, .track_share .icon.active.fb, .track_share .icon.active.ok {
+  background-color: #818181;
+}
+.track_share .icon.vk {
   background-color: #4880c1;
 }
 
-.track_share .icon.active.odn {
+.track_share .icon.ok {
   background-color: #ed7230;
 }
 
-.track_share .icon.active.face {
+.track_share .icon.fb {
   background-color: #4267b1;
 }
 
