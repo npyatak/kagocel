@@ -14,9 +14,9 @@ class ShareWidget extends \yii\base\Widget
 	public $share = [
 		'title' => 'Прокачай свою заботу с Кагоцелом. #ПрокачайсвоюзаботуcКагоцелом #Кагоцел',
         'text' => 'Собери свой трек и выиграй призы. #ПрокачайсвоюзаботуcКагоцелом #Кагоцел',
-		'image' => '/img/01_kagocel_studia_souz_sharing_fb.jpg',
-		'image_vk' => '/img/01_kagocel_studia_souz_sharing_vk.jpg',
-		'image_ok' => '/img/01_kagocel_studia_souz_sharing_ok.jpg',
+		'image' => '/img/kagocel_studia_souz_sharing_fb.jpg',
+		'image_vk' => '/img/kagocel_studia_souz_sharing_vk.jpg',
+		'image_ok' => '/img/kagocel_studia_souz_sharing_ok.jpg',
 	];
 	public $wrap;
 	public $wrapClass;

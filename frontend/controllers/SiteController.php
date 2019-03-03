@@ -219,7 +219,7 @@ class SiteController extends CController
             $contact->save();
             
             if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', 'Спасибо за обратную связь! Мы скоро свяжемся с вами.');
+                Yii::$app->session->setFlash('success', 'Спасибо, ваша заявка отправлена!');
             } else {
                 Yii::$app->session->setFlash('error', 'Ошибка при отправлении сообщения.');
             }
