@@ -100,6 +100,8 @@ function createAudioCtxObject(audioCtxLink) {
     nameDom: dom.trackName /* firstTrackName */,
     bpmDom: dom.bpm,
     seekTo: null,
+    wavesurfer: null,
+    currentTime: 0,
     filterInstances: {
       bass: null,
       mid: null,
@@ -385,6 +387,7 @@ function initAudioProccesser(audioCtxLink, e) {
     show_popup("Пожалуйста, для начала выберите трек из списка снизу.");
   } else if (context.state === "running") {
     playedOnce[audioCtxLink] = true;
+    audioCtxS[audioCtxLink].playing = false;
     context.suspend();
     $(e.target)
       .closest(".play_stop")
@@ -399,6 +402,7 @@ function initAudioProccesser(audioCtxLink, e) {
     });
   } else {
     playedOnce[audioCtxLink] = true;
+    audioCtxS[audioCtxLink].playing = true;
     $(e.target)
       .closest(".play_stop")
       .addClass("active");
@@ -501,15 +505,15 @@ function startRecording() {
     $(".mixer_playlist").css({ display: "none" });
     $("#mixer").css({ display: "none" });
 
-    setTimeout(function() {
-      $("body").append(
-        $(
-          "<audio controls style='display: none' id='audio-result'><source src='" +
-            url +
-            "' type='audio/ogg' /></audio>"
-        )
-      );
-    }, 500);
+    // setTimeout(function() {
+    //   $("body").append(
+    //     $(
+    //       "<audio controls style='display: none' id='audio-result'><source src='" +
+    //         url +
+    //         "' type='audio/ogg' /></audio>"
+    //     )
+    //   );
+    // }, 500);
 
     $("#resultSend").on("click", function() {
       console.log("SENDING FILE");
@@ -532,16 +536,18 @@ function startRecording() {
 
     var playing = false;
 
-    $("#mixer__result-play-button").on("click", function(e) {
-      e.stopPropagation();
-      if (playing) {
-        $("#audio-result")[0].pause();
-        playing = false;
-      } else {
-        $("#audio-result")[0].play();
-        playing = true;
-      }
-    });
+    $("#result-src-cont").attr("src", url);
+
+    // $("#mixer__result-play-button").on("click", function(e) {
+    //   e.stopPropagation();
+    //   if (playing) {
+    //     $("#audio-result")[0].pause();
+    //     playing = false;
+    //   } else {
+    //     $("#audio-result")[0].play();
+    //     playing = true;
+    //   }
+    // });
 
     $("#tryAgain").on("click", function() {
       $("#mixer__done-message").css({ display: "none" });
@@ -639,13 +645,48 @@ function Audio(audioCtxLink, musicLink, musicInfo) {
     this.request.responseType = "arraybuffer";
     this.request.onload = function() {
       var audioData = this.request.response;
+
+      audioObject.wavesurfer = WaveSurfer.create({
+        container: $("#mixer__" + audioCtxLink + "-seek")[0],
+        waveColor: "#f7323f",
+        progressColor: "#bfbfbf",
+        height: 38
+      });
+  
+      audioObject.wavesurfer.load(musicLink);
+      audioObject.wavesurfer.setVolume(0);
+
+      audioObject.wavesurfer.on("ready", function() {
+        audioObject.wavesurfer.pause();
+      })
+
+      $("#mixer__" + audioCtxLink + "-seek").on("click", function() {
+        setTimeout(function() {
+          audioObject.currentTime = audioObject.wavesurfer.getCurrentTime() * 1000;
+          audioObject.seekTo(audioObject.wavesurfer.getCurrentTime());
+
+          audioObject.playedDom.html(
+            moment
+              .utc(
+                moment
+                  .duration(audioObject.currentTime / 1000, "seconds")
+                  .as("milliseconds")
+              )
+              .format("mm:ss")
+          );
+        }, 50);
+      })
+
+      // audioObject.wavesurfer.on("interaction", function() {
+      //   console.log("INTERACTION");
+      //   audioObject.currentTime = audioObject.wavesurfer.getCurrentTime * 1000;
+      // });
+
       ourContext.decodeAudioData(
         audioData,
         function(buffer) {
           audioObject.source.buffer = buffer;
-          
-          var canvas = $("#mixer__"+audioCtxLink+"-seek")[0];
-          drawBuffer(canvas.width, canvas.height, canvas.getContext("2d"), buffer);
+          audioObject.currentTime = 0;
 
           songDuration = moment.duration(buffer.duration, "seconds");
           audioObject.duration = songDuration;
@@ -664,15 +705,25 @@ function Audio(audioCtxLink, musicLink, musicInfo) {
           window.buffAudio = new BuffAudio(ourContext, audioObject.source);
 
           audioObject.timerInterval = setInterval(function() {
-            audioObject.playedDom.html(
-              moment
-                .utc(
-                  moment
-                    .duration(ourContext.currentTime, "seconds")
-                    .as("milliseconds")
-                )
-                .format("mm:ss")
-            );
+            if (audioObject.playing) {
+              audioObject.currentTime = audioObject.currentTime + (1000 * audioObject.filterInstances.rate.value);
+              if (audioObject.currentTime > (buffer.duration * 1000)) {
+                audioObject.currentTime = 0;
+                audioObject.seekTo(0);
+              }
+              audioObject.wavesurfer.seekTo((100 / buffer.duration * (audioObject.currentTime / 1000)) / 100);
+              console.log(audioObject.currentTime, "CURRENT TIME");
+
+              audioObject.playedDom.html(
+                moment
+                  .utc(
+                    moment
+                      .duration(audioObject.currentTime / 1000, "seconds")
+                      .as("milliseconds")
+                  )
+                  .format("mm:ss")
+              );
+            }
           }, 1000);
 
           console.log(audioObject);
@@ -827,6 +878,7 @@ function SampleAudioCtx() {
       }.bind(this))
     }.bind(this));
   }
+  
 }
 
 window.sampleAudioCtx = new SampleAudioCtx();
