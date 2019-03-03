@@ -68,14 +68,6 @@ $(".close_burger").on("click", function(){
 // });
 
 
-$(".volume_range").slider({
-    value: 50,
-    orientation: "horizontal",
-    range: "min",
-    animate: true
-});
-
-
 
 
 
@@ -203,9 +195,9 @@ $(".play_li").on("click", function(){
 	$(this).toggleClass("active");
 });
 
-$(".record_img .play").on("click", function(){
-	$(this).toggleClass("active");
-});
+// $(".record_img .play").on("click", function(){
+// 	$(this).toggleClass("active");
+// });
 
 
 

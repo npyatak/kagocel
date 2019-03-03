@@ -42,6 +42,21 @@ window.onload = function() {
 
 var wavesurferArray = [];
 
+$(".volume_range").slider({
+  value: 50,
+  orientation: "horizontal",
+  range: "min",
+  animate: true,
+  slide: function(e, ui) {
+    var post = $(this).closest(".track_item");
+    var id = post.attr("data-id");
+
+    if (wavesurferArray[id]) {
+      wavesurferArray[id].setVolume(ui.value / 100);
+    }
+  }
+})
+
 $(document).on("click", ".track_item .play", function(e) {
   var post = $(this).closest(".track_item");
   var id = post.attr("data-id");
@@ -57,24 +72,49 @@ $(document).on("click", ".track_item .play", function(e) {
 
     wavesurfer.load(audio.src);
     wavesurferArray[id] = wavesurfer;
+
+    setInterval(function() {
+      post.find(".timer_range .current").html(formatTime(wavesurferArray[id].getCurrentTime()));
+    }, 100)
+
+    wavesurferArray[id].on("ready", function() {
+      wavesurferArray[id].setVolume(0.5);
+      console.log(wavesurferArray[id].getDuration());
+      wavesurferArray[id].play();
+      wavesurferArray[id].seekTo(Math.ceil(wavesurferArray[id].getDuration() / 2));
+      $(this).addClass("active");
+    });
+
+    wavesurferArray[id].on("finish", function() {
+      wavesurferArray[id].seekTo(0);
+      $(this).removeClass("active");
+    }.bind(this))
   }
 
-  if (audio.paused) {
-    audio.play();
-    $(this).removeClass("icon-play");
-    $(this).addClass("icon-stop");
+  if (!wavesurferArray[id].isPlaying()) {
+    wavesurferArray[id].play();
+    $(this).addClass("active");
   } else {
-    audio.pause();
-    $(this).removeClass("icon-stop");
-    $(this).addClass("icon-play");
+    wavesurferArray[id].pause();
+    $(this).removeClass("active");
   }
-
-  wavesurferArray[id].playPause();
-
-  audio.ontimeupdate = function() {
-    post.find(".timer_range .current").html(formatTime(audio.currentTime));
-  };
+  
 });
+
+
+  // if (audio.paused) {
+  //   audio.play();
+  //   $(this).removeClass("icon-play");
+  //   $(this).addClass("icon-stop");
+  // } else {
+  //   audio.pause();
+  //   $(this).removeClass("icon-stop");
+  //   $(this).addClass("icon-play");
+  // }
+
+  // audio.ontimeupdate = function() {
+  //   post.find(".timer_range .current").html(formatTime(audio.currentTime));
+  // };
 
 function formatTime(time) {
   var minutes = parseInt(time / 60, 10);
