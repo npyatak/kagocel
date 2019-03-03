@@ -14,9 +14,9 @@ class ShareWidget extends \yii\base\Widget
 	public $share = [
 		'title' => 'Прокачай свою заботу с Кагоцелом. #ПрокачайсвоюзаботуcКагоцелом #Кагоцел',
         'text' => 'Собери свой трек и выиграй призы. #ПрокачайсвоюзаботуcКагоцелом #Кагоцел',
-		'image' => '/img/kagocel_studia_souz_sharing_fb.jpg',
-		'image_vk' => '/img/kagocel_studia_souz_sharing_vk.jpg',
-		'image_ok' => '/img/kagocel_studia_souz_sharing_ok.jpg',
+		'image' => '/img/share/kagocel_studia_souz_sharing_fb.jpg',
+		'image_vk' => '/img/share/kagocel_studia_souz_sharing_vk.jpg',
+		'image_ok' => '/img/share/kagocel_studia_souz_sharing_ok.jpg',
 	];
 	public $wrap;
 	public $wrapClass;
@@ -33,8 +33,8 @@ class ShareWidget extends \yii\base\Widget
     }
 
     public function run() {
-    	//$scheme = isset($_SERVER['REQUEST_SCHEME']) ? $_SERVER['REQUEST_SCHEME'] : true;
-    	$scheme = 'https';
+    	$scheme = isset($_SERVER['REQUEST_SCHEME']) ? $_SERVER['REQUEST_SCHEME'] : 'https';
+    	
         $this->share['url'] = $this->post ? Url::toRoute(['site/post', 'id' => $this->post->id], $scheme) : Url::toRoute(['site/index'], $scheme);
         $this->share['imageUrl'] = isset($this->share['image']) ? Url::to([$this->share['image']], $scheme) : null;
         $this->share['imageUrlVk'] = isset($this->share['image_vk']) ? Url::to([$this->share['image_vk']], $scheme) : null;

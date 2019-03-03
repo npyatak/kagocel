@@ -20,7 +20,7 @@ AppAsset::register($this);
     <link rel="apple-touch-icon" sizes="96x96" href="//cdn.tnt-online.ru/tnt2012/favicon-96x96.png" />
     <link rel="apple-touch-icon" sizes="114x114" href="//cdn.tnt-online.ru/tnt2012/tnt-114.png" />
     <link rel="apple-touch-icon" sizes="144x144" href="//cdn.tnt-online.ru/tnt2012/tnt-144.png" />    
-    <link rel="shortcut icon" type="image/icon" href="/favicon.ico">
+    <link rel="shortcut icon" type="image/icon" href="favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="//cdn.tnt-online.ru/cookie/accept_cookie.css" title="application/x-javascript" />
     <script type="application/x-javascript" src="//cdn.tnt-online.ru/cookie/accept_cookie.js"></script>
