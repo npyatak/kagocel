@@ -28,7 +28,7 @@ use yii\helpers\Url;
 
 <section class="section_gallery pb_small pt_big">
 	<div class="contain">
-		<div class="gallery_main">
+		<div class="gallery_main" id="work">
 			<?=$this->render('_post', ['post' => $post]);?>
 		</div>
 	</div>
@@ -49,3 +49,12 @@ use yii\helpers\Url;
 		</div>
 	</div>
 </section>
+
+<?php 
+$script = "
+    $(document).ready(function() {
+    	$('html, body').animate({scrollTop: $('#work').offset().top+50}, 'fast');
+    })
+";
+
+$this->registerJs($script, yii\web\View::POS_END);?>
