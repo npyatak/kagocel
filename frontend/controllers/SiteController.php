@@ -109,26 +109,25 @@ class SiteController extends CController
                                 $user->email = $eauth->email;
                             }
                         }
+                        if(isset($eauth->birthdate)) {
+                            $user->birthdate = $eauth->birthdate;
+
+                            $bd = new \DateTime();
+                            $bd->setTimestamp($user->birthdate);
+                            $now = new \DateTime();
+                            if($now->diff($bd)->format('%y') < 18) {
+                                Yii::$app->getSession()->setFlash('error', 'Ты не можешь быть участником, так как ты младше 18 лет');
+                                
+                                $eauth->redirect($eauth->getCancelUrl());
+                            }
+                        } 
+                        $user->image = isset($eauth->photo_url) ? $eauth->photo_url : null;
                     } elseif($user->status !== User::STATUS_ACTIVE) {
                         Yii::$app->getSession()->setFlash('error', 'Вы не можете войти. Ваш аккаунт заблокирован');
                         
                         $eauth->redirect($eauth->getCancelUrl());
                     }
-
-                    if(isset($eauth->birthdate)) {
-                        $user->birthdate = $eauth->birthdate;
-
-                        $bd = new \DateTime();
-                        $bd->setTimestamp($user->birthdate);
-                        $now = new \DateTime();
-                        if($now->diff($bd)->format('%y') < 18) {
-                            Yii::$app->getSession()->setFlash('error', 'Ты не можешь быть участником, так как ты младше 18 лет');
-                            
-                            $eauth->redirect($eauth->getCancelUrl());
-                        }
-                    } 
                     
-                    $user->image = isset($eauth->photo_url) ? $eauth->photo_url : null;
                     $user->ip = $_SERVER['REMOTE_ADDR'];
                     $user->browser = $_SERVER['HTTP_USER_AGENT'];
                     $user->save(false);
