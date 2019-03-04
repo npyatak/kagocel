@@ -2,8 +2,6 @@
 use yii\helpers\Url;
 ?>
 
-<?=\frontend\widgets\share\ShareWidget::widget(['post' => $post, 'showButtons' => false]);?>
-
 <section class="section_main dark_bg pb_big after_header">
 	<div class="contain">
 

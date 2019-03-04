@@ -5,6 +5,8 @@ use frontend\assets\AppAsset;
 use frontend\widgets\alert\Alert;
 
 AppAsset::register($this);
+
+echo \frontend\widgets\share\ShareWidget::widget(['showButtons' => false]);
 ?>
 
 <?php $this->beginPage() ?>
