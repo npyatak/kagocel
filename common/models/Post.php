@@ -138,6 +138,6 @@ class Post extends \yii\db\ActiveRecord
 
     public function getDate()
     {
-        return date('j', $this->created_at).' '.Stage::getMonthsArray()[date('n', $this->created_at)][0];
+        return date('j', $this->created_at).' '.(new Stage)->getMonthsArray()[date('n', $this->created_at)][0];
     }
 }
