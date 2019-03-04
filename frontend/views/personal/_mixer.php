@@ -23,9 +23,8 @@ use yii\widgets\ActiveForm;
 					<!-- <p class="album"><span>Исполнитель - альбом</span></p> -->
 					<p class="timer"><span class="played" id="mixer__first-track-played">0:00</span> / <span class="duration" id="mixer__first-track-duration">00:00</span></p>
 				</div>
-				<canvas class="spectr" id="mixer__first-seek">
-					<!-- <img src="/img/test_img/graph.png" alt=""> -->
-				</canvas>
+				<div class="spectr spectrogram" id="mixer__first-seek">
+				</div>
 			</div>
 
 			<div class="mixer_top_item right rightTrack">
@@ -36,9 +35,9 @@ use yii\widgets\ActiveForm;
 					<!-- <p class="album"></span>Исполнитель - альбом</span></p> -->
 					<p class="timer"><span class="played"  id="mixer__second-track-played">0:00</span> / <span class="duration" id="mixer__second-track-duration">00:00</span></p>
 				</div>
-				<canvas class="spectr" id="mixer__second-seek">
+				<div class="spectr" id="mixer__second-seek">
 					<!-- <img src="/img/test_img/graph.png" alt=""> -->
-				</canvas>
+				</div>
 			</div>
 
 		</div>
@@ -219,14 +218,12 @@ use yii\widgets\ActiveForm;
 	<div class="mixer_done-message" id="mixer__done-message">
 		<h3 class="your_mix_name">Вы успешно создали свой микс!</h3>
 
-		<div class="track_item light your_track">
-			<audio src=""></audio>
-<!-- 			<div class="spectrogram">
-				<img src="/img/test_img/graph.png" alt="">
-			</div> -->
-			<!-- <div class="timer_range">
+		<div class="track_item light your_track" id="post_999" data-id="999">
+			<audio id="result-src-cont" src=""></audio>
+			<div class="spectrogram"></div>
+			<div class="timer_range">
 				<p><span class="current">00:00</span> / <span class="duration">01:00</span></p>
-			</div> -->
+			</div>
 			<div class="volume_range_wrap">
 				<img class="not_volume" src="/img/not_volume.svg" alt="icon">
 				<div class="volume_range" id="example_id" name="example_name"></div>
@@ -242,7 +239,7 @@ use yii\widgets\ActiveForm;
 			</div>
 			<div class="record_info">
 				<div class="top">
-					<span class="date">4 мар.</span>
+					<!-- <span class="date">4 мар.</span> -->
 					<!-- <p>Трек №1</p> -->
 				</div>
 				<a id="resultSend" href="javascript:void(0)" class="track_vote action  active" data-type="1">
