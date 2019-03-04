@@ -529,6 +529,9 @@ function startRecording() {
         $(".mixer_playlist").css({ display: "" });
         $("#mixer").css({ display: "block" });
         show_popup("Мы успешно отправили ваш трек на сервер!");
+        setTimeout(function() {
+          window.location.reload();
+        }, 2000);
       }
       $("#resultSend").off("click");
       $("#tryAgain").off("click");
