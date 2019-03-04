@@ -218,7 +218,7 @@ use yii\widgets\ActiveForm;
 	<div class="mixer_done-message" id="mixer__done-message">
 		<h3 class="your_mix_name">Вы успешно создали свой микс!</h3>
 
-		<div class="track_item light your_track" data-id="999">
+		<div class="track_item light your_track" id="post_999" data-id="999">
 			<audio id="result-src-cont" src=""></audio>
 			<div class="spectrogram"></div>
 			<div class="timer_range">

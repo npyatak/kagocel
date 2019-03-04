@@ -589,6 +589,7 @@ function resetAudioObject(audioCtxLink) {
   if (audioCtxS[audioCtxLink].audioCtx) {
     audioCtxS[audioCtxLink].audioCtx.close();
     clearInterval(audioCtxS[audioCtxLink].timerInterval);
+    $("#mixer__"+audioCtxLink+"-seek").replaceWith("<div class='spectr spectrogram' id='mixer__"+audioCtxLink+"-seek'></div>")
     audioCtxS[audioCtxLink].playedDom.html("00:00");
     audioCtxS[audioCtxLink].durationDom.html("00:00");
     audioCtxS[audioCtxLink].nameDom.html("");

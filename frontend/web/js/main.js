@@ -62,6 +62,9 @@ $(document).on("click", ".track_item .play", function(e) {
   var id = post.attr("data-id");
   var audio = post.find("audio")[0];
 
+  console.log(id, "TRACK ID");
+  console.log(document.querySelector("#post_" + id + " .spectrogram"));
+
   if (typeof wavesurferArray[id] == "undefined") {
     wavesurfer = WaveSurfer.create({
       container: document.querySelector("#post_" + id + " .spectrogram"),
