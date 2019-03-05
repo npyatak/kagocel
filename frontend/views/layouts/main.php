@@ -127,7 +127,10 @@ echo \frontend\widgets\share\ShareWidget::widget(['showButtons' => false]);
         <?php $menuItems = [
             ['label' => 'Главная', 'c' => 'site', 'a' => 'index', 'data-ga-click' => 'click_main_page'],
             ['label' => 'Личный кабинет', 'c' => 'personal', 'a' => 'index', 'data-ga-click' => 'click_personal_page'],
-            ['label' => 'Галерея', 'c' => 'site', 'a' => 'gallery', 'data-ga-click' => 'click_gallery_page'],
+            ['label' => 'Участники', 'c' => 'site', 'a' => 'gallery', 'data-ga-click' => 'click_gallery_page'],
+
+            // ['label' => 'Призы', 'c' => 'site', 'a' => 'index', 'data-ga-click' => 'click_main_page'],
+
             ['label' => 'О продукте', 'c' => 'site', 'a' => 'about', 'data-ga-click' => 'click_about_page'],
             ['label' => 'Обратная связь', 'c' => 'site', 'a' => 'contact'],
             ['label' => 'Faq', 'c' => 'site', 'a' => 'faq', 'data-ga-click' => 'click_faq_page'],
