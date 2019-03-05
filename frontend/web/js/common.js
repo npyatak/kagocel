@@ -315,79 +315,113 @@ $(function(){
  
 		var player = document.getElementById('video_player');
 
-		setTimeout(function(){
-			player.contentWindow.postMessage(JSON.stringify({
-			    type: 'player:setSkinColor',
-			    data: {
-			    	color: 'f7323f'
-			    }
-			}), '*');
-		},300);
 
-		player.contentWindow.postMessage(JSON.stringify({
-		    type: 'player:setVolume',
-		    data: {
-		            volume: 0.50//значение от 0 до 1
-		          }
-		}), '*');
-		
-		setTimeout(function(){
-			player.contentWindow.postMessage(JSON.stringify({
-				type: 'player:pause',
-				data: {}
-			}), '*');
-		},500);
-
-
-
-		var count = 0;
-		var topPos = $('.video_section').offset().top;
-		
-		$(window).scroll(function() {
-			var win_w = $(window).width();
-			if(win_w > 992){
-				var top = $(document).scrollTop(),
-				    pip = $('.video_section').offset().top + $('.video_section').outerHeight();
-
-				if (top > topPos && top < pip){
-					if (count == 0) {
-						player.contentWindow.postMessage(JSON.stringify({
-							type: 'player:play',
-							data: {}
-						}), '*');
-						// console.log("1")
-						count++;
-					}
-				} 
-				else if (top > pip) {
-					if (count == 1) {
-						player.contentWindow.postMessage(JSON.stringify({
-							type: 'player:pause',
-							data: {}
-						}), '*');
-						// console.log("2")
-						count--;
-					}
-				}
-				else {
-					if (count == 1) {
-						player.contentWindow.postMessage(JSON.stringify({
-							type: 'player:pause',
-							data: {}
-						}), '*');
-						// console.log("3")
-						count--;
-					}
-				}
-			}//if(win_w > 992)
+		window.addEventListener('message', function (event) {
+		    var message = JSON.parse(event.data);
+		    console.log(message.type); // some type
+		    switch (message.type) {
+		        case 'player:ready':
+		            // console.log(message.data.state); // текущее состояние плеера
+		   //          player.contentWindow.postMessage(JSON.stringify({
+					// 	type: 'player:pause',
+					// 	data: {}
+					// }), '*');
+					player.contentWindow.postMessage(JSON.stringify({
+					    type: 'player:setSkinColor',
+					    data: {
+					    	color: 'f7323f'
+					    }
+					}), '*');
+					player.contentWindow.postMessage(JSON.stringify({
+					    type: 'player:setVolume',
+					    data: {
+					            volume: 0//значение от 0 до 1
+					          }
+					}), '*');
+		            break;
+		        case 'player:durationChange':
+		        	player.contentWindow.postMessage(JSON.stringify({
+					    type: 'player:setVolume',
+					    data: {
+					            volume: 0//значение от 0 до 1
+					          }
+					}), '*');
+					player.contentWindow.postMessage(JSON.stringify({
+					    type: 'player:setSkinColor',
+					    data: {
+					    	color: 'f7323f'
+					    }
+					}), '*');
+		            break;
+		    };
 		});
 
 
+		$(".video_volume").on("click", function(){
+			player.contentWindow.postMessage(JSON.stringify({
+			    type: 'player:setVolume',
+			    data: {
+			            volume: 0.5//значение от 0 до 1
+			          }
+			}), '*');
+			
+			$(".video_popup").css('opacity','0').delay(200).queue(function () {  // delay() позволяет сделать паузу между изменениями свойств
+				$(".video_popup").css('display', 'none');
+				$(".video_popup").dequeue(); //должно применяться к тому же элементу что и .queue
+			}); 
+		});
+
+		$(".exit_video_popup").on("click", function(){
+			$(".video_popup").css('opacity','0').delay(200).queue(function () {  // delay() позволяет сделать паузу между изменениями свойств
+				$(".video_popup").css('display', 'none');
+				$(".video_popup").dequeue(); //должно применяться к тому же элементу что и .queue
+			}); 
+		})
+
+		// при прокрутке когда находимся над видео оно запускается когда прокручиваем его оно стопориться
+		// var count = 0;
+		// var topPos = $('.video_section').offset().top;
+		
+		// $(window).scroll(function() {
+		// 	var win_w = $(window).width();
+		// 	if(win_w > 992){
+		// 		var top = $(document).scrollTop(),
+		// 		    pip = $('.video_section').offset().top + $('.video_section').outerHeight();
+
+		// 		if (top > topPos && top < pip){
+		// 			if (count == 0) {
+		// 				player.contentWindow.postMessage(JSON.stringify({
+		// 					type: 'player:play',
+		// 					data: {}
+		// 				}), '*');
+		// 				// console.log("1")
+		// 				count++;
+		// 			}
+		// 		} 
+		// 		else if (top > pip) {
+		// 			if (count == 1) {
+		// 				player.contentWindow.postMessage(JSON.stringify({
+		// 					type: 'player:pause',
+		// 					data: {}
+		// 				}), '*');
+		// 				// console.log("2")
+		// 				count--;
+		// 			}
+		// 		}
+		// 		else {
+		// 			if (count == 1) {
+		// 				player.contentWindow.postMessage(JSON.stringify({
+		// 					type: 'player:pause',
+		// 					data: {}
+		// 				}), '*');
+		// 				// console.log("3")
+		// 				count--;
+		// 			}
+		// 		}
+		// 	}//if(win_w > 992)
+		// });
 
 
-		// player.contentWindow.postMessage(JSON.stringify({
-		// 	type: 'player:mute',
-		// }), '*');
 
 	}//if
 
@@ -395,7 +429,11 @@ $(function(){
 
 
 
-
+$(".scroll_refer").on("click",function() {
+	var href = $(this).attr("href");
+	$("html, body").animate({ scrollTop: $(href).offset().top}, "slow");
+	return false;
+});
 
 
 

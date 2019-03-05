@@ -13,12 +13,12 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
-        'css/libs.min.css',
-        'css/main.css',
+        'css/libs.min.css?v=1',
+        'css/main.css?v=2',
     ];
     public $js = [
-        'js/libs.min.js',
-        'js/common.js',
+        'js/libs.min.js?v=1',
+        'js/common.js?v=1',
         'js/buff-audio.js',
         'https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.4.0/wavesurfer.min.js',
         'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js',

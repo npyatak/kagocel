@@ -14,8 +14,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
     public $new_email;
     public $imageFile;
-    public $registerFields = ['name', 'surname', 'birthdate'];
-    public $semiRequiredFields = ['name', 'surname', 'birthdate'];
+    public $registerFields = ['name', 'surname'];
+    public $semiRequiredFields = ['name', 'surname'];
     public $birthdateFormatted;
     /**
      * {@inheritdoc}

@@ -15,7 +15,7 @@ use yii\helpers\Url;
 					<img src="/img/big_arrow.svg" alt="img">
 				</p>
 				<p class="anons">
-					Создай свой уникальный музыкальный трек и получи шанс выиграть крутые призы! 
+					Создай свой уникальный музыкальный трек и получи шанс выиграть <a class="scroll_refer" href="#your_prize">крутые призы!</a>
 				</p>
 				<a href="<?=Url::toRoute(['personal/index']);?>" class="button_1 point" data-ga-click="click_button_participate"><span>Участвовать</span></a>
 			</div>
@@ -70,7 +70,23 @@ use yii\helpers\Url;
 		</div>
 
 		<div class="video_player_wrap">
+
+			<div class="video_popup">
+	            <div class="popup_decor">
+	                <span class="top"></span>
+	                <span class="bottom"></span>
+	            </div>
+	            <img class="exit_video_popup" src="/img/close_middle.svg" alt="close">
+	            <p class="video_volume"></p>
+	            <!-- <p class="">Закрыть</p> -->
+	            <div class="center">
+	                <!-- <p class="popup_text">1111</p> -->
+	                <button class="button_1 video_volume"><span>включить звук<i class="fa fa-volume-up" aria-hidden="true"></i></span></button>
+	            </div>      
+	        </div>
+
 			<iframe id="video_player" width="720" height="405" src="//rutube.ru/play/embed/11982280?quality=1&platform=someplatform&autoplay=true" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowfullscreen allow="autoplay"></iframe>
+		</div>
 
 			
 	</div>
@@ -88,7 +104,7 @@ use yii\helpers\Url;
 	</div>
 </section>
 
-<section class="you_prize dark_bg bottom pt_big pb_big">
+<section class="you_prize dark_bg bottom pt_big pb_big" id="your_prize">
 	<div class="contain">
 
 		<div class="section_top">

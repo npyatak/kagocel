@@ -127,12 +127,23 @@ echo \frontend\widgets\share\ShareWidget::widget(['showButtons' => false]);
         <?php $menuItems = [
             ['label' => 'Главная', 'c' => 'site', 'a' => 'index', 'data-ga-click' => 'click_main_page'],
             ['label' => 'Личный кабинет', 'c' => 'personal', 'a' => 'index', 'data-ga-click' => 'click_personal_page'],
-            ['label' => 'Галерея', 'c' => 'site', 'a' => 'gallery', 'data-ga-click' => 'click_gallery_page'],
+            ['label' => 'Участники', 'c' => 'site', 'a' => 'gallery', 'data-ga-click' => 'click_gallery_page'],
+            ['label' => 'Призы', 'c' => 'site', 'a' => 'index', 'not_active' => 1, 'data-ga-click' => 'click_main_page', 'anchor' => 'your_prize'],
             ['label' => 'О продукте', 'c' => 'site', 'a' => 'about', 'data-ga-click' => 'click_about_page'],
             ['label' => 'Обратная связь', 'c' => 'site', 'a' => 'contact'],
             ['label' => 'Faq', 'c' => 'site', 'a' => 'faq', 'data-ga-click' => 'click_faq_page'],
             ['label' => 'Правила', 'c' => 'site', 'a' => 'rules', 'target' => '_blank', 'data-ga-click' => 'click_rules_page'],
-        ];?>
+        ];
+
+        function getLink($item) {
+            $url = isset($item['anchor']) ? Url::toRoute([$item['c'].'/'.$item['a'], '#' => $item['anchor']]) : Url::toRoute([$item['c'].'/'.$item['a']]);
+            return Html::a($item['label'], $url, [
+                    'target' => isset($item['target']) ? $item['target'] : '',
+                    'class' => (Yii::$app->controller->id == $item['c'] && Yii::$app->controller->action->id == $item['a'] && !isset($item['not_active'])) ? 'active' : '',
+                    'data-ga-click' => isset($item['data-ga-click']) ? $item['data-ga-click'] : '',
+                ]);
+        }
+        ?>
 
 
         <header class="header_main">
@@ -149,15 +160,7 @@ echo \frontend\widgets\share\ShareWidget::widget(['showButtons' => false]);
                 <nav class="main_menu">
                     <ul>
                         <?php foreach ($menuItems as $item):?>
-                            <?php $active = Yii::$app->controller->id == $item['c'] && Yii::$app->controller->action->id == $item['a'];?>
-                            <li><a href="<?=Url::toRoute($item['c'].'/'.$item['a']);?>" 
-                                    <?=isset($item['target']) ? 'target='.$item['target'] : '';?> 
-                                    <?=isset($item['data-ga-click']) ? 'data-ga-click="'.$item['data-ga-click'].'"' : '';?>
-                                    <?=$active ? 'class="active"' : '';?>
-                                    >
-                                        <?=$item['label'];?>
-                                </a>
-                            </li>
+                            <li><?=getLink($item);?></li>
                         <?php endforeach;?>
                 </nav>
                 <a class="logo_2" href="http://studia-soyuz.tnt-online.ru/" target="_blank" data-ga-click="click_soyuz_logo">
@@ -171,15 +174,7 @@ echo \frontend\widgets\share\ShareWidget::widget(['showButtons' => false]);
                 <img class="close_burger" src="img/close_middle.svg" alt="close">
                 <ul class="burger_ul">
                     <?php foreach ($menuItems as $item):?>
-                        <?php $active = Yii::$app->controller->id == $item['c'] && Yii::$app->controller->action->id == $item['a'];?>
-                            <li><a href="<?=Url::toRoute($item['c'].'/'.$item['a']);?>" 
-                                <?=isset($item['target']) ? 'target='.$item['target'] : '';?> 
-                                <?=isset($item['data-ga-click']) ? 'data-ga-click="'.$item['data-ga-click'].'"' : '';?>
-                                <?=$active ? 'class="active"' : '';?>
-                                >
-                                    <?=$item['label'];?>
-                                </a>
-                            </li>
+                        <li><?=getLink($item);?></li>
                     <?php endforeach;?>
                 </ul>
             </div>
@@ -200,15 +195,7 @@ echo \frontend\widgets\share\ShareWidget::widget(['showButtons' => false]);
                         <nav class="footer_menu">
                             <ul>
                                 <?php foreach ($menuItems as $item):?>
-                                    <?php $active = Yii::$app->controller->id == $item['c'] && Yii::$app->controller->action->id == $item['a'];?>
-                                    <li><a href="<?=Url::toRoute($item['c'].'/'.$item['a']);?>" 
-                                        <?=isset($item['target']) ? 'target='.$item['target'] : '';?>
-                                        <?=isset($item['data-ga-click']) ? 'data-ga-click="'.$item['data-ga-click'].'"' : '';?> 
-                                        <?=$active ? 'class="active"' : '';?>
-                                        >
-                                            <?=$item['label'];?>
-                                        </a>
-                                    </li>
+                                    <li><?=getLink($item);?></li>
                                 <?php endforeach;?>
                             </ul>
                         </nav>
