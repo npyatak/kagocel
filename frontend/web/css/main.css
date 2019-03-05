@@ -684,9 +684,10 @@ img {
   -webkit-transition: border .25s;
   -ms-transition: border .25s;
   white-space: nowrap;
+  color: #0090D3;
 }
 .main_right .anons a:hover{
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #0090D3;
 }
 
 .main_right .button_1 {
