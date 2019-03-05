@@ -36,12 +36,6 @@ $this->title = 'Заполните недостающие поля';
                     <?= $form->field($user, 'surname')->textInput(['class' => 'input_1', 'placeholder' => $user->attributeLabels()['surname'].'*'])->label(false) ?>
                 <?php //endif;?>
 
-                <!-- <div class="date_birth"> -->
-                    <?= $form->field($user, 'birthdateFormatted')->textInput(['class' => 'input_1 date', 'placeholder' => $user->attributeLabels()['birthdate'].'*'])->label(false) ?>
-                    <!-- <p>рождения<span> *</span></p> -->
-                <!-- </div> -->
-
-
                 <p class="form_alert"><span>*</span>- обязательные для заполнения поля</p>
                 <?= Html::submitButton('<span>Готово</span>', ['class' => 'button_1 point', 'name' => 'register-button']) ?>
 
