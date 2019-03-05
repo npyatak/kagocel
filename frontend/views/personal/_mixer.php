@@ -57,7 +57,7 @@ use yii\widgets\ActiveForm;
 					
 					<!-- <div class="plus_minus">
 						<div class="plus black_gray">-</div>
-						<div class="center black_gray"><i class="fa fa-retweet" aria-hidden="true"></i> 4</div>
+						<div class="center black_gray"><i class="fa fa-retweet" aria-hidden="true"></i> <span id="mixer__first-retweet">0</span></div>
 						<div class="minus black_gray">+</div>
 					</div> -->
 
@@ -190,7 +190,7 @@ use yii\widgets\ActiveForm;
 
 					<!-- <div class="plus_minus orange">
 						<div class="plus black_gray">-</div>
-						<div class="center black_gray"><i class="fa fa-retweet" aria-hidden="true"></i> 4</div>
+						<div class="center black_gray"><i class="fa fa-retweet" aria-hidden="true"></i><span id="mixer__first-retweet"> 0</span></div>
 						<div class="minus black_gray">+</div>
 					</div> -->
 					
@@ -254,3 +254,9 @@ use yii\widgets\ActiveForm;
 
 	</div>
 	<!-- mixer_done-messages -->
+
+<!--[if IE]>
+<script>
+	alert("К сожалению, ваш браузер не поддерживает технологии, которые активно применялись при создании микшера. Как насчет Google Chrome?")
+</script>
+<![endif]-->
