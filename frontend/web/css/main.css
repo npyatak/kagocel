@@ -869,10 +869,10 @@ img {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
   -ms-flex-pack: justify;
-  justify-content: space-between;
+  justify-content: flex-end;
   position: relative;
 }
 

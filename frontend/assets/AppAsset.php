@@ -14,7 +14,7 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/site.css',
         'css/libs.min.css?v=1',
-        'css/main.css?v=1',
+        'css/main.css?v=2',
     ];
     public $js = [
         'js/libs.min.js?v=1',
