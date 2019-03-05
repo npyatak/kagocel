@@ -315,28 +315,34 @@ $(function(){
  
 		var player = document.getElementById('video_player');
 
-		setTimeout(function(){
-			player.contentWindow.postMessage(JSON.stringify({
-			    type: 'player:setSkinColor',
-			    data: {
-			    	color: 'f7323f'
-			    }
-			}), '*');
-		},300);
 
-		player.contentWindow.postMessage(JSON.stringify({
-		    type: 'player:setVolume',
-		    data: {
-		            volume: 0.50//значение от 0 до 1
-		          }
-		}), '*');
-		
-		setTimeout(function(){
-			player.contentWindow.postMessage(JSON.stringify({
-				type: 'player:pause',
-				data: {}
-			}), '*');
-		},500);
+		window.addEventListener('message', function (event) {
+		    var message = JSON.parse(event.data);
+		    console.log(message.type); // some type
+		    switch (message.type) {
+		        case 'player:ready':
+		            // console.log(message.data.state); // текущее состояние плеера
+		            player.contentWindow.postMessage(JSON.stringify({
+						type: 'player:pause',
+						data: {}
+					}), '*');
+					player.contentWindow.postMessage(JSON.stringify({
+					    type: 'player:setSkinColor',
+					    data: {
+					    	color: 'f7323f'
+					    }
+					}), '*');
+					player.contentWindow.postMessage(JSON.stringify({
+					    type: 'player:setVolume',
+					    data: {
+					            volume: 0.50//значение от 0 до 1
+					          }
+					}), '*');
+		            break;
+		    };
+		});
+
+
 
 
 
