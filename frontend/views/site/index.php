@@ -15,7 +15,7 @@ use yii\helpers\Url;
 					<img src="/img/big_arrow.svg" alt="img">
 				</p>
 				<p class="anons">
-					Создай свой уникальный музыкальный трек и получи шанс выиграть <a class="scroll_refer" href="#you_prize">крутые призы!</a>
+					Создай свой уникальный музыкальный трек и получи шанс выиграть <a class="scroll_refer" href="#your_prize">крутые призы!</a>
 				</p>
 				<a href="<?=Url::toRoute(['personal/index']);?>" class="button_1 point" data-ga-click="click_button_participate"><span>Участвовать</span></a>
 			</div>
@@ -104,7 +104,7 @@ use yii\helpers\Url;
 	</div>
 </section>
 
-<section class="you_prize dark_bg bottom pt_big pb_big" id="you_prize">
+<section class="you_prize dark_bg bottom pt_big pb_big" id="your_prize">
 	<div class="contain">
 
 		<div class="section_top">
