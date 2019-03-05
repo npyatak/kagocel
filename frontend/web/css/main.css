@@ -877,6 +877,11 @@ img {
   transform: translate(-50%, -50%);
 }
 
+.section_date span:first-child{
+  position: absolute;
+  left: 0;
+}
+
 .section_anons {
   font-size: 21px;
   text-transform: uppercase;

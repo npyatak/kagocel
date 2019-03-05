@@ -15,7 +15,7 @@ class FbOAuth2Service extends \nodge\eauth\services\FacebookOAuth2Service
 
     protected $scopes = [
         self::SCOPE_EMAIL,
-        // self::SCOPE_USER_BIRTHDAY,
+        self::SCOPE_USER_BIRTHDAY,
         // self::SCOPE_USER_HOMETOWN,
         // self::SCOPE_USER_LOCATION,
         // self::SCOPE_USER_PHOTOS,
@@ -51,10 +51,10 @@ class FbOAuth2Service extends \nodge\eauth\services\FacebookOAuth2Service
         
         $this->attributes = $info;
         $this->attributes['photo_url'] = $this->baseApiUrl.$this->getId().'/picture?width=100&height=100';
-        $this->attributes['sex'] = $info['gender'] == 'male' ? 2 : 1;
+        //$this->attributes['sex'] = $info['gender'] == 'male' ? 2 : 1;
 
         if(isset($info['birthday'])) {
-            $exp=explode('/',$info['birthday']);
+            $exp=explode('/', $info['birthday']);
             $this->attributes['birthdate'] = strtotime($exp[2]. '-' . $exp[1] . '-'. $exp[0]);
         }
         if(isset($info['hometown'])) {

@@ -59,9 +59,11 @@ class VkOAuth2Service extends \nodge\eauth\services\VKontakteOAuth2Service {
 		// $this->attributes['city'] = json_decode(file_get_contents('https://api.vk.com/method/database.getCitiesById' . '?' . urldecode(http_build_query(['city_ids' => $info['city']]))), true);
 		// $this->attributes['city'] = $this->city['response'][0]['name'];
 
-		$exp = explode('.',$info['bdate']);
-		if(is_array($exp)) {
-            $this->attributes['birthdate'] = strtotime($exp[2]. '-' . $exp[1] . '-'. $exp[0]);
+		if(isset($info['bdate'])) {
+			$exp = explode('.', $info['bdate']);
+			if(is_array($exp)) {
+	            $this->attributes['birthdate'] = strtotime($exp[2]. '-' . $exp[1] . '-'. $exp[0]);
+			}
 		}
 
 		return true;
