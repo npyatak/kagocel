@@ -5109,3 +5109,10 @@ img {
 wave {
   width: 100%;
 }
+
+#mixer__loop-line-control-second::before,
+#mixer__loop-line-control-second::after,
+#mixer__loop-line-control-first::before,
+#mixer__loop-line-control-first::after {
+  content: ""
+}

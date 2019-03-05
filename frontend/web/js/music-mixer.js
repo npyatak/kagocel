@@ -102,6 +102,11 @@ function createAudioCtxObject(audioCtxLink) {
     seekTo: null,
     wavesurfer: null,
     currentTime: 0,
+    looped: false,
+    loopFirstCut: 0,
+    loopSecondCut: 1,
+    loopsCount: 0,
+    loopSliderInitiated: false,
     filterInstances: {
       bass: null,
       mid: null,
@@ -318,6 +323,57 @@ secondRateControl.slider({
     audioCtxS.second.filterControls.rate(ui.value / 100);
   }
 });
+
+function resetSlider(link) {
+  $("#mixer__loop-line-control-"+link).replaceWith('<div style="width: 100%; max-width: 100%;" id="mixer__loop-line-control-'+link+'" class="record_slider_horizontal_1"></div>');
+  audioCtxS[link].loopFirstCut = 0;
+  audioCtxS[link].loopSecondCut = 1000;
+}
+
+function initiateLoopMaster(link) {
+  $("#plus-minus__"+link+" .plus").on("click", function() {
+    if (audioCtxS[link].audioCtx) {
+      console.log("I'M CLICKED");
+      audioCtxS[link].loopFirstCut = 1 / audioCtxS[link].duration.asSeconds() * (audioCtxS[link].currentTime / 1000);
+      audioCtxS[link].loopsCount += 1;
+      $("#mixer__"+link+"-retweet").html(audioCtxS[link].loopsCount);
+      audioCtxS[link].looped = true;
+  
+      $("#mixer__loop-line-control-"+link).css({display: "block"})
+      if (!audioCtxS[link].loopSliderInitiated) {
+        console.log(Math.ceil(audioCtxS[link].loopFirstCut * 1000));
+        $("#mixer__loop-line-control-"+link).slider({
+          range: true,
+          min: 0,
+          max: 1000,
+          values: [Math.ceil(audioCtxS[link].loopFirstCut * 1000), Math.ceil(audioCtxS[link].loopSecondCut * 1000)],
+          animate: true,
+          slide: function(event, ui) {
+            audioCtxS[link].loopFirstCut = ui.values[0] / 1000;
+            audioCtxS[link].loopSecondCut = ui.values[1] / 1000;
+          }
+        });
+        audioCtxS[link].loopSliderInitiated = true;
+      }
+    }
+  });
+  
+  $("#plus-minus__"+link+" .minus").on("click", function() {
+    if (audioCtxS[link].audioCtx && audioCtxS[link].loopsCount > 0) {
+      audioCtxS[link].loopsCount -= 1;
+      if (audioCtxS[link].loopsCount === 0) {
+        audioCtxS[link].looped = false;
+        $("#mixer__loop-line-control-"+link).css({ display: "none" });
+        resetSlider(link);
+        audioCtxS[link].loopSliderInitiated = false;
+      }
+      $("#mixer__"+link+"-retweet").html(audioCtxS[link].loopsCount);
+    }
+  });
+}
+
+initiateLoopMaster("first");
+initiateLoopMaster("second");
 
 samplesVolumeControl.slider({
   value: 50,
@@ -711,7 +767,26 @@ function Audio(audioCtxLink, musicLink, musicInfo) {
           audioObject.timerInterval = setInterval(function() {
             if (audioObject.playing) {
               audioObject.currentTime = audioObject.currentTime + (1000 * audioObject.filterInstances.rate.value);
-              if (audioObject.currentTime > (buffer.duration * 1000)) {
+              if (audioObject.looped) {
+                var secondCutInSeconds = (audioObject.duration.asSeconds() / 100 * audioObject.loopSecondCut) * 100;
+                var firstCutInSeconds = (audioObject.duration.asSeconds() / 100 * audioObject.loopFirstCut) * 100;
+
+                if (audioObject.currentTime > (secondCutInSeconds * 1000)) {
+                  audioObject.loopsCount -= 1;
+                  $("#mixer__"+audioCtxLink+"-retweet").html(audioObject.loopsCount);
+                  audioObject.currentTime = Math.ceil(firstCutInSeconds * 1000);
+                  console.log(audioObject.currentTime, "LOOP END CURRENT TIME")
+                  audioObject.seekTo(firstCutInSeconds);
+                  if (audioObject.loopsCount === 0) {
+                    audioObject.looped = false;
+                    $("#mixer__loop-line-control-"+audioCtxLink).css({ display: "none" });
+                    
+                    resetSlider(audioCtxLink);
+                    audioCtxS.first.loopSliderInitiated = false;
+                    
+                  }
+                }
+              } else if (audioObject.currentTime > (buffer.duration * 1000)) {
                 audioObject.currentTime = 0;
                 audioObject.seekTo(0);
               }
