@@ -43,9 +43,9 @@ $(document).on("click", ".post .action", function(e) {
   }
 });
 
-window.onload = function() {
+$(document).ready(function() {
   $(".wrapper").css("opacity", "1");
-};
+});
 
 var wavesurferArray = [];
 
