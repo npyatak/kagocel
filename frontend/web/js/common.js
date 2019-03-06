@@ -338,6 +338,11 @@ $(function(){
 					            volume: 0//значение от 0 до 1
 					          }
 					}), '*');
+
+					setTimeout(function(){
+						$(".video_popup").css({"opacity":1, "visibility": "visible"});
+					},1000);
+
 		            break;
 		        case 'player:durationChange':
 		        	player.contentWindow.postMessage(JSON.stringify({
@@ -352,6 +357,9 @@ $(function(){
 					    	color: 'f7323f'
 					    }
 					}), '*');
+					setTimeout(function(){
+						$(".video_popup").css({"opacity":1, "visibility": "visible"});
+					},1000);
 		            break;
 		    };
 		});
