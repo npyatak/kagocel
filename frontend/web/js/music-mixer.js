@@ -156,9 +156,7 @@ $("#mixer").on("click", function(e) {
 
 selectAsFirstButton.on("click", function(e) {
   if (!playedOnce.first) {
-    if (audioCtxS.first.audioCtx) {
-      resetAudioObject("first");
-    }
+    resetAudioObject("first");
     var container = $(e.target).closest(".mixer__select-music-container");
     var url = container.data("sound_url");
     var bpm = container.data("bpm");
@@ -182,9 +180,7 @@ selectAsFirstButton.on("click", function(e) {
 
 selectAsSecondButton.on("click", function(e) {
   if (!playedOnce.second) {
-    if (audioCtxS.second.audioCtx) {
-      resetAudioObject("second");
-    }
+    resetAudioObject("second");
     var container = $(e.target).closest(".mixer__select-music-container");
     var url = container.data("sound_url");
     var bpm = container.data("bpm");
@@ -648,14 +644,14 @@ function resetAudioObject(audioCtxLink) {
   if (audioCtxS[audioCtxLink].audioCtx) {
     audioCtxS[audioCtxLink].audioCtx.close();
     clearInterval(audioCtxS[audioCtxLink].timerInterval);
-    $("#mixer__"+audioCtxLink+"-seek").replaceWith("<div class='spectr spectrogram' id='mixer__"+audioCtxLink+"-seek'></div>")
     audioCtxS[audioCtxLink].playedDom.html("00:00");
     audioCtxS[audioCtxLink].durationDom.html("00:00");
     audioCtxS[audioCtxLink].nameDom.html("");
-    $(".mixer__select-music-"+audioCtxLink).removeClass("active");
   }
 
   audioCtxS[audioCtxLink] = createAudioCtxObject(audioCtxLink);
+  $("#mixer__"+audioCtxLink+"-seek").replaceWith("<div class='spectr spectrogram' id='mixer__"+audioCtxLink+"-seek'></div>");
+  $(".mixer__select-music-"+audioCtxLink).removeClass("active");
 }
 
 function resetMixer() {
@@ -705,6 +701,8 @@ function Audio(audioCtxLink, musicLink, musicInfo) {
     this.request.responseType = "arraybuffer";
     this.request.onload = function() {
       var audioData = this.request.response;
+
+      $("#mixer__"+audioCtxLink+"-seek").replaceWith("<div class='spectr spectrogram' id='mixer__"+audioCtxLink+"-seek'></div>");
 
       audioObject.wavesurfer = WaveSurfer.create({
         container: $("#mixer__" + audioCtxLink + "-seek")[0],
