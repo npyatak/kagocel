@@ -10,10 +10,9 @@ use common\models\PostAction;
 
 class ShareWidget extends \yii\base\Widget 
 {
-
 	public $share = [
-		'title' => 'Прокачай свою заботу с Кагоцелом. #ПрокачайсвоюзаботуcКагоцелом #Кагоцел',
-        'text' => 'Собери свой трек и выиграй призы. #ПрокачайсвоюзаботуcКагоцелом #Кагоцел',
+		'title' => 'Участвуй в конкурсе #ПрокачайсвоюзаботусКагоцелом #Кагоцел ',
+        'text' => 'Прокачай и ты свою заботу!',
 		'image' => '/img/share/kagocel_studia_souz_sharing_fb.jpg',
 		'image_vk' => '/img/share/kagocel_studia_souz_sharing_vk.jpg',
 		'image_ok' => '/img/share/kagocel_studia_souz_sharing_ok.jpg',
