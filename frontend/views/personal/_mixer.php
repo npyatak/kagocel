@@ -25,6 +25,10 @@ use yii\widgets\ActiveForm;
 				</div>
 				<div class="spectr spectrogram" id="mixer__first-seek">
 				</div>
+				
+				<div style="margin-top: 30px;">
+					<div style="width: 100%; max-width: 100%;" id="mixer__loop-line-control-first" class="record_slider_horizontal_1"></div>
+				</div>
 			</div>
 
 			<div class="mixer_top_item right rightTrack">
@@ -37,6 +41,9 @@ use yii\widgets\ActiveForm;
 				</div>
 				<div class="spectr" id="mixer__second-seek">
 					<!-- <img src="/img/test_img/graph.png" alt=""> -->
+				</div>
+				<div style="margin-top: 30px;">
+					<div style="width: 100%; max-width: 100%;" id="mixer__loop-line-control-second" class="record_slider_horizontal_1"></div>
 				</div>
 			</div>
 
@@ -55,11 +62,11 @@ use yii\widgets\ActiveForm;
 				
 				<div class="record_buttons">
 					
-					<!-- <div class="plus_minus">
-						<div class="plus black_gray">-</div>
+					<div class="plus_minus" id="plus-minus__first">
+						<div class="minus black_gray">-</div>
 						<div class="center black_gray"><i class="fa fa-retweet" aria-hidden="true"></i> <span id="mixer__first-retweet">0</span></div>
-						<div class="minus black_gray">+</div>
-					</div> -->
+						<div class="plus black_gray">+</div>
+					</div>
 
 					<div class="play_stop black_gray trackLeft" id="mixer__first-track-play-button">
 						<i class="fa fa-play" aria-hidden="true"></i>
@@ -188,11 +195,11 @@ use yii\widgets\ActiveForm;
 						<img class="fa-pause" src="/img/pause.svg" alt="pause">
 					</div>
 
-					<!-- <div class="plus_minus orange">
-						<div class="plus black_gray">-</div>
-						<div class="center black_gray"><i class="fa fa-retweet" aria-hidden="true"></i><span id="mixer__first-retweet"> 0</span></div>
-						<div class="minus black_gray">+</div>
-					</div> -->
+					<div class="plus_minus orange" id="plus-minus__second">
+						<div class="minus black_gray">-</div>
+						<div class="center black_gray"><i class="fa fa-retweet" aria-hidden="true"></i> <span id="mixer__second-retweet"> 0</span></div>
+						<div class="plus black_gray">+</div>
+					</div>
 					
 				</div>
 				<div class="record_slider_horizontal_1" style="margin-top: 40px;">
@@ -254,9 +261,3 @@ use yii\widgets\ActiveForm;
 
 	</div>
 	<!-- mixer_done-messages -->
-
-<!--[if IE]>
-<script>
-	alert("К сожалению, ваш браузер не поддерживает технологии, которые активно применялись при создании микшера. Как насчет Google Chrome?")
-</script>
-<![endif]-->

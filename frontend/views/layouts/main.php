@@ -128,7 +128,7 @@ echo \frontend\widgets\share\ShareWidget::widget(['showButtons' => false]);
             ['label' => 'Главная', 'c' => 'site', 'a' => 'index', 'data-ga-click' => 'click_main_page'],
             ['label' => 'Личный кабинет', 'c' => 'personal', 'a' => 'index', 'data-ga-click' => 'click_personal_page'],
             ['label' => 'Участники', 'c' => 'site', 'a' => 'gallery', 'data-ga-click' => 'click_gallery_page'],
-            ['label' => 'Призы', 'c' => 'site', 'a' => 'index', 'not_active' => 1, 'data-ga-click' => 'click_main_page', 'anchor' => 'you_prize'],
+            ['label' => 'Призы', 'c' => 'site', 'a' => 'index', 'not_active' => 1, 'data-ga-click' => 'click_main_page', 'anchor' => 'your_prize'],
             ['label' => 'О продукте', 'c' => 'site', 'a' => 'about', 'data-ga-click' => 'click_about_page'],
             ['label' => 'Обратная связь', 'c' => 'site', 'a' => 'contact'],
             ['label' => 'Faq', 'c' => 'site', 'a' => 'faq', 'data-ga-click' => 'click_faq_page'],

@@ -869,10 +869,10 @@ img {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
   -ms-flex-pack: justify;
-  justify-content: space-between;
+  justify-content: flex-end;
   position: relative;
 }
 
@@ -950,6 +950,8 @@ img {
   background: -webkit-gradient(to bottom, #fff 0%, #DDDDDD 50%);
   border-radius: 10px;
   transition: opacity .25s;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .exit_video_popup{
@@ -5200,4 +5202,11 @@ img {
 
 wave {
   width: 100%;
+}
+
+#mixer__loop-line-control-second::before,
+#mixer__loop-line-control-second::after,
+#mixer__loop-line-control-first::before,
+#mixer__loop-line-control-first::after {
+  content: ""
 }

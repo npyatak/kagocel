@@ -12,7 +12,7 @@ var ua = window.navigator.userAgent.toLowerCase(),
 is_ie = (/trident/gi).test(ua) || (/msie/gi).test(ua);
 
 if (is_ie) {
-  show_popup("К сожалению, ваш браузер не поддерживает технологии, которые активно применялись при создании микшера. Как насчет Google Chrome?")
+  show_popup("К сожалению, ваш браузер не поддерживает технологии, которые активно применялись при создании данного сайта. Как насчет Google Chrome?")
 }
 
 $(document).on("click", ".post .action", function(e) {
