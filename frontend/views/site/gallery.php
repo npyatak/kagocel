@@ -58,7 +58,7 @@ after_header - говорит о том, что этот блок идет по�
 			<div class="contain">
 				<?php foreach ($finishedStages as $s):?>
 					<?php if(!empty($winnersPosts[$s->id])):?>
-						<h3 class="section_name show"><span>п<i>о</i>бедители второго этапа  <i class="fa fa-caret-up" aria-hidden="true"></i></span></h3>
+						<h3 class="section_name show"><span>участники второго этапа  <i class="fa fa-caret-up" aria-hidden="true"></i></span></h3>
 
 						<div class="stage_show">
 							<div>
