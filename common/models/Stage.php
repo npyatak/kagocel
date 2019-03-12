@@ -68,6 +68,11 @@ class Stage extends \yii\db\ActiveRecord
         return parent::afterFind();
     }
 
+    public function getPosts()
+    {
+        return $this->hasMany(Post::className(), ['stage_id' => 'id']);
+    }
+
     public function getWinners()
     {
         return $this->hasMany(Winner::className(), ['stage_id' => 'id']);

@@ -71,3 +71,30 @@ after_header - говорит о том, что этот блок идет по�
 		</div>
 	</div>
 </section>
+
+<?php if(!empty($finishedStages)):?>
+	<section class="section_hide_show dark_bg bottom">
+		<!-- <div class="all_show_button">
+			показать еще <i class="fa fa-caret-up" aria-hidden="true"></i>
+		</div> -->
+		<!-- all_show -->
+
+		<div class="all_show_block pb_small">
+			<div class="contain">
+				<?php foreach ($finishedStages as $s):?>
+					<?php if(!empty($s->posts)):?>
+						<h3 class="section_name show"><span>участники <?=$s->number;?>-го этапа  <i class="fa fa-caret-up" aria-hidden="true"></i></span></h3>
+
+						<div class="stage_show">
+							<div>
+								<?php foreach ($s->posts as $key => $post):?>
+									<?=$this->render('_post', ['post' => $post]);?>
+								<?php endforeach;?>
+							</div>
+						</div>
+					<?php endif;?>
+				<?php endforeach;?>
+			</div>
+		</div>
+	</section>
+<?php endif;?>
