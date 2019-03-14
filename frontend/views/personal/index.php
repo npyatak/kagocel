@@ -58,25 +58,18 @@ use yii\helpers\Html;
 		</div>
 	
 		<?php if($userStagePosts):?>
-			<?$count = 1;?>
 			<div class="wrap_tracks_slider">
 				<div class="tracks_slider owl-carousel sl_1">
 					<?php foreach ($userStagePosts as $key => $post):?>
 						<?=$this->render('_post', ['post' => $post]);?>
 					<?php endforeach;?>
 				</div>
-				<!-- tracks_slider -->
-				<div class="slider_nav sl_nav_<?=$count?>"></div>
-				<div class="slider_dots sl_dots_<?=$count?>"></div>
 			</div>
-			<!-- wrap_tracks_slider -->
-			<?$count++;?>
 		<?php endif;?>
 
 
 
 		<?php if($userOldPosts):?>
-			<?$count = 1;?>
 			<p class="show_archive">
 				<span>Архив<i class="fa fa-caret-up" aria-hidden="true"></i></span>
 			</p>
@@ -88,14 +81,9 @@ use yii\helpers\Html;
 							<?=$this->render('_post', ['post' => $post]);?>
 						<?php endforeach;?>
 					</div>
-					<!-- tracks_slider -->
-					<div class="slider_nav sl_nav_<?=$count?>"></div>
-					<div class="slider_dots sl_dots_<?=$count?>"></div>
 				</div>
 				<!-- wrap_tracks_slider -->
 			</div>
-			<!-- archive_hide -->
-			<?$count++;?>
 		<?php endif;?>
 	</div>
 </section>
@@ -106,19 +94,14 @@ use yii\helpers\Html;
 		<div class="section_top">
 			<h3 class="section_name">Голосуй за треки других участников</h3>
 		</div>
-			<?php if($otherPosts):?>
-			<?$count = 1;?>
+		<?php if($otherPosts):?>
 			<div class="wrap_tracks_slider">
 				<div class="tracks_slider owl-carousel sl_1">
 					<?php foreach ($otherPosts as $key => $post):?>
 						<?=$this->render('@frontend/views/site/_post', ['post' => $post]);?>
 					<?php endforeach;?>
 				</div>
-				<!-- tracks_slider -->
-				<div class="slider_nav sl_nav_<?=$count?>"></div>
-				<div class="slider_dots sl_dots_<?=$count?>"></div>
 			</div>
-			<!-- wrap_tracks_slider -->
 		<?php endif;?>
 	</div>
 </section>
