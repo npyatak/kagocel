@@ -3,14 +3,6 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 ?>
 
-
-
-<!-- 
-dark_bg - задает градиент блоку если к нему плюсом добавить класс bottom тога фон состыкуется с фоном футера
-pt_small - малый отступ сверху
-pb_big - большой отступ снизу
-after_header - говорит о том, что этот блок идет после header, что-бы скрипт задал ему отступ сверху
- -->
 <section class="section_main lk dark_bg after_header">
 
 	<div class="contain">
@@ -32,10 +24,6 @@ after_header - говорит о том, что этот блок идет по�
 	</div>
 	<p class="sixteen_item"><img src="/img/sixteen.svg" alt="16+"></p>
 </section>
-<!-- section_main -->
-
-
-
 
 <section class="mixer_section">
 	<div class="contain">
@@ -61,13 +49,6 @@ after_header - говорит о том, что этот блок идет по�
 		<?=$this->render('_playlist');?>
 	</div>
 </section>
-<!-- mixer_section -->
-
-<!-- /секция с микшером -->
-
-
-
-
 
 <section class="my_tracks dark_bg pt_big pb_big">
 	<div class="contain">
@@ -76,8 +57,8 @@ after_header - говорит о том, что этот блок идет по�
 			<p class="section_anons">треки текущего этапа</p>
 		</div>
 	
-		<?$count = 1;?>
 		<?php if($userStagePosts):?>
+			<?$count = 1;?>
 			<div class="wrap_tracks_slider">
 				<div class="tracks_slider owl-carousel sl_1">
 					<?php foreach ($userStagePosts as $key => $post):?>
@@ -95,6 +76,7 @@ after_header - говорит о том, что этот блок идет по�
 
 
 		<?php if($userOldPosts):?>
+			<?$count = 1;?>
 			<p class="show_archive">
 				<span>Архив<i class="fa fa-caret-up" aria-hidden="true"></i></span>
 			</p>
@@ -125,6 +107,7 @@ after_header - говорит о том, что этот блок идет по�
 			<h3 class="section_name">Голосуй за треки других участников</h3>
 		</div>
 			<?php if($otherPosts):?>
+			<?$count = 1;?>
 			<div class="wrap_tracks_slider">
 				<div class="tracks_slider owl-carousel sl_1">
 					<?php foreach ($otherPosts as $key => $post):?>
