@@ -210,6 +210,7 @@ $sounds = [
 							<?php if(isset($m['album'])):?>
 								<p class="name_album"><?=$m['album'];?></p>
 							<?php endif;?>
+							<span class="preplay_sound" style="align-self: center; cursor: pointer; color: #f7323f;">Прослушать</span>
 						</div>
 					</li>
 				<?php endforeach;?>
