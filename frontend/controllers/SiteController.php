@@ -171,17 +171,11 @@ class SiteController extends CController
         $stagePosts = Post::find()->where(['stage_id' => $stage->id, 'status' => Post::STATUS_ACTIVE])->all();
 
         $finishedStages = Stage::find()->where(['<', 'date_end', time()])->indexBy('id')->all();
-        
-        $winnersPosts = [];
-        foreach ($finishedStages as $s) {
-            $winnersPosts[$s->id] = Post::find()->where(['stage_id' => $s->id, 'status' => Post::STATUS_ACTIVE])->all();
-        }
 
         return $this->render('gallery', [
             'stage' => $stage,
             'stagePosts' => $stagePosts,
             'finishedStages' => $finishedStages,
-            'winnersPosts' => $winnersPosts,
         ]);
     }
 
