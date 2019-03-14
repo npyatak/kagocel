@@ -57,14 +57,18 @@ use yii\helpers\Html;
 			<p class="section_anons">треки текущего этапа</p>
 		</div>
 	
-		<?php if($userStagePosts):?>
+		<?$count = 1;?>
+		<?php if($userStagePosts):?>	
 			<div class="wrap_tracks_slider">
 				<div class="tracks_slider owl-carousel sl_1">
 					<?php foreach ($userStagePosts as $key => $post):?>
 						<?=$this->render('_post', ['post' => $post]);?>
 					<?php endforeach;?>
 				</div>
+				<div class="slider_nav sl_nav_<?=$count?>"></div>
+				<div class="slider_dots sl_dots_<?=$count?>"></div>
 			</div>
+			<?$count++;?>
 		<?php endif;?>
 
 
@@ -81,9 +85,12 @@ use yii\helpers\Html;
 							<?=$this->render('_post', ['post' => $post]);?>
 						<?php endforeach;?>
 					</div>
+					<div class="slider_nav sl_nav_<?=$count?>"></div>
+					<div class="slider_dots sl_dots_<?=$count?>"></div>
 				</div>
 				<!-- wrap_tracks_slider -->
 			</div>
+			<?$count++;?>
 		<?php endif;?>
 	</div>
 </section>
@@ -101,6 +108,8 @@ use yii\helpers\Html;
 						<?=$this->render('@frontend/views/site/_post', ['post' => $post]);?>
 					<?php endforeach;?>
 				</div>
+				<div class="slider_nav sl_nav_<?=$count?>"></div>
+				<div class="slider_dots sl_dots_<?=$count?>"></div>
 			</div>
 		<?php endif;?>
 	</div>
