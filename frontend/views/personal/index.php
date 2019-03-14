@@ -75,7 +75,8 @@ after_header - говорит о том, что этот блок идет по�
 			<h3 class="section_name">М<i>о</i>и треки</h3>
 			<p class="section_anons">треки текущего этапа</p>
 		</div>
-
+	
+		<?$count = 1;?>
 		<?php if($userStagePosts):?>
 			<div class="wrap_tracks_slider">
 				<div class="tracks_slider owl-carousel sl_1">
@@ -84,10 +85,11 @@ after_header - говорит о том, что этот блок идет по�
 					<?php endforeach;?>
 				</div>
 				<!-- tracks_slider -->
-				<div class="slider_nav sl_nav_1"></div>
-				<div class="slider_dots sl_dots_1"></div>
+				<div class="slider_nav sl_nav_<?=$count?>"></div>
+				<div class="slider_dots sl_dots_<?=$count?>"></div>
 			</div>
 			<!-- wrap_tracks_slider -->
+			<?$count++;?>
 		<?php endif;?>
 
 
@@ -105,12 +107,13 @@ after_header - говорит о том, что этот блок идет по�
 						<?php endforeach;?>
 					</div>
 					<!-- tracks_slider -->
-					<div class="slider_nav sl_nav_2"></div>
-					<div class="slider_dots sl_dots_2"></div>
+					<div class="slider_nav sl_nav_<?=$count?>"></div>
+					<div class="slider_dots sl_dots_<?=$count?>"></div>
 				</div>
 				<!-- wrap_tracks_slider -->
 			</div>
 			<!-- archive_hide -->
+			<?$count++;?>
 		<?php endif;?>
 	</div>
 </section>
@@ -129,8 +132,8 @@ after_header - говорит о том, что этот блок идет по�
 					<?php endforeach;?>
 				</div>
 				<!-- tracks_slider -->
-				<div class="slider_nav sl_nav_3"></div>
-				<div class="slider_dots sl_dots_3"></div>
+				<div class="slider_nav sl_nav_<?=$count?>"></div>
+				<div class="slider_dots sl_dots_<?=$count?>"></div>
 			</div>
 			<!-- wrap_tracks_slider -->
 		<?php endif;?>
