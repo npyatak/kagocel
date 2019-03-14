@@ -955,7 +955,6 @@ function SampleAudioCtx() {
       }.bind(this))
     }.bind(this));
   }
-  
 }
 
 window.sampleAudioCtx = new SampleAudioCtx();
@@ -965,4 +964,76 @@ $(".mixer__additional-track-player").on("click", function(e) {
   var audioUrl = $(this).data("url");
   console.log(audioUrl);
   sampleAudioCtx.playSample(audioUrl);
+})
+
+function Preplay(url) {
+  this.url = url;
+  this.request = null;
+
+  this.getAudioBuffer = function(callback) {
+    console.log("we are here");
+    this.request = new XMLHttpRequest();
+    var request = this.request;
+    this.request.open("GET", this.url, true);
+    this.request.responseType = "arraybuffer";
+
+    this.request.onload = function() {
+      callback(request.response);
+    }
+
+    this.request.send();
+  }
+}
+
+function PreplayAudioCtx() {
+  this.audioCtx = null;
+  this.gain = null;
+  this.source = null;
+
+  this.init = function() {
+    this.audioCtx = new AudioContext();
+    this.gain = this.audioCtx.createGain();
+    this.gain.gain.value = 0.5;
+
+    this.gain.connect(this.audioCtx.destination);
+    console.log(this.audioCtx, "AUDIO CTX");
+  }
+
+  this.playSample = function(link) {
+    var source = this.audioCtx.createBufferSource();
+    var sample = new Preplay(link);
+    sample.getAudioBuffer(function(data) {
+      console.log('WE ARE HERE');
+      this.audioCtx.decodeAudioData(data, function(buffer) {
+        source.buffer = buffer;
+        source.connect(this.gain);
+        source.loop = false;
+        source.start(0);
+
+        this.source = source;
+      }.bind(this))
+    }.bind(this));
+  }
+
+  this.stop = function() {
+    if (this.source) {
+      this.source.stop();
+    }
+  }
+}
+
+window.preplayAudioCtx = new PreplayAudioCtx();
+preplayAudioCtx.init();
+
+$(".preplay_sound").on("click", function(e) {
+  if ($(e.target).html() === "Прослушать") {
+    preplayAudioCtx.stop();
+    $(".preplay_sound").html("Прослушать");
+    preplayAudioCtx.playSample(($(e.target).closest(".play_li").data("sound_url")));
+    $(e.target).html("Остановить");
+  } else {
+    preplayAudioCtx.stop();
+    $(".preplay_sound").html("Прослушать");
+  }
+  
 })
