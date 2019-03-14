@@ -15,7 +15,7 @@ class FbOAuth2Service extends \nodge\eauth\services\FacebookOAuth2Service
 
     protected $scopes = [
         self::SCOPE_EMAIL,
-        self::SCOPE_USER_BIRTHDAY,
+        // self::SCOPE_USER_BIRTHDAY,
         // self::SCOPE_USER_HOMETOWN,
         // self::SCOPE_USER_LOCATION,
         // self::SCOPE_USER_PHOTOS,
