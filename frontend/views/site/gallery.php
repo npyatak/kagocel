@@ -1,12 +1,15 @@
 <?php
 use yii\helpers\Url;
+
+$arr = [
+	1 => 'первого',
+	2 => 'второго',
+	3 => 'третьего',
+	4 => 'четвертого',
+	5 => 'пятого',
+	6 => 'шестого',
+];
 ?>
-<!-- 
-dark_bg - задает градиент блоку если к нему плюсом добавить класс bottom тога фон состыкуется с фоном футера
-pt_small - малый отступ сверху
-pb_big - большой отступ снизу
-after_header - говорит о том, что этот блок идет после header, что-бы скрипт задал ему отступ сверху
- -->
 <section class="section_main dark_bg pb_big after_header">
 	<div class="contain">
 
@@ -40,7 +43,7 @@ after_header - говорит о том, что этот блок идет по�
 			<div class="contain">
 				<?php foreach ($finishedStages as $s):?>
 					<?php if(!empty($s->winnerPosts)):?>
-						<h3 class="section_name show"><span>победители <?=$s->number;?>-го этапа  <i class="fa fa-caret-up" aria-hidden="true"></i></span></h3>
+						<h3 class="section_name show"><span>победители <?=$arr[$s->number];?> этапа  <i class="fa fa-caret-up" aria-hidden="true"></i></span></h3>
 
 						<div class="stage_show">
 							<div>
@@ -83,7 +86,7 @@ after_header - говорит о том, что этот блок идет по�
 			<div class="contain">
 				<?php foreach ($finishedStages as $s):?>
 					<?php if(!empty($s->posts)):?>
-						<h3 class="section_name show"><span>участники <?=$s->number;?>-го этапа  <i class="fa fa-caret-up" aria-hidden="true"></i></span></h3>
+						<h3 class="section_name show"><span>участники <?=$arr[$s->number];?> этапа  <i class="fa fa-caret-up" aria-hidden="true"></i></span></h3>
 
 						<div class="stage_show">
 							<div>
