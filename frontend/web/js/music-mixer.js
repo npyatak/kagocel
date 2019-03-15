@@ -649,9 +649,12 @@ function resetAudioObject(audioCtxLink) {
     audioCtxS[audioCtxLink].nameDom.html("");
   }
 
+  $("#plate__" + audioCtxLink).removeClass("spinning");
   audioCtxS[audioCtxLink] = createAudioCtxObject(audioCtxLink);
+  $(".handle").removeClass("active");
   $("#mixer__"+audioCtxLink+"-seek").replaceWith("<div class='spectr spectrogram' id='mixer__"+audioCtxLink+"-seek'></div>");
   $(".mixer__select-music-"+audioCtxLink).removeClass("active");
+  $("#mixer__"+audioCtxLink+"-track-play-button").removeClass("active");
 }
 
 function resetMixer() {
@@ -1039,4 +1042,4 @@ $(".preplay_sound").on("click", function(e) {
 })
 
 $("#mixer__listen-second").on("click", function() { $("#mixer__result-play-button").click(); })
-$("#mixer__reset-settings").on("click", function() { resetMixer(); })
+$("#mixer__reset-settings").on("click", function(e) { resetMixer(); e.preventDefault(); e.stopPropagation(); })
