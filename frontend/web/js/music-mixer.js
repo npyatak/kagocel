@@ -1037,3 +1037,6 @@ $(".preplay_sound").on("click", function(e) {
   }
   
 })
+
+$("#mixer__listen-second").on("click", function() { $("#mixer__result-play-button").click(); })
+$("#mixer__reset-settings").on("click", function() { resetMixer(); })
