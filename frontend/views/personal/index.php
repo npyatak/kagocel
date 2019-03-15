@@ -57,7 +57,7 @@ use yii\helpers\Html;
 			<p class="section_anons">треки текущего этапа</p>
 		</div>
 	
-		<?$count = 1;?>
+		<?php $count = 1;?>
 		<?php if($userStagePosts):?>	
 			<div class="wrap_tracks_slider">
 				<div class="tracks_slider owl-carousel sl_1">
@@ -68,7 +68,7 @@ use yii\helpers\Html;
 				<div class="slider_nav sl_nav_<?=$count?>"></div>
 				<div class="slider_dots sl_dots_<?=$count?>"></div>
 			</div>
-			<?$count++;?>
+			<?php $count++;?>
 		<?php endif;?>
 
 
@@ -90,7 +90,7 @@ use yii\helpers\Html;
 				</div>
 				<!-- wrap_tracks_slider -->
 			</div>
-			<?$count++;?>
+			<?php $count++;?>
 		<?php endif;?>
 	</div>
 </section>
