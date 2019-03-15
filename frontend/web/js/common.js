@@ -508,3 +508,9 @@ $(document).on('click', '*', function(e) {
         ga('send', 'event', 'click', $(this).attr('data-ga-click'));
     }
 });
+
+$(window).scroll(function() {
+   if($(window).scrollTop() + $(window).height() == $(document).height()) {
+       ga('send', 'event', 'click', 'scroll_bottom');
+   }
+});
