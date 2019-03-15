@@ -638,6 +638,7 @@ function initTimer(duration) {
 function stopTimer() {
   clearInterval(timer);
   recordTimer.html("00:00:0000");
+  time = 0;
 }
 
 function resetAudioObject(audioCtxLink) {
@@ -661,7 +662,13 @@ function resetMixer() {
   ["first", "second"].map(function(i) {
     resetAudioObject(i);
   });
+  if (recording) {
+    stopRecording();
+    recordButton.removeClass("active");
+    recording = false;
+  }
   playedOnce = { first: false, second: false };
+  stopTimer();
 }
 
 var alreadyStartedOne = false;
