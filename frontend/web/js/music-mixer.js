@@ -1,5 +1,7 @@
 // our music mixer
 
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
+
 // CONSTANTS
 // ------------
 
