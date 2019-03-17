@@ -317,8 +317,11 @@ $(function(){
 
 
 		window.addEventListener('message', function (event) {
-		    var message = JSON.parse(event.data);
-		    console.log(message.type); // some type
+			var message = {};
+			try {
+				message = JSON.parse(event.data);
+			} catch(e) {}
+		    // console.log(message.type); // some type
 		    switch (message.type) {
 		        case 'player:ready':
 		            // console.log(message.data.state); // текущее состояние плеера

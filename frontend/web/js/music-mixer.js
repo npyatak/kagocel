@@ -498,24 +498,39 @@ function startRecording() {
     audioCtxS.second.dest.stream
   ]);
 
-  mediaRecorder = new MediaRecorder(mixedStream);
+  var audioContext = new AudioContext;
+  var input = audioContext.createMediaStreamSource(mixedStream);
+
+  // mediaRecorder = new MediaRecorder(mixedStream);
+  mediaRecorder = new WebAudioRecorder(input, {
+    workerDir: "js/",
+    encoding: "mp3"
+  });
+  mediaRecorder.setOptions({
+    encodeAfterRecord: true,
+    mp3: {
+      bitRate: 160
+    }
+  })
+  console.log("MEDIA RECORDER CREATED");
+
 
   chunks = [];
-  mediaRecorder.addEventListener("dataavailable", function(evt) {
-    // push each chunk (blobs) in an array
-    chunks.push(evt.data);
-  });
+  // mediaRecorder.addEventListener("dataavailable", function(evt) {
+  //   // push each chunk (blobs) in an array
+  //   chunks.push(evt.data);
+  // });
 
-  mediaRecorder.addEventListener("stop", function(evt) {
+  mediaRecorder.onComplete = function(recorder, blob) {
     console.log("STOPPED");
     // Make blob out of our blobs, and open it.
-    var blob = new Blob(chunks, { type: "audio/ogg; codecs=opus" });
+    // var blob = new Blob(chunks, { type: "audio/ogg; codecs=opus" });
     var url = URL.createObjectURL(blob);
 
     console.log(chunks);
     console.log(url);
 
-    var ourFile = new File([blob], "audio.ogg", { type: "audio/ogg" });
+    var ourFile = new File([blob], "audio.mp3", { type: "audio/mp3" });
     console.log(ourFile);
 
     audioCtxS.first.audioCtx.suspend();
@@ -615,14 +630,14 @@ function startRecording() {
     });
 
 
-  });
+  };
 
-  mediaRecorder.start();
+  mediaRecorder.startRecording();
   initTimer();
 }
 
 function stopRecording() {
-  mediaRecorder.stop();
+  mediaRecorder.finishRecording();
 }
 
 var time = 0;
