@@ -502,8 +502,7 @@ function startRecording() {
     audioCtxS.second.dest.stream
   ]);
 
-  var audioContext = new AudioContext;
-  var input = audioContext.createMediaStreamSource(mixedStream);
+  var input = ac.createMediaStreamSource(mixedStream);
 
   // mediaRecorder = new MediaRecorder(mixedStream);
   mediaRecorder = new WebAudioRecorder(input, {
