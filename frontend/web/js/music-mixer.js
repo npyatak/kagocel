@@ -2,6 +2,8 @@
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
+mixedAC = new AudioContext();
+
 // CONSTANTS
 // ------------
 
@@ -494,7 +496,7 @@ function startRecording() {
     return dest.stream;
   }
 
-  var ac = new AudioContext();
+  var ac = mixedAC;
   var mixedStream = mix(ac, [
     audioCtxS.first.dest.stream,
     audioCtxS.second.dest.stream
