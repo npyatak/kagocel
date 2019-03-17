@@ -6,9 +6,6 @@ use yii\widgets\ActiveForm;
 
 <div class="mixer" id="mixer">
 	<div class="mixer_inner" id="mixer__inner">
-		<div style="text-align: right; margin-bottom: 20px;">
-		<span class="mixer_reboot" style="align-self: right; color: #f7323f; cursor: pointer" id="mixer__reset-settings">Сбросить настройки</span>
-		</div>
 		<div class="mixer_top">
 			
 			<!-- при добавлянии класса active когда начинается запись скрываем .text , и показываем timer + меняется цвет-->
@@ -175,6 +172,10 @@ use yii\widgets\ActiveForm;
 					<div class="record_slider_horizontal_2">
 						<div id="mixer__balance-control"></div>
 					</div>
+						<div class="recording_button black_gray" id="mixer__reset-settings" style="margin: 20px auto; align-self: center;" data-ga-click="click_record_button">
+							<p class="text">Сбросить настройки</p>
+							<p class="timer" id="mixer__record-timer">0:00:00</p>
+						</div>
 
 				</div>
 				<!-- mbi_wrap_items -->

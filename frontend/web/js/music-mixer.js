@@ -669,6 +669,14 @@ function resetMixer() {
   }
   playedOnce = { first: false, second: false };
   stopTimer();
+  console.log("IAMHERE");
+  $(".knob").parent().children(".color_circle").css("transform", "rotate(0)");
+  $(".knob").css("transform", "rotate(0)");
+  $(".knob").parent().children(".color_circle").addClass("left");
+  $(".knob").parent().children(".grey_circle").addClass("right");
+  firstTrackLoudControl.slider("value", 100);
+  secondTrackLoudControl.slider("value", 100);
+  balanceControl.slider("value", 50);
 }
 
 var alreadyStartedOne = false;
