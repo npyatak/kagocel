@@ -570,13 +570,14 @@ function startRecording() {
     // });
 
     $("#tryAgain").on("click", function() {
-      $("#mixer__done-message").css({ display: "none" });
-      $(".mixer_playlist").css({ display: "" });
-      $("#mixer").css({ display: "block" });
+      // $("#mixer__done-message").css({ display: "none" });
+      // $(".mixer_playlist").css({ display: "" });
+      // $("#mixer").css({ display: "block" });
 
-      $("mixer__result-play-button").off("click");
+      // $("mixer__result-play-button").off("click");
 
-      $("#audio-result").remove();
+      // $("#audio-result").remove();
+      window.location.reload();
     });
 
 
