@@ -651,6 +651,7 @@ function resetAudioObject(audioCtxLink) {
     audioCtxS[audioCtxLink].durationDom.html("00:00");
     audioCtxS[audioCtxLink].nameDom.html("");
     audioCtxS[audioCtxLink].currentTime = 0;
+    audioCtxS[audioCtxLink].pause = null;
   }
 
   $("#plate__" + audioCtxLink).removeClass("spinning");
