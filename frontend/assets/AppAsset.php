@@ -22,10 +22,9 @@ class AppAsset extends AssetBundle
         'js/buff-audio.js',
         'js/WebAudioRecorder.min.js',
         'js/WebAudioRecorderMp3.min.js',
-        'js/Mp3LameEncoder.min.js.mem',
         'https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.4.0/wavesurfer.min.js',
         'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js',
-        'https://cdn.webrtc-experiment.com/MultiStreamsMixer.js',
+        // 'https://cdn.webrtc-experiment.com/MultiStreamsMixer.js',
         'js/main.js',
         'js/music-mixer.js'
     ];
