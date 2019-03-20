@@ -6,7 +6,6 @@ use yii\widgets\ActiveForm;
 
 <div class="mixer" id="mixer">
 	<div class="mixer_inner" id="mixer__inner">
-
 		<div class="mixer_top">
 			
 			<!-- при добавлянии класса active когда начинается запись скрываем .text , и показываем timer + меняется цвет-->
@@ -173,6 +172,10 @@ use yii\widgets\ActiveForm;
 					<div class="record_slider_horizontal_2">
 						<div id="mixer__balance-control"></div>
 					</div>
+						<div class="recording_button black_gray" id="mixer__reset-settings" style="margin: 20px auto; align-self: center;" data-ga-click="click_record_button">
+							<p class="text">Сбросить настройки</p>
+							<p class="timer" id="mixer__record-timer">0:00:00</p>
+						</div>
 
 				</div>
 				<!-- mbi_wrap_items -->
@@ -224,7 +227,9 @@ use yii\widgets\ActiveForm;
 
 	<div class="mixer_done-message" id="mixer__done-message">
 		<h3 class="your_mix_name">Вы успешно создали свой микс!</h3>
-
+		<div class="center">
+			<a class="refer_style" style="color: #f7323f" id="mixer__listen-second" href="javascript:void(0)">Прослушать результат</a>
+		</div>
 		<div class="track_item light your_track" id="post_999" data-id="999">
 			<audio id="result-src-cont" src=""></audio>
 			<div class="spectrogram"></div>
