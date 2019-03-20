@@ -39,7 +39,14 @@ use common\models\PostAction;
 			</div>
 		</div>
 
-		<a class="track_vote action  <?=(!Yii::$app->user->isGuest && !$post->userCan(PostAction::TYPE_LIKE)) ? '' : 'active';?>" data-type="<?=PostAction::TYPE_LIKE;?>"  data-ga-click="click_vote_button">
+		<?php if(Yii::$app->user->isGuest) {
+			$class = 'guest';
+		} elseif(!Yii::$app->user->isGuest && !$post->userCan(PostAction::TYPE_LIKE)) {
+			$class = '';
+		} else {
+			$class = 'active';
+		}?>
+		<a class="track_vote action  <?=$class;?>" data-type="<?=PostAction::TYPE_LIKE;?>"  data-ga-click="click_vote_button">
 			<p class="vote">Голосовать</p>
 		</a>
 	</div>

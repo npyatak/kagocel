@@ -87,7 +87,7 @@ class SiteController extends CController
 
         if (isset($serviceName)) {
             $eauth = Yii::$app->get('eauth')->getIdentity($serviceName);
-            $eauth->setRedirectUrl(Url::toRoute('personal/index'));
+            $eauth->setRedirectUrl(Url::toRoute('site/gallery'));
             if($ref && $ref !== '' && $ref !== '/login') {
                 $eauth->setRedirectUrl(Url::to($ref));
             }

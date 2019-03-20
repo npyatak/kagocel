@@ -77,6 +77,8 @@ $(document).on("click", ".post .action", function(e) {
         obj.removeClass("active");
       }
     });
+  } else if($(this).hasClass("guest")) {
+    window.location.href = '/login';
   }
 });
 

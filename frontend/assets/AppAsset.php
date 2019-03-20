@@ -23,7 +23,7 @@ class AppAsset extends AssetBundle
         'https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.4.0/wavesurfer.min.js',
         'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js',
         'https://cdn.webrtc-experiment.com/MultiStreamsMixer.js',
-        'js/main.js',
+        'js/main.js?v=1',
         'js/music-mixer.js'
     ];
     public $depends = [
