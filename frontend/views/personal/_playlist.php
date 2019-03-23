@@ -7,15 +7,24 @@
 // ];
 
 $melodies = [
+	['id' => 9, 'url' => '/audio/Apollo_APL_50_10__Open-Up__Simon-Hoirup-Andrew-Crisp.mp3', 'name' => 'Open up', 'author' => 'Simon Hoirup, Andrew Crisp', 'bpm' => 135],
+	['id' => 10, 'url' => '/audio/Apollo_DIN_41_27__Trans-Atlantic-__David-Lester-Scance.mp3', 'name' => 'Trans Atlantic', 'author' => 'David Lester', 'bpm' => 135],
+	['id' => 11, 'url' => '/audio/Apollo_DIN_41_28__Trans-Atlantic-__David-Lester-Scance.mp3', 'name' => 'Trans Atlantic 2', 'author' => 'David Lester', 'bpm' => 135],
+	['id' => 12, 'url' => '/audio/Apollo_NSM_25_6__Shift-Run-Stop__Marc-Vickers.mp3', 'name' => 'Shift Run Stop', 'author' => 'Marc Vickers', 'bpm' => 135],
+	['id' => 13, 'url' => '/audio/Apollo_NSM_25_17__Shift-Run-Stop__Marc-Vickers.mp3', 'name' => 'Shift Run Stop 2', 'author' => 'Marc Vickers', 'bpm' => 135],
+	['id' => 14, 'url' => '/audio/Apollo_SQ_64_6__A-Day-for-Living__Michael-Sims-PRS-100.mp3', 'name' => 'A day for living', 'author' => 'Michael Sims', 'bpm' => 135],
+	['id' => 15, 'url' => '/audio/Apollo_SQ_64_23__A-Day-for-Living__Michael-Sims-PRS-100.mp3', 'name' => 'A day for living 2', 'author' => 'Michael Sims', 'bpm' => 135],
+
+
 	['id' => 0, 'url' => '/audio/abstract_technology_corporate.mp3', 'name' => 'Abstract Technology Corporate', 'author' => '', 'bpm' => 135],
 	['id' => 1, 'url' => '/audio/ambient_tech_hip_hop_middle.mp3', 'name' => 'Ambient Tech Hip-Hop Middle Version', 'author' => '', 'bpm' => 150],
-	['id' => 1, 'url' => '/audio/ambient_tech_hip_hop.mp3', 'name' => 'Ambient Tech Hip-Hop', 'author' => '', 'bpm' => 150],
-	['id' => 1, 'url' => '/audio/ambient_tech_hip_hop_short.mp3', 'name' => 'Ambient Tech Hip-Hop Short Version 1', 'author' => '', 'bpm' => 150],
-	['id' => 1, 'url' => '/audio/ambient_tech_hip_hop_short_2.mp3', 'name' => 'Ambient Tech Hip-Hop Short Version 2', 'author' => '', 'bpm' => 150],
-	['id' => 1, 'url' => '/audio/ambient_tech_hip_hop_teaser.mp3', 'name' => 'Ambient Tech Hip-Hop Teaser', 'author' => '', 'bpm' => 150],
-	['id' => 1, 'url' => '/audio/just_trap.mp3', 'name' => 'Just trap', 'author' => '', 'bpm' => 140],
-	['id' => 1, 'url' => '/audio/motivation.mp3', 'name' => 'Motivation Inspiring Future Bass', 'author' => '', 'bpm' => 140],
-	['id' => 1, 'url' => '/audio/this_technology.mp3', 'name' => 'This technology', 'author' => '', 'bpm' => 140]
+	['id' => 2, 'url' => '/audio/ambient_tech_hip_hop.mp3', 'name' => 'Ambient Tech Hip-Hop', 'author' => '', 'bpm' => 150],
+	['id' => 3, 'url' => '/audio/ambient_tech_hip_hop_short.mp3', 'name' => 'Ambient Tech Hip-Hop Short Version 1', 'author' => '', 'bpm' => 150],
+	['id' => 4, 'url' => '/audio/ambient_tech_hip_hop_short_2.mp3', 'name' => 'Ambient Tech Hip-Hop Short Version 2', 'author' => '', 'bpm' => 150],
+	['id' => 5, 'url' => '/audio/ambient_tech_hip_hop_teaser.mp3', 'name' => 'Ambient Tech Hip-Hop Teaser', 'author' => '', 'bpm' => 150],
+	['id' => 6, 'url' => '/audio/just_trap.mp3', 'name' => 'Just trap', 'author' => '', 'bpm' => 140],
+	['id' => 7, 'url' => '/audio/motivation.mp3', 'name' => 'Motivation Inspiring Future Bass', 'author' => '', 'bpm' => 140],
+	['id' => 8, 'url' => '/audio/this_technology.mp3', 'name' => 'This technology', 'author' => '', 'bpm' => 140]
 ];
 
 $sounds = [
