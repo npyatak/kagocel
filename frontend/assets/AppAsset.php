@@ -24,9 +24,9 @@ class AppAsset extends AssetBundle
         'js/WebAudioRecorderMp3.min.js',
         'https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.4.0/wavesurfer.min.js',
         'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js',
-        'js/main.js?v=1',
+        'js/main.js?v=2',
         // 'https://cdn.webrtc-experiment.com/MultiStreamsMixer.js',
-        'js/music-mixer.js'
+        'js/music-mixer.js?v=1'
     ];
     public $depends = [
         'yii\web\YiiAsset',

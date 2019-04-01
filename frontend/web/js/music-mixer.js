@@ -545,10 +545,14 @@ function startRecording() {
         $("#mixer__done-message").css({ display: "none" });
         $(".mixer_playlist").css({ display: "" });
         $("#mixer").css({ display: "block" });
-        show_popup("Мы успешно отправили ваш трек на сервер!");
-        setTimeout(function() {
-          window.location.reload();
-        }, 2000);
+
+        result = JSON.parse(this.responseText);
+        show_popup(result.message);
+        if(result.status == 'success') {
+          setTimeout(function() {
+            window.location.reload();
+          }, 2000);
+        }
       }
       $("#resultSend").off("click");
       $("#tryAgain").off("click");

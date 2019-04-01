@@ -48,24 +48,28 @@ class PersonalController extends CController
         $user = User::findOne(Yii::$app->user->id);
         $stage = Stage::getCurrent(Stage::TYPE_MAIN);
 
-        $userStagePosts = Post::find()
-            ->where(['stage_id' => $stage->id, 'user_id' => $user->id, 'status' => Post::STATUS_ACTIVE])
-            ->orderBy('id DESC')
-            ->all();
-        
-        $userOldPosts = Post::find()
-            ->where(['user_id' => $user->id, 'status' => Post::STATUS_ACTIVE])
-            ->andWhere(['not', ['stage_id' => $stage->id]])
-            ->orderBy('id DESC')
-            ->all();
-        
-        $otherPosts = Post::find()
-            ->where(['stage_id' => $stage->id, 'post.status' => Post::STATUS_ACTIVE, 'user.status' => Post::STATUS_ACTIVE])
-            ->andWhere(['not', ['user_id' => $user->id]])
-            ->joinWith('user')
-            ->limit(3)
-            ->orderBy('id DESC')
-            ->all();
+        $userStagePosts = null;
+        $otherPosts = null;
+        $oldPostsQuery = Post::find()->where(['user_id' => $user->id, 'status' => Post::STATUS_ACTIVE])->orderBy('id DESC');
+
+        if($stage !== null) {
+            $userStagePosts = Post::find()
+                ->where(['stage_id' => $stage->id, 'user_id' => $user->id, 'status' => Post::STATUS_ACTIVE])
+                ->orderBy('id DESC')
+                ->all();
+
+            $userOldPosts->andWhere(['not', ['stage_id' => $stage->id]]);
+
+            $otherPosts = Post::find()
+                ->where(['stage_id' => $stage->id, 'post.status' => Post::STATUS_ACTIVE, 'user.status' => Post::STATUS_ACTIVE])
+                ->andWhere(['not', ['user_id' => $user->id]])
+                ->joinWith('user')
+                ->limit(3)
+                ->orderBy('id DESC')
+                ->all();
+        }
+
+        $userOldPosts = $oldPostsQuery->all();
 
         return $this->render('index', [
             'user' => $user,
@@ -82,7 +86,14 @@ class PersonalController extends CController
         $model->audioFile = UploadedFile::getInstanceByName('audioFile');
 
         if(/*Yii::$app->request->isAjax && */!Yii::$app->user->isGuest && !empty($model->audioFile)) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+
             $stage = Stage::getCurrent(Stage::TYPE_MAIN);
+            
+            if($stage === null) {
+                return ['status' => 'error', 'message' => 'К сожалению, вы не можете добавить файл. Конкурс окончен.'];
+            }
+
             $model->user_id = Yii::$app->user->id;
             $model->stage_id = $stage->id;
 
@@ -95,8 +106,7 @@ class PersonalController extends CController
                 }
                 $model->audioFile->saveAs($path.$model->audio);
 
-                Yii::$app->response->format = Response::FORMAT_JSON;
-                return ['link' => Url::toRoute(['site/post', 'id' => $model->id])];
+                return ['status' => 'success', 'message' => 'Мы успешно отправили ваш трек на сервер!', 'link' => Url::toRoute(['site/post', 'id' => $model->id])];
             } else {
                 print_r($model->getErrors());
             }

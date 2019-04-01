@@ -59,21 +59,23 @@ $arr = [
 	</section>
 <?php endif;?>
 
-<section class="section_gallery pb_small pt_big">
-	<div class="contain">
-		
-		<div class="section_top">
-			<h3 class="section_name"><?=strtolower($stage->name);?></h3>
-			<p class="section_date"><span><?=$stage->startDate;?></span> <span><?=$stage->endDate;?></span></p>
-		</div>
+<?php if($stage):?>
+	<section class="section_gallery pb_small pt_big">
+		<div class="contain">
+			
+			<div class="section_top">
+				<h3 class="section_name"><?=strtolower($stage->name);?></h3>
+				<p class="section_date"><span><?=$stage->startDate;?></span> <span><?=$stage->endDate;?></span></p>
+			</div>
 
-		<div class="gallery_main">
-			<?php foreach ($stagePosts as $key => $post):?>
-				<?=$this->render('_post', ['post' => $post]);?>
-			<?php endforeach;?>
+			<div class="gallery_main">
+				<?php foreach ($stagePosts as $key => $post):?>
+					<?=$this->render('_post', ['post' => $post]);?>
+				<?php endforeach;?>
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
+<?php endif;?>
 
 <?php if(!empty($finishedStages)):?>
 	<section class="section_hide_show dark_bg bottom">

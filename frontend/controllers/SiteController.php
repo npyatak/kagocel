@@ -168,7 +168,10 @@ class SiteController extends CController
     {
         $stage = Stage::getCurrent(Stage::TYPE_MAIN);
 
-        $stagePosts = Post::find()->where(['stage_id' => $stage->id, 'status' => Post::STATUS_ACTIVE])->all();
+        $stagePosts = null;
+        if($stage !== null) {
+            $stagePosts = Post::find()->where(['stage_id' => $stage->id, 'status' => Post::STATUS_ACTIVE])->all();
+        }
 
         $finishedStages = Stage::find()->where(['<', 'date_end', time()])->indexBy('id')->all();
 
