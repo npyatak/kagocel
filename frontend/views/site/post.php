@@ -32,21 +32,23 @@ use yii\helpers\Url;
 	</div>
 </section>
 
-<section class="section_gallery pb_small pt_big">
-	<div class="contain">
-		
-		<div class="section_top">
-			<h3 class="section_name"><?=strtolower($stage->name);?></h3>
-			<p class="section_date"><span><?=$stage->startDate;?></span> <span><?=$stage->endDate;?></span></p>
-		</div>
+<?php if($stagePosts):?>
+	<section class="section_gallery pb_small pt_big">
+		<div class="contain">
+			
+			<div class="section_top">
+				<h3 class="section_name"><?=strtolower($stage->name);?></h3>
+				<p class="section_date"><span><?=$stage->startDate;?></span> <span><?=$stage->endDate;?></span></p>
+			</div>
 
-		<div class="gallery_main">
-			<?php foreach ($stagePosts as $key => $p):?>
-				<?=$this->render('_post', ['post' => $p]);?>
-			<?php endforeach;?>
+			<div class="gallery_main">
+				<?php foreach ($stagePosts as $key => $p):?>
+					<?=$this->render('_post', ['post' => $p]);?>
+				<?php endforeach;?>
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
+<?php endif;?>
 
 <?php 
 $script = "

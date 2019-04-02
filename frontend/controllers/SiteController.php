@@ -155,7 +155,10 @@ class SiteController extends CController
         $post = $this->findPost($id);
         $stage = Stage::getCurrent(Stage::TYPE_MAIN);
 
-        $stagePosts = Post::find()->where(['stage_id' => $stage->id, 'status' => Post::STATUS_ACTIVE])->all();
+        $stagePosts = null;
+        if($stage) {
+            $stagePosts = Post::find()->where(['stage_id' => $stage->id, 'status' => Post::STATUS_ACTIVE])->all();
+        }
 
         return $this->render('post', [
             'post' => $post,
