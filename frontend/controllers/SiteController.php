@@ -178,10 +178,13 @@ class SiteController extends CController
 
         $finishedStages = Stage::find()->where(['<', 'date_end', time()])->indexBy('id')->all();
 
+        $finalWinnerPost = Post::findOne(170);
+
         return $this->render('gallery', [
             'stage' => $stage,
             'stagePosts' => $stagePosts,
             'finishedStages' => $finishedStages,
+            'finalWinnerPost' => $finalWinnerPost,
         ]);
     }
 

@@ -41,6 +41,16 @@ $arr = [
 
 		<div class="all_show_block pb_small">
 			<div class="contain">
+				<?php if($finalWinnerPost):?>
+					<h3 class="section_name show"><span>Финалист</span></h3>
+
+					<div class="stage_show">
+						<div>
+							<?=$this->render('_post', ['post' => $finalWinnerPost]);?>
+						</div>
+					</div>
+				<?php endif;?>
+				
 				<?php foreach ($finishedStages as $s):?>
 					<?php if(!empty($s->winnerPosts)):?>
 						<h3 class="section_name show"><span>победители <?=$arr[$s->number];?> этапа  <i class="fa fa-caret-up" aria-hidden="true"></i></span></h3>
@@ -79,11 +89,6 @@ $arr = [
 
 <?php if(!empty($finishedStages)):?>
 	<section class="section_hide_show dark_bg bottom">
-		<!-- <div class="all_show_button">
-			показать еще <i class="fa fa-caret-up" aria-hidden="true"></i>
-		</div> -->
-		<!-- all_show -->
-
 		<div class="all_show_block pb_small">
 			<div class="contain">
 				<?php foreach ($finishedStages as $s):?>
